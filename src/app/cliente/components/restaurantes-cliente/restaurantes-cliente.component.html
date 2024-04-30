@@ -1,0 +1,29 @@
+<app-header-cliente></app-header-cliente>
+
+<nav>
+    <a routerLink="/inicio-cliente">Inicio</a>
+    <a routerLink="/restaurantes-cliente" class="current">Restaurantes</a>
+    <a routerLink="/cli-envios">Envíos</a>
+    <a routerLink="/cli-ofertas">Ofertas</a>
+    <a routerLink="/mis-pedidos">Mis pedidos</a>
+    <!-- Icono del carrito dentro del nav -->
+    <a routerLink="/carrito-clienteG" class="cart-icon-link">
+        <i class="fas fa-shopping-cart"></i> Carrito
+    </a>
+</nav>
+
+<div class="restaurant-container">
+    <div class="restaurant" *ngFor="let restaurante of restaurantes">
+        <img [src]="getImageUrl(restaurante.logoRestaurant)" [alt]="restaurante?.nombreRestaurante">
+        <div class="restaurant-name">{{ restaurante.nombreRestaurante }}</div>
+        <p class="restaurant-description">{{ restaurante.descripcionRestaurant }}</p>
+        <div class="restaurant-category">HORA APERTURA: {{  formatTime(restaurante.horaApertura) }}</div>
+        <div class="restaurant-category">HORA CIERRE: {{ formatTime(restaurante.horaCierre) }}</div>
+        <a [routerLink]="['/info-restaurante', restaurante?._id]" class="view-button">Ver Restaurante</a>
+    </div>
+    <div *ngIf="restaurantes.length === 0">Cargando restaurantes...</div>
+</div>
+<app-footer></app-footer>
+
+    
+

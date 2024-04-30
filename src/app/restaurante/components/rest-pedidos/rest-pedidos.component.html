@@ -1,0 +1,87 @@
+<header>
+    <app-header-restaurante></app-header-restaurante>
+</header>
+
+<div class="admin-menu">
+    <a routerLink="/inicio-restaurante">Inicio</a>
+    <a routerLink="/rest-productos">Productos</a>
+    <a routerLink="/rest-pedidos" class="admin-current-page">Pedidos</a>
+    <a routerLink="/ventas-restaurante">Ventas</a>
+    <a href="rest-inventario.html">Inventario</a>
+    <a href="reseñas-restaurante.html">Reseñas</a>
+</div>
+
+<div class="voz-alta-container">
+    <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
+    <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
+</div>
+<div class="orders-container">
+    <div class="orders-title">
+        <span>🍔 Gestión de Pedidos</span>
+    </div>
+
+    <div class="elemento-referente">
+        <p>Gestiona los pedidos entrantes y la información de estos, acepta o rechaza el pedido según la conveniencia o posibilidad.</p>
+    </div>
+    <!-- Contenedor de pedidos -->
+    <div class="pedidos-container">
+        <!-- Ejemplo de un pedido detallado -->
+        <div class="order-item" *ngFor="let pedido of pedidos">
+            <!-- Contenido del pedido -->
+            <h3>{{'Nombre del Cliente: ' + pedido.nombreCliente}}</h3>
+            <strong>Características del Pedido:</strong>
+            <div class="pedido-info">
+                <div>
+                    <!-- Iterar sobre cada detalle de producto -->
+                    <div *ngFor="let detalle of pedido.detallesProductos; let i = index">
+                        <div style="display: flex; align-items: center;">
+                            <p [ngStyle]="{'text-decoration': detalle.cancelado ? 'line-through' : 'none'}">{{'PLATILLO: "' + detalle.nombreProducto + '" CANTIDAD: "'+detalle.cantidadProducto+'" ' }} </p>
+                            <!-- Botón de cancelar -->
+                            <button class="cancel-button" (click)="cancelOrder(pedido, detalle, i)" [ngClass]="{ 'active': pedido.estadoOrden === 2 && cancelarProductoIndex === i, 'cancelado': pedido.estadoOrden === 2 && cancelarProductoIndex !== i, 'no-cancelado': pedido.estadoOrden !== 2 }"
+                                *ngIf="pedido.detallesProductos.length >= 2">Cancelar</button>
+                        </div>
+                        <p style="font-size: smaller;">{{'Especificaciones: '+ detalle.especificaciones}}</p>
+                        <!-- Otros detalles del producto -->
+
+                        <!-- Estado del pedido -->
+                        <p [ngClass]="{
+                            'pedido-solicitado': pedido.estadoOrden === 0,
+                            'pedido-espera': pedido.estadoOrden === 2,
+                            'continuar-pedido': pedido.estadoOrden === 3,
+                            'pedido-proceso': pedido.estadoOrden === 4,
+                            'pedido-completado': pedido.estadoOrden === 5
+                          }">
+                            {{ pedido.estadoOrden === 0 ? 'Estado: Solicitados' : pedido.estadoOrden === 2 ? 'Estado: En espera': pedido.estadoOrden === 3 ? 'Estado: Continuar con el pedido' : pedido.estadoOrden === 4 ? 'Estado: En proceso' : pedido.estadoOrden === 5 ? 'Estado:
+                            Completado' : 'Estado Desconocido' }}
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+            <strong>Dirección de Entrega:</strong>
+            <p>{{ 'Ciudad: ' +pedido.ciudad + ', Colonia: ' + pedido.colonia + ', Calle: ' + pedido.calle + ', No. Casa: ' + pedido.noCasa + ', Referencias: '+ pedido.datoExtra }}
+            </p>
+            <strong>Distancia:</strong>
+            <p>{{ pedido.distancia }} km</p>
+            <strong>Fecha:</strong>
+            <p>{{ pedido.fechaPedido | date: 'dd-MM-yyyy h:mm a' }}</p>
+            <strong>No. Orden:</strong>
+            <p>{{ pedido.noOrden +'. Estado: ' + pedido.estadoOrden }}</p>
+
+            <!-- Botones de acciones -->
+            <div class="order-buttons">
+                <button class="accept-button" (click)="acceptOrder(pedido)" [disabled]="pedido.botonesDeshabilitados">ACEPTAR</button>
+                <button class="reject-button" (click)="rejectOrder(pedido)" [disabled]="pedido.botonesDeshabilitados">RECHAZAR</button>
+                <button class=" complete-button " *ngIf=" pedido.estadoOrden === 4 || pedido.estadoOrden === 5  " (click)="completeOrder(pedido) ">COMPLETADA</button>
+                <button class="camino-button " *ngIf=" pedido.estadoOrden === 5" (click)="camino(pedido) ">EN CAMINO</button>
+            </div>
+            <div class="order-message " *ngIf="pedido.isAccepted || pedido.estadoOrden === 4 ">
+                <p>*Orden actual tomada.*</p>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <app-footer-restaurante></app-footer-restaurante>
+</footer>

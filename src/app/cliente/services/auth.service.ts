@@ -51,6 +51,7 @@ export class AuthService {
                     //this.saveToken(res.dataUser.accessToken, res.dataUser.expiresIn);
                     localStorage.setItem("ACCESS_TOKEN", res.dataUser.accessToken);
                     localStorage.setItem("EXPIRES_IN", res.dataUser.expiresIn);
+                    localStorage.setItem("ID_USER", res.dataUser.id);
 
                 }
             })

@@ -9,7 +9,6 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './inicio-cliente.component.css'
 })
 
-
 export class InicioClienteComponent implements OnInit{//
   currentIndex = 0;
   showMessage = false;

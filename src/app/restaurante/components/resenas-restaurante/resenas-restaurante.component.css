@@ -1,0 +1,63 @@
+/* Estilos específicos para esta página de reseñas */
+.reseñas-container {
+    padding: 20px;
+}
+
+.reseñas-title {
+    font-size: 24px;
+    color: #013116; /* Color verde */
+}
+
+.estrellas-icon {
+    color: #FFD700; /* Color amarillo para las estrellas */
+}
+
+.reseña-item {
+    background-color: #f5f5f5; /* Color gris */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.usuario {
+    font-weight: bold;
+}
+
+.calificación {
+    color: #FFA500; /* Color naranja para la calificación */
+}
+
+.reviews-container .reviews-title {
+    background-color: #2ecc71; /* Color de fondo del título de reseñas */
+    color: #fff; /* Color del texto en el título de reseñas */
+    padding: 10px;
+    border-radius: 10px; /* Bordes redondeados */
+    text-align: center;
+    margin-bottom: 20px; /* Espacio entre el título y la tabla */
+}
+
+
+/*NAV*/
+.admin-current-page {
+    background-color: #00B14F;
+  }
+  
+  .admin-menu {
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin: 20px 0;
+  }
+  
+  .admin-menu a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+  }
+  
+  .admin-menu a:hover {
+    background-color: #555;
+  }
+  

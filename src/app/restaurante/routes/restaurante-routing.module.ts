@@ -7,6 +7,7 @@ import { VentasRestauranteComponent } from '../components/ventas-restaurante/ven
 import { RestProductosComponent } from '../components/rest-productos/rest-productos.component';
 import { RestPedidosComponent } from '../components/rest-pedidos/rest-pedidos.component';
 import { RegistroRestauranteComponent } from '../components/registro-restaurante/registro-restaurante.component';
+import { ResenasRestauranteComponent } from '../components/resenas-restaurante/resenas-restaurante.component';
 
 const routes: Routes = [
 
@@ -16,6 +17,8 @@ const routes: Routes = [
   { path: 'rest-productos', component: RestProductosComponent },
   { path: 'rest-pedidos', component: RestPedidosComponent },
   { path: 'registro-restaurante', component: RegistroRestauranteComponent },
+  { path: 'resenas-restaurante', component: ResenasRestauranteComponent },
+
 ];
 
 @NgModule({

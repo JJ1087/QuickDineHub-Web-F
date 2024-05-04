@@ -4,7 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { MensajeComponent } from '../../../compartido/components/mensaje/mensaje.component';
 import { MatDialog } from '@angular/material/dialog';
-
+//COMENTARIO DE PRUEBA2
 import { ViewChild, ElementRef } from '@angular/core';
 import { Timestamp } from 'rxjs';
 

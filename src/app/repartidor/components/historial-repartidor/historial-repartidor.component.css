@@ -1,0 +1,84 @@
+/* Estilos específicos para esta página de historial de pedidos */
+.sales-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc; /* Borde de la sección de ventas */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.sales-title {
+    background-color: #2ecc71; /* Color de fondo del título de ventas */
+    color: #fff; /* Color del texto en el título de ventas */
+    padding: 10px;
+    border-radius: 10px; /* Bordes redondeados */
+    text-align: center;
+    margin-bottom: 20px; /* Espacio entre el título y la tabla */
+}
+
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.sales-table th, .sales-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.sales-table .table-header th {
+    background-color: #2ecc71; /* Color de fondo del encabezado de la tabla */
+    color: #fff; /* Color del texto en el encabezado de la tabla */
+}
+
+/* Estilos para el formulario de búsqueda */
+#search, #searchColumn {
+    margin-bottom: 10px;
+}
+
+/* Estilos para el botón de agregar venta */
+.add-sale-button {
+    background-color: #2ecc71; /* Color de fondo del botón de agregar venta */
+    color: #fff; /* Color del texto en el botón de agregar venta */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-sale-button:hover {
+    background-color: #28a745; /* Cambio de color al pasar el mouse sobre el botón de agregar venta */
+}
+
+/* Estilos para el icono de edición */
+.edit-icon {
+    color: #3498db; /* Color del icono de edición */
+    cursor: pointer;
+}
+
+.edit-icon:hover {
+    color: #2980b9; /* Cambio de color al pasar el mouse sobre el icono de edición */
+}
+/*NAV*/
+.admin-menu {
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.admin-menu a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+}
+
+.admin-menu a:hover {
+    background-color: #555;
+}
+
+.admin-current-page {
+    background-color: #00B14F;
+}

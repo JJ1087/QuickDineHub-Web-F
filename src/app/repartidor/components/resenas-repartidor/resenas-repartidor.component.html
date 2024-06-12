@@ -1,0 +1,30 @@
+<app-header-repartidor></app-header-repartidor>
+<div class="admin-menu">
+    <a routerLink="/inicio-repartidor" >Inicio</a>
+    <a routerLink="/rep-pedidos">Pedidos</a>
+    <a routerLink="/rep-entregas">Entregas</a>
+    <a routerLink="/historial-repartidor">Historial</a>
+    <a routerLink="/rep-pagos">Pagos</a>
+    <a routerLink="/resenas-repartidor" class="admin-current-page">Reseñas</a>
+</div>
+
+<div class="reseñas-container">
+    <div class="reviews-container">
+      <div class="reviews-title">
+        <h1 class="reseñas-title">Reseñas</h1>
+        <span>🌟 </span>
+      </div>
+      <label for="search">Buscar:</label>
+      <input type="text" id="search" placeholder="Ingrese término de búsqueda">
+      
+      <!-- Contenedor de reseñas -->
+      <div class="reseña-item" *ngFor="let resena of resenas">
+        <p class="usuario">Usuario: {{ resena.usuario }}</p>
+        <p class="reseña">Reseña: {{ resena.resena }}</p>
+        <p class="estrellas-icon">{{ resena.estrellas }}</p>
+        <p class="calificación">Calificación: {{ resena.calificacion }}/5</p>
+      </div>
+    </div>
+  </div>
+  
+  <app-footer></app-footer>

@@ -73,6 +73,9 @@ import { RestaurantesClienteComponent } from './cliente/components/restaurantes-
 import { InfoRestauranteComponent } from './cliente/components/info-restaurante/info-restaurante.component';
 import { NotificacionesEnteradoComponent } from './compartido/components/notificaciones-enterado/notificaciones-enterado.component';
 import { NotificacionesEntregadoComponent } from './compartido/components/notificaciones-entregado/notificaciones-entregado.component';
+import { ResenasRepartidorComponent } from './repartidor/components/resenas-repartidor/resenas-repartidor.component';
+import { ResenasRestauranteComponent } from './restaurante/components/resenas-restaurante/resenas-restaurante.component';
+import { HistorialRepartidorComponent } from './repartidor/components/historial-repartidor/historial-repartidor.component';
 
 @NgModule({
   declarations: [
@@ -130,6 +133,9 @@ import { NotificacionesEntregadoComponent } from './compartido/components/notifi
     InfoRestauranteComponent,
     NotificacionesEnteradoComponent,
     NotificacionesEntregadoComponent,
+    ResenasRepartidorComponent,
+    ResenasRestauranteComponent,
+    HistorialRepartidorComponent,
 
   ],
   imports: [

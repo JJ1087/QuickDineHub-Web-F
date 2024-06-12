@@ -1,0 +1,56 @@
+<app-header-repartidor></app-header-repartidor>
+<div class="admin-menu">
+    <a routerLink="/inicio-repartidor" >Inicio</a>
+    <a routerLink="/rep-pedidos">Pedidos</a>
+    <a routerLink="/rep-entregas">Entregas</a>
+    <a routerLink="/historial-repartidor"class="admin-current-page">Historial</a>
+    <a routerLink="/rep-pagos">Pagos</a>
+    <a routerLink="/resenas-repartidor">Reseñas</a>
+</div>
+
+<div class="sales-container">
+    <div class="sales-title">
+      <span>📋 Historial de pedidos</span>
+    </div>
+  
+    <label for="search">Buscar:</label>
+    <input type="text" id="search"  placeholder="Ingrese término de búsqueda">
+  
+    <label for="searchColumn">Buscar en columna:</label>
+    <select id="searchColumn" >
+      <option value="0">Producto adquirido</option>
+      <option value="1">Restaurante del plato</option>
+      <option value="2">Cantidad</option>
+      <option value="3">Costo total</option>
+      <option value="4">Fecha de venta</option>
+      <option value="5">Dirección de entrega</option>
+    </select>
+  
+    <br><br>
+  
+    <table class="sales-table">
+      <thead>
+        <tr class="table-header">
+          <th>Producto adquirido</th>
+          <th>Restaurante del plato</th>
+          <th>Cantidad</th>
+          <th>Costo total</th>
+          <th>Fecha de venta</th>
+          <th>Dirección de entrega</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let venta of ventas">
+          <td>{{ venta.producto }}</td>
+          <td>{{ venta.restaurante }}</td>
+          <td>{{ venta.cantidad }}</td>
+          <td>{{ venta.costoTotal }}</td>
+          <td>{{ venta.fechaVenta }}</td>
+          <td>{{ venta.direccionEntrega }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
+  
+  <app-footer></app-footer>

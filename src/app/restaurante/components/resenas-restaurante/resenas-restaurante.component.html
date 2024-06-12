@@ -1,0 +1,35 @@
+<header>
+    <app-header-restaurante></app-header-restaurante>
+</header>
+<div class="admin-menu">
+    <a routerLink="/inicio-restaurante">Inicio</a>
+    <a routerLink="/rest-productos">Productos</a>
+    <a routerLink="/rest-pedidos">Pedidos</a>
+    <a routerLink="/ventas-restaurante">Ventas</a>
+    <a href="rest-inventario.html">Inventario</a>
+    <a routerLink="/resenas-restaurante" class="admin-current-page">Reseñas</a>
+
+</div>
+
+<div class="reseñas-container">
+    <div class="reviews-container">
+      <div class="reviews-title">
+        <h1 class="reseñas-title">Reseñas</h1>
+        <span>🌟 </span>
+      </div>
+      <label for="search">Buscar:</label>
+      <input type="text" id="search" placeholder="Ingrese término de búsqueda">
+      
+      <!-- Contenedor de reseñas -->
+      <div class="reseña-item" *ngFor="let resena of resenas">
+        <p class="usuario">Usuario: {{ resena.usuario }}</p>
+        <p class="reseña">Reseña: {{ resena.resena }}</p>
+        <p class="estrellas-icon">{{ resena.estrellas }}</p>
+        <p class="calificación">Calificación: {{ resena.calificacion }}/5</p>
+      </div>
+    </div>
+  </div>
+
+<footer>
+    <app-footer-restaurante></app-footer-restaurante>
+</footer>

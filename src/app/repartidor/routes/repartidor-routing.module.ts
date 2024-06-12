@@ -5,11 +5,17 @@ import { LoginRepartidoresComponent } from '../components/login-repartidores/log
 import { RegistroRepartidorComponent } from '../components/registro-repartidor/registro-repartidor.component';
 import { InicioRepartidorComponent } from '../components/inicio-repartidor/inicio-repartidor.component';
 import { RepartidorGuard } from '../services/guards/auth.Repartidor.guard';
+import { ResenasRepartidorComponent } from '../components/resenas-repartidor/resenas-repartidor.component';
+import { HistorialRepartidorComponent } from '../components/historial-repartidor/historial-repartidor.component';
 
 const routes: Routes = [
   { path: 'login-repartidores', component: LoginRepartidoresComponent },
   { path: 'registro-repartidor', component: RegistroRepartidorComponent },
   { path: 'inicio-repartidor', component: InicioRepartidorComponent, canActivate:[RepartidorGuard] },
+  { path: 'resenas-repartidor', component: ResenasRepartidorComponent },
+  { path: 'historial-repartidor', component: HistorialRepartidorComponent },
+
+
 ];
 
 @NgModule({

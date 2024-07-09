@@ -76,6 +76,8 @@ import { NotificacionesEntregadoComponent } from './compartido/components/notifi
 import { ResenasRepartidorComponent } from './repartidor/components/resenas-repartidor/resenas-repartidor.component';
 import { ResenasRestauranteComponent } from './restaurante/components/resenas-restaurante/resenas-restaurante.component';
 import { HistorialRepartidorComponent } from './repartidor/components/historial-repartidor/historial-repartidor.component';
+import { FooterHomeComponent } from './compartido/components/footer-home/footer-home.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -136,6 +138,7 @@ import { HistorialRepartidorComponent } from './repartidor/components/historial-
     ResenasRepartidorComponent,
     ResenasRestauranteComponent,
     HistorialRepartidorComponent,
+    FooterHomeComponent,
 
   ],
   imports: [
@@ -169,6 +172,8 @@ import { HistorialRepartidorComponent } from './repartidor/components/historial-
     RegistroRepartidorService,
     PreguntaSecretaService, // Asegúrate de agregar VonageService a la lista de providers    
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class AppModule { }

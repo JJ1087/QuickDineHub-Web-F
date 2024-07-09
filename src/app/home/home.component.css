@@ -367,3 +367,20 @@ header.scrolled {
   header.scrolled nav ul li a {
     font-size: .5px; /* Reducimos aún más el tamaño del texto del enlace cuando se ha hecho scroll hacia abajo */
   }
+  
+  /* home.component.css */
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .home-container {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  footer {
+    margin-top: auto;
+  }
+  

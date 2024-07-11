@@ -79,6 +79,7 @@ import { HistorialRepartidorComponent } from './repartidor/components/historial-
 import { FooterHomeComponent } from './compartido/components/footer-home/footer-home.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
+
 @NgModule({
   declarations: [
     AppComponent,

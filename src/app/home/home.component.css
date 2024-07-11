@@ -3,7 +3,7 @@
 /* Estilos para el checkbox */
 .voz-alta-container {
     margin-top: 10px;
-    margin-bottom: 1%;
+    margin-bottom: -1%;
 }
 /* home.component.css */
 
@@ -46,13 +46,14 @@ label {
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 1px;
+    margin-top: -1%;
 
 }
 
 .mensaje-bienvenida h1 {
     color: #00B14F;
     font-size: 2em;
+
 }
 
 .mensaje-bienvenida p {

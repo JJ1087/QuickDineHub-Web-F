@@ -192,6 +192,17 @@
                 <!-- Puedes agregar validaciones adicionales si es necesario -->
             </div>
 
+          <!-- Categorías del restaurante -->
+        <div class="form-group">
+            <label for="categoriaRestaurante">Categoría del Restaurante:</label>
+            <select id="categoriaRestaurante" formControlName="categoriaRestaurante">
+                <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+            </select>
+            <div *ngIf="segundaFaseForm.get('categoriaRestaurante')?.invalid && (segundaFaseForm.get('categoriaRestaurante')?.dirty || segundaFaseForm.get('categoriaRestaurante')?.touched)">
+                <small *ngIf="segundaFaseForm.get('categoriaRestaurante')?.errors?.['required']">Categoría del Restaurante es obligatoria</small>
+            </div>
+        </div>
+
             <!-- ... (Agrega aquí otros campos del segundo formulario) -->
 
             <button type="submit" class="registro-button" [disabled]="segundaFaseForm.invalid ">Continuar</button>

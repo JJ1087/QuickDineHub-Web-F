@@ -604,3 +604,35 @@ label {
 .custom-select-wrapper option {
     font-size: 16px;
 }
+
+select {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #6a7eff; /* Cambiar color del borde cuando está enfocado */
+}
+small {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: block;
+}
+
+.aviso-privacidad {
+    margin-bottom: 15px;
+}
+
+.aviso-link {
+    color: #6a7eff;
+    cursor: pointer;
+}
+
+.aviso-link:hover {
+    text-decoration: underline;
+}

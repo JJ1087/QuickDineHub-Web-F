@@ -78,6 +78,7 @@ import { ResenasRestauranteComponent } from './restaurante/components/resenas-re
 import { HistorialRepartidorComponent } from './repartidor/components/historial-repartidor/historial-repartidor.component';
 import { FooterHomeComponent } from './compartido/components/footer-home/footer-home.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { RepPagosComponent } from './repartidor/components/rep-pagos/rep-pagos.component';
 
 
 @NgModule({
@@ -140,6 +141,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     ResenasRestauranteComponent,
     HistorialRepartidorComponent,
     FooterHomeComponent,
+    RepPagosComponent,
 
   ],
   imports: [

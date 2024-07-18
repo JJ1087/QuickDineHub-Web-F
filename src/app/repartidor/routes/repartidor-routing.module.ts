@@ -7,6 +7,7 @@ import { InicioRepartidorComponent } from '../components/inicio-repartidor/inici
 import { RepartidorGuard } from '../services/guards/auth.Repartidor.guard';
 import { ResenasRepartidorComponent } from '../components/resenas-repartidor/resenas-repartidor.component';
 import { HistorialRepartidorComponent } from '../components/historial-repartidor/historial-repartidor.component';
+import { RepPagosComponent } from '../components/rep-pagos/rep-pagos.component';
 
 const routes: Routes = [
   { path: 'login-repartidores', component: LoginRepartidoresComponent },
@@ -14,7 +15,7 @@ const routes: Routes = [
   { path: 'inicio-repartidor', component: InicioRepartidorComponent, canActivate:[RepartidorGuard] },
   { path: 'resenas-repartidor', component: ResenasRepartidorComponent },
   { path: 'historial-repartidor', component: HistorialRepartidorComponent },
-
+  { path: 'rep-pagos', component: RepPagosComponent },
 
 ];
 

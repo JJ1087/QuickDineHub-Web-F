@@ -1,0 +1,289 @@
+.orders-container {
+    text-align: center; /* Alinea el contenido al centro */
+}
+
+.orders-container .orders-title {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pedidos-container {
+    width: 70%;
+    margin: 0 auto; /* Centra el contenedor en la página */
+}
+
+.order-item {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative; /* Añade posición relativa para posicionar elementos hijos */
+}
+
+.order-item h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.order-item p {
+    margin: 5px 0;
+}
+
+.order-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #2ecc71;
+}
+
+.order-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.order-buttons button {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 48%;
+}
+
+.accept-button {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
+.reject-button {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.complete-button {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.order-message {
+    margin-top: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+
+.add-sale-form, .edit-sale-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1;
+}
+.add-sale-form, .edit-sale-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    z-index: 1;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0; 
+    background-color: #fff;
+    color: #333;
+}
+.add-sale-form form, .edit-sale-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-sale-form label, .edit-sale-form label {
+    margin-bottom: 10px;
+}
+
+.add-sale-form input, .edit-sale-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-sale-form input[type="submit"], .edit-sale-form input[type="submit"] {
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-sale-form input[type="submit"]:hover, .edit-sale-form input[type="submit"]:hover {
+    background-color: #28a745;
+}
+
+.add-sale-form button, .edit-sale-form button {
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-sale-form button:hover, .edit-sale-form button:hover {
+    background-color: #b3b3b3;
+}
+.sales-container .sales-title {
+    background-color: #2ecc71; /* Color de fondo del título de ventas */
+    color: #fff; /* Color del texto en el título de ventas */
+    padding: 10px;
+    border-radius: 10px; /* Bordes redondeados */
+    text-align: center;
+    margin-bottom: 20px; /* Espacio entre el título y la tabla */
+}
+
+
+
+
+
+
+
+
+.add-sale1-form, .edit-sale-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1;
+}
+.add-sale1-form, .edit-sale-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.add-sale1-form form, .edit-sale-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-sale1-form label, .edit-sale-form label {
+    margin-bottom: 10px;
+}
+
+.add-sale1-form input, .edit-sale-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-sale1-form input[type="submit"], .edit-sale-form input[type="submit"] {
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-sale1-form input[type="submit"]:hover, .edit-sale-form input[type="submit"]:hover {
+    background-color: #28a745;
+}
+
+.add-sale1-form button, .edit-sale-form button {
+    background-color: #ccc;
+    color: #333;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-sale1-form button:hover, .edit-sale-form button:hover {
+    background-color: #b3b3b3;
+}
+.sales-container .sales-title {
+    background-color: #2ecc71; /* Color de fondo del título de ventas */
+    color: #fff; /* Color del texto en el título de ventas */
+    padding: 10px;
+    border-radius: 10px; /* Bordes redondeados */
+    text-align: center;
+    margin-bottom: 20px; /* Espacio entre el título y la tabla */
+}
+
+
+.sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.sales-table th, .sales-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.sales-table .table-header th {
+    background-color: #2ecc71; /* Color de fondo del encabezado de la tabla */
+    color: #fff; /* Color del texto en el encabezado de la tabla */
+}
+  /*NAV*/
+.admin-menu {
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.admin-menu a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+}
+
+.admin-menu a:hover {
+    background-color: #555;
+}
+
+.admin-current-page {
+    background-color: #00B14F;
+}

@@ -1,0 +1,81 @@
+<app-header-repartidor></app-header-repartidor>
+<div class="admin-menu">
+    <a routerLink="/inicio-repartidor">Inicio</a>
+    <a routerLink="/rep-pedidos">Pedidos</a>
+    <a routerLink="/rep-entregas">Entregas</a>
+    <a routerLink="/historial-repartidor" class="admin-current-page">Historial</a>
+    <a routerLink="/rep-pagos">Pagos</a>
+    <a routerLink="/resenas-repartidor">Reseñas</a>
+</div>
+<div class="orders-container">
+    <div class="orders-title">
+        <span>💵 Pagos</span>
+    </div>
+    <div class="elemento-referente">
+        <p>Visualiza tus ganancias acumuladas, las cuales puedes retirar en el momento que lo desees. También podrás visualizar tu historial de retiros.</p>
+    </div>
+    <!-- Contenedor de pedidos -->
+    <div class="pedidos-container">
+        <!-- Ejemplo de un pedido detallado -->
+        <div class="order-item">
+            <strong>Ganancias:</strong>
+            <h2>MXN $800.00</h2>
+
+            <button class="add-sale-button" (click)="toggleAddSaleForm()">Agregar cuenta bancaria</button>
+            <div class="add-sale-form" *ngIf="showAddSaleForm">
+                <form (submit)="addSale($event)">
+                    <label for="product">Número de tarjeta:</label>
+                    <input type="text" id="product" name="product" required><br>
+
+                    <label for="saleDate">Fecha de expiración:</label>
+                    <input type="date" id="saleDate" name="saleDate" required><br>
+
+                    <label for="saleLocation">Nombre del titular de la tarjeta:</label>
+                    <input type="text" id="saleLocation" name="saleLocation" required><br>
+
+                    <input type="submit" value="Agregar">
+                </form>
+                <button type="button" (click)="cancelAdd()">Cancelar</button>
+            </div>
+
+            <button class="add-sale1-button" (click)="toggleAddSaleForm1()">Retirar</button>
+            <div class="add-sale1-form" *ngIf="showAddSaleForm1">
+                <form (submit)="addSale1($event)">
+                    <label for="withdrawAmount">Ingrese la cantidad que desea retirar:</label>
+                    <input type="text" id="withdrawAmount" name="withdrawAmount" required><br>
+                    <input type="submit" value="Retirar">
+                </form>
+                <button type="button" (click)="cancelAdd1()">Cancelar</button>
+            </div>
+        </div>
+
+        <div class="order-item">
+            <h2>Historial de Retiros:</h2>
+            <label for="search">Buscar:</label>
+            <input type="text" id="search" (input)="filterTable($event)" placeholder="Ingrese término de búsqueda">
+            <label for="searchColumn">Buscar en columna:</label>
+            <select id="searchColumn" (change)="filterTable($event)">
+                <option value="0">Cantidad</option>
+                <option value="1">Cuenta de retiro</option>
+                <option value="2">Fecha de retiro</option>
+            </select>
+            <table class="sales-table" id="salesTable">
+                <thead>
+                    <tr class="table-header">
+                        <th>Cantidad</th>
+                        <th>Cuenta de retiro</th>
+                        <th>Fecha de retiro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of filteredRows">
+                        <td>{{ row.amount }}</td>
+                        <td>{{ row.account }}</td>
+                        <td>{{ row.date }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

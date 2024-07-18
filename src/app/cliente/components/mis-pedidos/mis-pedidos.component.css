@@ -62,10 +62,13 @@
     border-radius: 5px; /* Bordes redondeados */
     padding: 8px 12px; /* Espaciado interno del botón */
     cursor: pointer; /* Cursor de apuntar */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: background-color 0.3s ease, transform 0.2s; /* Efecto de transición */
 }
 
 .ver-detalles-button:hover {
     background-color: #0056b3; /* Cambio de color al pasar el mouse */
+    transform: translateY(-2px); /* Levantar ligeramente */
 }
 
 
@@ -141,4 +144,157 @@ nav a.cart-icon-link i {
 .fecha {
     font-weight: bold; /* Hace que la fecha sea negrita */
     color: #333; /* Color del texto de la fecha */
+}
+
+/* Estilos para los botones de reseña */
+.agregar-resena-button {
+    background-color: #28a745; /* Verde más suave */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 6px; /* Bordes más redondeados */
+    padding: 6px 12px; /* Espaciado interior más compacto */
+    cursor: pointer; /* Cambiar cursor al pasar por encima */
+    transition: background-color 0.3s ease, transform 0.2s; /* Efecto de transición */
+    font-size: 15px; /* Tamaño de fuente ajustado */
+    text-align: center; /* Centrar texto */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.agregar-resena-button:hover {
+    background-color: #218838; /* Color más oscuro al pasar el ratón */
+    transform: translateY(-2px); /* Levantar ligeramente */
+}
+/* Estilos para el modal */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-contenido {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 500px;
+    max-width: 90%;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slide-down 0.3s ease-out;
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.cerrar {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+.estrellas {
+    margin: 20px 0;
+    position: relative;
+}
+
+.fa-star {
+    font-size: 28px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: #ffdd00;
+    transition: transform 20.2s ease-in-out;
+    position: relative;
+}
+
+.fa-star:hover {
+    transform: scale(1.2);
+}
+
+.fa-star:active::after {
+    content: '✨';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    animation: sparkle 1.9s ease-out;
+}
+
+.fa-star.animate {
+    animation: sparkle 0.5s ease-out forwards;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    resize: vertical;
+    transition: border-color 0.2s;
+}
+
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.enviar-resena-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.enviar-resena-button:hover {
+    background-color: #0056b3;
+}
+
+/* Margen entre botones */
+.pedido .agregar-resena-button + .agregar-resena-button {
+    margin-left: 8px; /* Espaciado entre botones ajustado */
+}
+
+/* Ajustes generales para el contenedor de botones */
+.pedido {
+    display: flex; /* Usar flexbox para disposición */
+    justify-content: flex-start; /* Alinear a la izquierda */
+    gap: 8px; /* Espaciado entre elementos */
 }

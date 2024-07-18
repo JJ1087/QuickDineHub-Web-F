@@ -69,9 +69,45 @@
             </div>
             <!-- Botón para ver detalles -->
             <button class="ver-detalles-button" (click)="verDetalles(detalle?._id)">Ver detalles de compra</button>
+            <button class="agregar-resena-button" (click)="abrirFormularioResena(detalle?._id)">Agregar reseña al restaurante</button>
+            <button class="agregar-resena-button" (click)="abrirFormularioResenaRepartidor(detalle?._id)">Agregar reseña al repartidor</button>
+
         </div>
     </div>
 </div>
+
+<!-- Modal de reseña -->
+<div *ngIf="mostrarModal" class="modal">
+    <div class="modal-contenido">
+        <span class="cerrar" (click)="cerrarFormularioResena()">&times;</span>
+        <h2>Escribe tu reseña del producto o del restaurante</h2>
+        <div class="estrellas">
+            <i class="fa-star" *ngFor="let estrella of estrellas; let i = index"
+               [ngClass]="{'fas': i < calificacion, 'far': i >= calificacion}"
+               (mouseenter)="setCalificacion(i + 1)"
+               (click)="setCalificacion(i + 1); agregarAnimacion(i + 1)"></i>
+        </div>
+        <textarea [(ngModel)]="resena" placeholder="Escribe tu reseña aquí..."></textarea>
+        <button class="enviar-resena-button" (click)="enviarResena()">Enviar Reseña</button>
+        
+    </div>
+</div>
+<!-- Modal de reseña del repartidor -->
+<div *ngIf="mostrarModalRepartidor" class="modal">
+    <div class="modal-contenido">
+        <span class="cerrar" (click)="cerrarFormularioResenaRepartidor()">&times;</span>
+        <h2>Escribe tu reseña del repartidor</h2>
+        <div class="estrellas">
+            <i class="fa-star" *ngFor="let estrella of estrellas; let i = index"
+               [ngClass]="{'fas': i < calificacionRepartidor, 'far': i >= calificacionRepartidor}"
+               (mouseenter)="setCalificacionRepartidor(i + 1)"
+               (click)="setCalificacionRepartidor(i + 1); agregarAnimacionRepartidor(i + 1)"></i>
+        </div>
+        <textarea [(ngModel)]="resenaRepartidor" placeholder="Escribe tu reseña aquí..."></textarea>
+        <button class="enviar-resena-button" (click)="enviarResenaRepartidor()">Enviar Reseña</button>
+    </div>
+</div>
+
 
 <footer class="footer">
     <app-footer></app-footer>

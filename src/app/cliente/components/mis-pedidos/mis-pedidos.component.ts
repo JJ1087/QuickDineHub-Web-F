@@ -12,11 +12,96 @@ import { AuthService } from '../../services/auth.service';
 
 export class MisPedidosComponent implements OnInit {
 
+  constructor(private router: Router, private authService: AuthService) { }
+  
+  mostrarModal = false;
+  resena = '';
+  calificacion = 0;
+  estrellas: number[] = [1, 2, 3, 4, 5];
+  idDetalleActual: string | null = null;
 
+  mostrarModalRepartidor = false;
+resenaRepartidor = '';
+calificacionRepartidor = 0;
   
 
-  constructor(private router: Router, private authService: AuthService) { }
+  abrirFormularioResena(idDetalle: string) {
+    this.idDetalleActual = idDetalle;
+    this.mostrarModal = true;
+  }
 
+  cerrarFormularioResena() {
+    this.mostrarModal = false;
+    this.resena = '';
+    this.calificacion = 0;
+    this.idDetalleActual = null;
+  }
+
+  setCalificacion(valor: number) {
+    this.calificacion = valor;
+  }
+
+  enviarResena() {
+    if (this.idDetalleActual) {
+      // Aquí puedes guardar la reseña y la calificación
+      const nuevaResena = {
+        idDetalle: this.idDetalleActual,
+        calificacion: this.calificacion,
+        resena: this.resena,
+        fecha: new Date()
+      };
+      console.log('Reseña enviada:', nuevaResena);
+      this.cerrarFormularioResena();
+    }
+  }
+  agregarAnimacion(calificacion: number) {
+    const estrellas = document.querySelectorAll('.fa-star');
+    estrellas.forEach((estrella: Element, index: number) => {
+        if (index < calificacion) {
+            estrella.classList.add('animate');
+            setTimeout(() => estrella.classList.remove('animate'), 500); // Remover la clase después de 0.5s
+        }
+    });
+}
+
+abrirFormularioResenaRepartidor(idDetalle: string) {
+  this.idDetalleActual = idDetalle;
+  this.mostrarModalRepartidor = true;
+}
+
+cerrarFormularioResenaRepartidor() {
+  this.mostrarModalRepartidor = false;
+  this.resenaRepartidor = '';
+  this.calificacionRepartidor = 0;
+  this.idDetalleActual = null;
+}
+
+setCalificacionRepartidor(valor: number) {
+  this.calificacionRepartidor = valor;
+}
+
+enviarResenaRepartidor() {
+  if (this.idDetalleActual) {
+      const nuevaResenaRepartidor = {
+          idDetalle: this.idDetalleActual,
+          calificacion: this.calificacionRepartidor,
+          resena: this.resenaRepartidor,
+          fecha: new Date()
+      };
+      console.log('Reseña del repartidor enviada:', nuevaResenaRepartidor);
+      this.cerrarFormularioResenaRepartidor();
+  }
+}
+
+agregarAnimacionRepartidor(calificacion: number) {
+  const estrellas = document.querySelectorAll('.fa-star');
+  estrellas.forEach((estrella: Element, index: number) => {
+      if (index < calificacion) {
+          estrella.classList.add('animate');
+          setTimeout(() => estrella.classList.remove('animate'), 500); // Remover la clase después de 0.5s
+      }
+  });
+}
   detalleOrdenes: any[] = [];
   ngOnInit(): void {
    
@@ -211,6 +296,5 @@ getImageUrl(relativePath: string): string {
     this.ngOnInit();  
     console.log('Si se pudo tilin');
 }
-
 
 }

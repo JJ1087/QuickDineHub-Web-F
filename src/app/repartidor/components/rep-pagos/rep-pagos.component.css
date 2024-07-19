@@ -1,32 +1,40 @@
 .orders-container {
-    text-align: center; /* Alinea el contenido al centro */
+    text-align: center;
+    padding: 20px;
 }
 
+/* Título de pedidos */
 .orders-container .orders-title {
     background-color: #2ecc71;
     color: #fff;
-    padding: 10px;
+    padding: 15px;
     border-radius: 10px;
     text-align: center;
     margin-bottom: 20px;
+    font-size: 24px;
 }
 
+/* Contenedor de pedidos */
 .pedidos-container {
-    width: 70%;
-    margin: 0 auto; /* Centra el contenedor en la página */
+    width: 80%;
+    margin: 0 auto;
 }
 
+/* Elemento de pedido */
 .order-item {
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
     margin-bottom: 20px;
-    position: relative; /* Añade posición relativa para posicionar elementos hijos */
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
+/* Títulos de elementos de pedido */
 .order-item h2 {
     margin-bottom: 10px;
     color: #333;
+    font-size: 22px;
 }
 
 .order-item p {
@@ -37,6 +45,63 @@
     display: block;
     margin-bottom: 5px;
     color: #2ecc71;
+}
+
+/* Estilos para botones de acción */
+.order-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.order-buttons button {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 48%;
+}
+/* Estilo para los botones de acción */
+.add-bank-button, .withdraw-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.add-bank-button:hover, .withdraw-button:hover {
+    background-color: #2980b9;
+}
+
+.add-bank-form, .withdraw-form {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.add-bank-form input, .withdraw-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-bank-form button, .withdraw-form button {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
 }
 
 .order-buttons {
@@ -52,7 +117,106 @@
     cursor: pointer;
     width: 48%;
 }
+/* Estilo para los formularios emergentes */
+.modal {
+    display: block; /* Mostrar el modal */
+    position: fixed; /* Fijar en la pantalla */
+    z-index: 1; /* Asegurarse de que esté en frente */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Habilitar scroll si es necesario */
+    background-color: rgba(0,0,0,0.5); /* Fondo negro con opacidad */
+}
 
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto; /* Centrar vertical y horizontalmente */
+    padding: 20px;
+    border: 1px solid #ddd;
+    width: 90%; /* Ancho del modal */
+    max-width: 500px; /* Ancho máximo del modal */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Sombra */
+}
+/* Estilo para el botón de cerrar */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+/* Estilos para los formularios */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-top: 10px;
+    text-align: left;
+}
+
+form input[type="text"], form input[type="date"] {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form input[type="submit"] {
+    background-color: #2ecc71;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+form input[type="submit"]:hover {
+    background-color: #27ae60;
+}
+
+form button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+/* Estilo para los botones de cancelar en los modales */
+.cancel-button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.cancel-button:hover {
+    background-color: #c0392b;
+}
+
+form button:hover {
+    background-color: #c0392b;
+}
 .accept-button {
     background-color: #2ecc71;
     color: #fff;
@@ -106,8 +270,8 @@
 body {
     font-family: 'Lato', sans-serif;
     margin: 0;
-    padding: 0; 
-    background-color: #fff;
+    padding: 0;
+    background-color: #f9f9f9;
     color: #333;
 }
 .add-sale-form form, .edit-sale-form form {
@@ -119,7 +283,41 @@ body {
 .add-sale-form label, .edit-sale-form label {
     margin-bottom: 10px;
 }
+/* Estilos para los formularios en los modales */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+}
 
+.modal-content label {
+    margin: 10px 0 5px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.modal-content input[type="text"], .modal-content input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.modal-content input[type="submit"] {
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.modal-content input[type="submit"]:hover {
+    background-color: #27ae60;
+}
 .add-sale-form input, .edit-sale-form input {
     width: 100%;
     padding: 8px;
@@ -249,6 +447,7 @@ body {
 }
 
 
+/* Estilo para la tabla de historial */
 .sales-table {
     width: 100%;
     border-collapse: collapse;
@@ -256,11 +455,23 @@ body {
 }
 
 .sales-table th, .sales-table td {
-    border: 1px solid #ccc;
     padding: 10px;
-    text-align: center;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
+.sales-table th {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* Filtros de búsqueda */
+#search, #searchColumn {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
 .sales-table .table-header th {
     background-color: #2ecc71; /* Color de fondo del encabezado de la tabla */
     color: #fff; /* Color del texto en el encabezado de la tabla */

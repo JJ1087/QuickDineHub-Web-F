@@ -15,6 +15,37 @@ export class RepPagosComponent {
     { amount: '$100', account: '**** **** **** ****', date: '21/11/2023' },
     { amount: '$100', account: '**** **** **** ****', date: '20/11/2023' }
   ];
+  showAddBankForm: boolean = false;
+  showWithdrawForm: boolean = false;
+  toggleAddBankForm() {
+    this.showAddBankForm = !this.showAddBankForm;
+    this.showWithdrawForm = false;
+  }
+
+  toggleWithdrawForm() {
+    this.showWithdrawForm = !this.showWithdrawForm;
+    this.showAddBankForm = false;
+  }
+
+  addBankAccount(event: Event) {
+    event.preventDefault();
+    // Lógica para manejar el formulario de agregar cuenta bancaria
+    this.showAddBankForm = false; // Cerrar el modal después de enviar
+  }
+
+  withdrawAmount(event: Event) {
+    event.preventDefault();
+    // Lógica para manejar el formulario de retirar dinero
+    this.showWithdrawForm = false; // Cerrar el modal después de enviar
+  }
+
+  cancelAddBank() {
+    this.showAddBankForm = false;
+  }
+
+  cancelWithdraw() {
+    this.showWithdrawForm = false;
+  }
   allRows: any[] = [...this.filteredRows];
 
   toggleAddSaleForm() {

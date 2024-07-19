@@ -3,8 +3,8 @@
     <a routerLink="/inicio-repartidor">Inicio</a>
     <a routerLink="/rep-pedidos">Pedidos</a>
     <a routerLink="/rep-entregas">Entregas</a>
-    <a routerLink="/historial-repartidor" class="admin-current-page">Historial</a>
-    <a routerLink="/rep-pagos">Pagos</a>
+    <a routerLink="/historial-repartidor" >Historial</a>
+    <a routerLink="/rep-pagos" class="admin-current-page">Pagos</a>
     <a routerLink="/resenas-repartidor">Reseñas</a>
 </div>
 <div class="orders-container">
@@ -16,37 +16,13 @@
     </div>
     <!-- Contenedor de pedidos -->
     <div class="pedidos-container">
-        <!-- Ejemplo de un pedido detallado -->
         <div class="order-item">
             <strong>Ganancias:</strong>
             <h2>MXN $800.00</h2>
 
-            <button class="add-sale-button" (click)="toggleAddSaleForm()">Agregar cuenta bancaria</button>
-            <div class="add-sale-form" *ngIf="showAddSaleForm">
-                <form (submit)="addSale($event)">
-                    <label for="product">Número de tarjeta:</label>
-                    <input type="text" id="product" name="product" required><br>
+            <button class="add-bank-button" (click)="toggleAddBankForm()">Agregar cuenta bancaria</button>
 
-                    <label for="saleDate">Fecha de expiración:</label>
-                    <input type="date" id="saleDate" name="saleDate" required><br>
-
-                    <label for="saleLocation">Nombre del titular de la tarjeta:</label>
-                    <input type="text" id="saleLocation" name="saleLocation" required><br>
-
-                    <input type="submit" value="Agregar">
-                </form>
-                <button type="button" (click)="cancelAdd()">Cancelar</button>
-            </div>
-
-            <button class="add-sale1-button" (click)="toggleAddSaleForm1()">Retirar</button>
-            <div class="add-sale1-form" *ngIf="showAddSaleForm1">
-                <form (submit)="addSale1($event)">
-                    <label for="withdrawAmount">Ingrese la cantidad que desea retirar:</label>
-                    <input type="text" id="withdrawAmount" name="withdrawAmount" required><br>
-                    <input type="submit" value="Retirar">
-                </form>
-                <button type="button" (click)="cancelAdd1()">Cancelar</button>
-            </div>
+            <button class="withdraw-button" (click)="toggleWithdrawForm()">Retirar</button>
         </div>
 
         <div class="order-item">
@@ -76,6 +52,39 @@
                 </tbody>
             </table>
         </div>
+    </div>
+</div>
+
+<!-- Modal Agregar Cuenta Bancaria -->
+<div class="modal" *ngIf="showAddBankForm">
+    <div class="modal-content">
+        <span class="close" (click)="cancelAddBank()">&times;</span>
+        <form (submit)="addBankAccount($event)">
+            <label for="cardNumber">Número de tarjeta:</label>
+            <input type="text" id="cardNumber" name="cardNumber" required><br>
+
+            <label for="expiryDate">Fecha de expiración:</label>
+            <input type="text" id="expiryDate" name="expiryDate" placeholder="dd/mm/aaaa" required><br>
+
+            <label for="cardHolder">Nombre del titular de la tarjeta:</label>
+            <input type="text" id="cardHolder" name="cardHolder" required><br>
+
+            <input type="submit" value="Agregar">
+        </form>
+        <button type="button" class="cancel-button"(click)="cancelAddBank()">Cancelar</button>
+    </div>
+</div>
+
+<!-- Modal Retirar -->
+<div class="modal" *ngIf="showWithdrawForm">
+    <div class="modal-content">
+        <span class="close" (click)="cancelWithdraw()">&times;</span>
+        <form (submit)="withdrawAmount($event)">
+            <label for="withdrawAmount">Ingrese la cantidad que desea retirar:</label>
+            <input type="text" id="withdrawAmount" name="withdrawAmount" required><br>
+            <input type="submit" value="Retirar">
+        </form>
+        <button type="button" class="cancel-button"(click)="cancelWithdraw()">Cancelar</button>
     </div>
 </div>
 <app-footer></app-footer>

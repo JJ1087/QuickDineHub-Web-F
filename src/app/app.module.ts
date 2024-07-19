@@ -79,6 +79,8 @@ import { HistorialRepartidorComponent } from './repartidor/components/historial-
 import { FooterHomeComponent } from './compartido/components/footer-home/footer-home.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RepPagosComponent } from './repartidor/components/rep-pagos/rep-pagos.component';
+import { RepPedidosComponent } from './repartidor/components/rep-pedidos/rep-pedidos.component';
+import { RepEntregasComponent } from './repartidor/components/rep-entregas/rep-entregas.component';
 
 
 @NgModule({
@@ -142,6 +144,8 @@ import { RepPagosComponent } from './repartidor/components/rep-pagos/rep-pagos.c
     HistorialRepartidorComponent,
     FooterHomeComponent,
     RepPagosComponent,
+    RepPedidosComponent,
+    RepEntregasComponent,
 
   ],
   imports: [

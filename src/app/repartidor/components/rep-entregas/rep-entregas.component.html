@@ -1,0 +1,44 @@
+<app-header-repartidor></app-header-repartidor>
+<div class="admin-menu">
+    <a routerLink="/inicio-repartidor">Inicio</a>
+    <a routerLink="/rep-pedidos">Pedidos</a>
+    <a routerLink="/rep-entregas" class="admin-current-page">Entregas</a>
+    <a routerLink="/historial-repartidor">Historial</a>
+    <a routerLink="/rep-pagos">Pagos</a>
+    <a routerLink="/resenas-repartidor">Reseñas</a>
+</div>
+
+<div class="orders-container">
+    <div class="orders-title">
+        <span>🛵 Entregas</span>
+    </div>
+    <div class="elemento-referente">
+        <p>Gestiona los información de los pedidos entrantes y la información para poder realizar la entrega de forma correcta y rápida.</p>
+    </div>
+    <div class="pedidos-container">
+        <div class="order-item">
+            <h2>Mapa de navegación:</h2>
+            <a href="https://www.google.com.mx/maps/@19.4215936,-99.155968,12z?entry=ttu">
+                <img src="Mapa.png" alt="map">
+            </a>
+        </div>
+        <div class="order-item">
+            <h2>Pedido en curso:</h2>
+            <p>Miguel Lara Hernandez</p>
+            <strong>Características del Pedido:</strong>
+            <p>Pollo empanizado x1</p>
+            <p>Refresco Coca-Cola 600 ml. x1</p>
+            <strong>Dirección de Entrega:</strong>
+            <p>Calle Allende, Colonia Tahuizan #13</p>
+            <strong>Distancia:</strong>
+            <p>X km</p>
+            <strong>Fecha:</strong>
+            <p>20/11/2023</p>
+            <strong>No. Orden:</strong>
+            <p>3</p>
+            <div class="order-buttons">
+                <button class="complete-button" (click)="confirmOrder($event)">Orden Completada</button>
+            </div>
+        </div>
+    </div>
+</div>

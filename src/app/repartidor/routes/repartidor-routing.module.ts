@@ -8,6 +8,8 @@ import { RepartidorGuard } from '../services/guards/auth.Repartidor.guard';
 import { ResenasRepartidorComponent } from '../components/resenas-repartidor/resenas-repartidor.component';
 import { HistorialRepartidorComponent } from '../components/historial-repartidor/historial-repartidor.component';
 import { RepPagosComponent } from '../components/rep-pagos/rep-pagos.component';
+import { RepPedidosComponent } from '../components/rep-pedidos/rep-pedidos.component';
+import { RepEntregasComponent } from '../components/rep-entregas/rep-entregas.component';
 
 const routes: Routes = [
   { path: 'login-repartidores', component: LoginRepartidoresComponent },
@@ -16,6 +18,9 @@ const routes: Routes = [
   { path: 'resenas-repartidor', component: ResenasRepartidorComponent },
   { path: 'historial-repartidor', component: HistorialRepartidorComponent },
   { path: 'rep-pagos', component: RepPagosComponent },
+  { path: 'rep-pedidos', component: RepPedidosComponent },
+  { path: 'rep-entregas', component: RepEntregasComponent },
+
 
 ];
 

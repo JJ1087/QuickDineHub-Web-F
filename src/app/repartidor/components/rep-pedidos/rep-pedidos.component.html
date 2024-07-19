@@ -1,0 +1,48 @@
+<app-header-repartidor></app-header-repartidor>
+<div class="admin-menu">
+    <a routerLink="/inicio-repartidor">Inicio</a>
+    <a routerLink="/rep-pedidos" class="admin-current-page">Pedidos</a>
+    <a routerLink="/rep-entregas">Entregas</a>
+    <a routerLink="/historial-repartidor">Historial</a>
+    <a routerLink="/rep-pagos">Pagos</a>
+    <a routerLink="/resenas-repartidor">Reseñas</a>
+</div>
+
+<div class="orders-container">
+    <div class="orders-title">
+        <span>🍔 Gestión de Pedidos</span>
+    </div>
+    <div class="elemento-referente">
+        <p>Gestiona los pedidos entrantes y la información de estos, acepta o rechaza el pedido según la conveniencia o posibilidad.</p>
+    </div>
+    <!-- Contenedor de pedidos -->
+    <div class="pedidos-container">
+        <div class="order-item" *ngFor="let order of orders">
+            <h2>Nombre del Cliente:</h2>
+            <p>{{ order.customerName }}</p>
+            <strong>Características del Pedido:</strong>
+            <p>{{ order.item1 }}</p>
+            <p>{{ order.item2 }}</p>
+            <strong>Dirección de Entrega:</strong>
+            <p>{{ order.deliveryAddress }}</p>
+            <strong>Distancia:</strong>
+            <p>{{ order.distance }}</p>
+            <strong>Fecha:</strong>
+            <p>{{ order.date }}</p>
+            <strong>No. Orden:</strong>
+            <p>{{ order.orderNumber }}</p>
+
+            <div class="order-buttons">
+                <button class="accept-button" (click)="acceptOrder(order)">Aceptar</button>
+                <button class="reject-button" (click)="rejectOrder(order)">Rechazar</button>
+                <button class="complete-button" [ngClass]="{'hidden': !order.isAccepted}" (click)="completeOrder(order)">Orden Completada</button>
+            </div>
+
+            <div class="order-message" [ngClass]="{'hidden': !order.isAccepted}">
+                <p>*Orden actual tomada.*</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

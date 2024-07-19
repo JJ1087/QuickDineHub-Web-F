@@ -1,0 +1,136 @@
+body {
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0; 
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.orders-container {
+    padding: 20px;
+    text-align: center; /* Centra el texto en el contenedor principal */
+}
+
+.orders-container .orders-title {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.pedidos-container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the container */
+}
+
+
+.order-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative; /* Add relative positioning for child elements */
+}
+
+.order-item h2 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 1.2em;
+}
+.order-item p {
+    margin: 5px 0;
+}
+
+.order-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #2ecc71;
+    font-weight: bold;
+}
+
+.order-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.order-buttons button {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 48%;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.accept-button {
+    background-color: #2ecc71;
+    color: #fff;
+}
+.accept-button:hover {
+    background-color: #27ae60;
+    transform: scale(1.05);
+}
+
+.reject-button {
+    background-color: #e74c3c;
+    color: #fff;
+}
+.reject-button:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+.complete-button {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.complete-button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+.order-message {
+    margin-top: 15px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-left: 5px solid #2ecc71;
+    border-radius: 5px;
+    color: #333;
+}
+
+.hidden {
+    display: none;
+}
+
+/*NAV*/
+.admin-menu {
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.admin-menu a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+}
+
+.admin-menu a:hover {
+    background-color: #555;
+}
+
+.admin-current-page {
+    background-color: #00B14F;
+}

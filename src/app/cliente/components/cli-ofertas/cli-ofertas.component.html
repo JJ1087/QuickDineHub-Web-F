@@ -1,0 +1,40 @@
+<header>
+    <app-header-cliente></app-header-cliente>
+    </header>
+    <nav>
+        <a routerLink="/inicio-cliente" >Inicio</a>
+        <a routerLink="/cli-restaurantes">Restaurantes</a>
+        <a routerLink="/cli-envios">Envíos</a>
+        <a routerLink="/cli-ofertas" class="current">Ofertas</a>
+        <a routerLink="/mis-pedidos" >Mis pedidos</a>
+        <!-- Icono del carrito dentro del nav -->
+        <a routerLink="/carrito-cliente" class="cart-icon-link" >
+            <i class="fas fa-shopping-cart" ></i> Carrito
+        </a>
+    </nav>
+
+
+    <div class="offer-container">
+        <div *ngFor="let oferta of ofertas" class="offer">
+            <div class="offer-label">Oferta</div>
+            <div class="img-container">
+                <img [src]="oferta.imagen" [alt]="oferta.titulo">
+            </div>
+            <h3>{{ oferta.titulo }}</h3>
+            <p class="offer-description">{{ oferta.descripcion }}</p>
+            <div class="categoria">{{ oferta.categoria }}</div>
+            <div class="original-price">{{ oferta.precioOriginal | currency }}</div>
+            <div class="discount">{{ oferta.descuento }}</div>
+            <div class="offer-price">{{ oferta.precioOferta | currency }}</div>
+            <div class="action-buttons">
+                <a routerLink="/comprar" class="buy-button">Comprar</a>
+                <a routerLink="/info-producto" class="view-button">Ver</a>
+                <a routerLink="/agregar-al-carrito" class="cart-button">Agregar al Carrito</a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <app-footer></app-footer>
+    </footer>
+        

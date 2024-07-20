@@ -12,6 +12,8 @@ import { MisPedidosComponent } from '../components/mis-pedidos/mis-pedidos.compo
 import { CarritoClienteComponentG } from '../components/carrito-clienteG/carrito.clienteG.component';
 import { RestaurantesClienteComponent } from '../components/restaurantes-cliente/restaurantes-cliente.component';
 import { InfoRestauranteComponent } from '../components/info-restaurante/info-restaurante.component';
+import { EditPerfilClienteComponent } from '../components/edit-perfil-cliente/edit-perfil-cliente.component';
+import { CliOfertasComponent } from '../components/cli-ofertas/cli-ofertas.component';
 
 
 const routes: Routes = [
@@ -26,6 +28,7 @@ const routes: Routes = [
   { path: 'carrito-clienteG', component: CarritoClienteComponentG },
   { path: 'restaurantes-cliente', component: RestaurantesClienteComponent },
   { path: 'info-restaurante/:id', component: InfoRestauranteComponent },
+  { path: 'cli-ofertas', component: CliOfertasComponent },
 
 ];
 

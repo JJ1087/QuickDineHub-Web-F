@@ -81,6 +81,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RepPagosComponent } from './repartidor/components/rep-pagos/rep-pagos.component';
 import { RepPedidosComponent } from './repartidor/components/rep-pedidos/rep-pedidos.component';
 import { RepEntregasComponent } from './repartidor/components/rep-entregas/rep-entregas.component';
+import { EditPerfilClienteComponent } from './cliente/components/edit-perfil-cliente/edit-perfil-cliente.component';
+import { CliOfertasComponent } from './cliente/components/cli-ofertas/cli-ofertas.component';
 
 
 @NgModule({
@@ -146,6 +148,8 @@ import { RepEntregasComponent } from './repartidor/components/rep-entregas/rep-e
     RepPagosComponent,
     RepPedidosComponent,
     RepEntregasComponent,
+    EditPerfilClienteComponent,
+    CliOfertasComponent,
 
   ],
   imports: [

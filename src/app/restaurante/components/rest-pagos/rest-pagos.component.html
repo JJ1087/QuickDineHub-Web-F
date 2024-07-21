@@ -1,12 +1,14 @@
-<app-header-repartidor></app-header-repartidor>
-
+<header>
+    <app-header-restaurante></app-header-restaurante>
+</header>
 <div class="admin-menu">
-    <a routerLink="/inicio-repartidor">Inicio</a>
-    <a routerLink="/rep-pedidos">Pedidos</a>
-    <a routerLink="/rep-entregas">Entregas</a>
-    <a routerLink="/historial-repartidor">Historial</a>
-    <a routerLink="/rep-pagos" class="admin-current-page">Pagos</a>
-    <a routerLink="/resenas-repartidor">Reseñas</a>
+    <a routerLink="/inicio-restaurante" >Inicio</a>
+    <a routerLink="/rest-productos">Productos</a>
+    <a routerLink="/rest-pedidos">Pedidos</a>
+    <a routerLink="/ventas-restaurante">Ventas</a>
+    <a href="rest-inventario.html">Inventario</a>
+    <a routerLink="/resenas-restaurante">Reseñas</a>
+    <a routerLink="/rest-pagos"class="admin-current-page">Pagos</a>
 </div>
 
 <div class="orders-container">
@@ -87,4 +89,7 @@
     </div>
 </div>
 
-<app-footer></app-footer>
+
+<footer>
+    <app-footer-restaurante></app-footer-restaurante>
+</footer>

@@ -1,3 +1,4 @@
+
 .orders-container {
     text-align: center;
     padding: 20px;
@@ -469,25 +470,55 @@ body {
     background-color: #2ecc71; /* Color de fondo del encabezado de la tabla */
     color: #fff; /* Color del texto en el encabezado de la tabla */
 }
-  /*NAV*/
-.admin-menu {
+/*---------------------------------------------------------------------------------------------*/
+.admin-current-page {
+    background-color: #00B14F;
+  }
+  
+  .admin-menu {
     background-color: #333;
     text-align: center;
     padding: 10px 0;
     border-radius: 10px;
     margin: 20px 0;
-}
-
-.admin-menu a {
+  }
+  
+  .admin-menu a {
     text-decoration: none;
     color: white;
     padding: 10px 20px;
-}
-
-.admin-menu a:hover {
+  }
+  
+  .admin-menu a:hover {
     background-color: #555;
+  }
+  
+  .admin-welcome {
+    text-align: center;
+    margin: 20px;
+  }
+  /* voz alta */
+  
+label {
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
-.admin-current-page {
-    background-color: #00B14F;
+#enableVozAlta {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+#enableVozAlta:checked {
+  background-color: #2196F3;
+  border: 1px solid #2196F3;
 }

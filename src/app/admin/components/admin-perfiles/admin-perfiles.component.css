@@ -1,52 +1,69 @@
-/* admin-perfiles.component.css */
 .profile-card {
-    margin: 20px;
-    padding: 15px;
-  }
-  
-  .mat-elevation-z8 {
-    box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12);
-  }
-  
-  table {
-    width: 100%;
-  }
-  
-  th.mat-header-cell, td.mat-cell {
-    text-align: left;
-  }
-  
-  button.mat-button {
-    margin: 0;
-    padding: 0;
-    min-width: auto;
-  }
-  
-  nav {
-    background-color: #ffdbac;
-    padding: 10px 0;
-    text-align: center;
-    border-radius: 10px;
-  }
-  
-  nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  nav a:hover {
-    background-color: #ff8c00;
-    color: #fff;
-  }
-  
-  nav a.current {
-    background-color: #ff8c00;
-    color: #fff;
-  }
-  
+  margin: 20px;
+  padding: 15px;
+}
+
+.admin-perfiles-container {
+  margin: 20px 0;
+}
+
+.payments-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.payments-table th, .payments-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.payments-table th {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.payments-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.payments-table button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.payments-table button:hover {
+  background-color: #2980b9;
+}
+
+nav {
+  background-color: #ffdbac;
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 10px;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #ff8c00;
+  color: #fff;
+}
+
+nav a.current {
+  background-color: #ff8c00;
+  color: #fff;
+}

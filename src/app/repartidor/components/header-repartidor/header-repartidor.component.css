@@ -17,12 +17,37 @@ header {
     flex-grow: 1; /* Ocupa el espacio disponible en el centro */
     text-align: center;
 }
+
 .title {
     font-size: 35px; /* Ajusta el tamaño del texto para QuickDineHub */
 }
 
 .title-restaurante {
     font-size: 20px; /* Ajusta el tamaño del texto para Sistema integral de pedidos y promoción restaurantera */
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    margin-right: 10px;
+}
+
+.edit-profile-button {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    color: #ff8c00;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.edit-profile-button:hover {
+    background-color: #ffdbac;
 }
 
 nav ul {

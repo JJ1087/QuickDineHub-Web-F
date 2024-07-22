@@ -10,6 +10,7 @@ import { HistorialRepartidorComponent } from '../components/historial-repartidor
 import { RepPagosComponent } from '../components/rep-pagos/rep-pagos.component';
 import { RepPedidosComponent } from '../components/rep-pedidos/rep-pedidos.component';
 import { RepEntregasComponent } from '../components/rep-entregas/rep-entregas.component';
+import { EditPerfilRepartidorComponent } from '../components/edit-perfil-repartidor/edit-perfil-repartidor.component';
 
 const routes: Routes = [
   { path: 'login-repartidores', component: LoginRepartidoresComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'rep-pagos', component: RepPagosComponent },
   { path: 'rep-pedidos', component: RepPedidosComponent },
   { path: 'rep-entregas', component: RepEntregasComponent },
+  { path: 'edit-perfil-repartidor', component: EditPerfilRepartidorComponent },
 
 
 ];

@@ -85,6 +85,8 @@ import { EditPerfilClienteComponent } from './cliente/components/edit-perfil-cli
 import { CliOfertasComponent } from './cliente/components/cli-ofertas/cli-ofertas.component';
 import { RestPagosComponent } from './restaurante/components/rest-pagos/rest-pagos.component';
 import { AdmnPagosComponent } from './admin/components/admn-pagos/admn-pagos.component';
+import { EditPerfilRestauranteComponent } from './restaurante/components/edit-perfil-restaurante/edit-perfil-restaurante.component';
+import { EditPerfilRepartidorComponent } from './repartidor/components/edit-perfil-repartidor/edit-perfil-repartidor.component';
 
 
 @NgModule({
@@ -154,6 +156,8 @@ import { AdmnPagosComponent } from './admin/components/admn-pagos/admn-pagos.com
     CliOfertasComponent,
     RestPagosComponent,
     AdmnPagosComponent,
+    EditPerfilRestauranteComponent,
+    EditPerfilRepartidorComponent,
 
   ],
   imports: [

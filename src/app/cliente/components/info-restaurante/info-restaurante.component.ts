@@ -75,6 +75,8 @@ export class InfoRestauranteComponent {
   products: any[] = [];
 
   ngOnInit(): void {
+    if (typeof window !== 'undefined' && localStorage !== null) {
+      this.comensalId = localStorage.getItem('ID_USER')||'';
     const productId = this.route.snapshot.paramMap.get('id');
     console.log('ID broooooo:', productId);
 
@@ -96,6 +98,7 @@ export class InfoRestauranteComponent {
      this.obtenerDatoComensal();
     }
   }
+}
 
   //ahora vamos a obtener con el idorden de detalle orden la info de la Orden----------------------
 Restaurante: any;
@@ -149,7 +152,7 @@ obtenerRestaurante(detalleId: string) {
 ordenes: any[] = [];
 ordenesConEstadoDos: any[] = [];
 
-comensalId: string = '661e7ad5a82e3dbd2d0c3067';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE en el futuro 
+comensalId: string = '';
 obtenerOrdenes() {
 
 

@@ -33,19 +33,12 @@ export class RegistroRestauranteComponent implements OnInit {
   segundaFaseForm: FormGroup;
   terceraFaseForm: FormGroup;
   cuartaFaseForm: FormGroup;
-  categorias: string[] = [
-    'Comida Rápida', 'Gourmet', 'Italiana', 'China', 'Mexicana', 'Japonesa', 'Mediterránea', 'Vegetariana', 'Vegana', 'Pizzería', 'Parrilla', 'Cafetería', 'Mariscos', 'Postres', 'Sushi', 'Tailandesa', 'Barbacoa', 'Buffet', 'Francesa', 'India', 'Hamburguesas', 
-    'Asiática', 'Tapas', 'Comida Fusión', 'Comida Saludable', 'Comida Árabe','Comida Típica', 'Carnes a la Parrilla', 'Pasta', 'Comida del Medio Oriente', 
-    'Bistró', 'Cevichería', 'Fonda', 'Dulcería', 'Bar de Vinos', 'Lounge', 'Comida de Calle', 'Sandwiches', 'Brunch', 'Comida Criolla', 'Soul Food', 
-    'Cocina de Autor', 'Burgers Gourmet', 'Fish & Chips', 'Pastelería', 'Comida Mediterránea', 'Panes y Pasteles', 'Tacos', 'Tortas', 'Cocina Peruana', 'Cocina Boliviana', 'Cocina Chilena', 'Comida Caribeña', 
-    'Bebidas y Cócteles', 'Crepes', 'Cocina Thai', 'Comida Rusa', 'Comida Etiopía', 'Cocina Vietnamita', 'Comida Brasileña', 'Comida Hawaiana', 'Hot Dogs', 'Cocina Deconstruida', 'Cocina Molecular', 
-    'Food Truck', 'Café y Pastelería', 'Comida de temporada', 'Cocina Sostenible', 'Cocina Internacional', 'Brunch Mexicano', 'Restaurante de Mariscos', 'Cocina Tradicional', 'Comida para llevar', 'Comida Kosher', 'Cocina Low Carb', 'Comida Paleo', 
-    'Cocina Sin Gluten', 'Café Internet', 'Salones de Té', 'Cafés Culturales', 'Restaurantes Temáticos', 'Cocina Francesa Moderna', 'Comida Gourmet de Calle', 'Cocina Espacial', 'Cocina Híbrida', 'Comida de Verano', 'Comida de Invierno', 'Cocina India Contemporánea', 
-    'Pescadería', 'Restaurantes Ecológicos', 'Cocina Andina', 'Pasta Fresca', 'Comida de Casa', 'Cocina Nórdica', 'Cocina Centroamericana', 'Comida de Feria', 'Cocina de Montaña', 'Comida Tailandesa Moderna', 'Comida Tradicional Mexicana', 
-    'Cocina del Pacífico', 'Restaurantes de Estilo de Vida', 'Cocina Familiar', 'Cocina Colaborativa', 'Comida Rápida Saludable', 'Cocina de Baja Caloría', 'Cocina del Futuro', 'Comida de Festival', 
-    'Cocina de Influencia Africana', 'Cocina Mediterránea Moderna', 'Restaurantes de Postres', 'Bares de Tapas', 'Restaurantes Abiertos 24 Horas', 'Comida Sazonada', 'Cocina de Productos Locales', 'Cocina de Especias', 'Restaurantes de Convivencia', 'Cocina Bio', 'Comida de Picnic'
+  categoriaRestaurante: string[] = [
+    'Asiática', 'Bar de Vinos', 'Buffet', 'Carnes a la Parrilla', 'Cafetería', 'Comida Caribeña', 'Comida del Medio Oriente',
+    'Comida Rápida', 'Comida Típica', 'Comida Tradicional Mexicana', 'Cocina Centroamericana', 'Cocina Sudamericana', 'Dulcería',
+    'Francesa', 'Fonda', 'Gourmet', 'Hamburguesas', 'Italiana', 'Mariscos', 'Mediterránea', 'Mexicana', 'Pastas', 'Pastelería',
+    'Panes y Pasteles', 'Pizzería', 'Postres', 'Sandwiches', 'Tacos', 'Tortas', 'Vegana', 'Bebidas y Cócteles'
 ];
-
   isCaptchaVerified: boolean = false;
   recaptchaSiteKey: string = '6Le6alYpAAAAAHIWXN8HgHQ19z60gq0e3YCSz5qY';
   mostrarModalAvisosPrivacidad: boolean = false; // Variable para mostrar/ocultar el modal
@@ -83,6 +76,7 @@ export class RegistroRestauranteComponent implements OnInit {
       horaCierre: ['', Validators.required],
       aceptarPrivacidad: [false, Validators.requiredTrue],
       menuImagen: [null, Validators.required], // Campo de carga de archivo
+      categoriaRestaurante: ['', Validators.required] // Campo de selección de categorías
     });
 
     this.terceraFaseForm = this.fb.group({
@@ -278,6 +272,7 @@ export class RegistroRestauranteComponent implements OnInit {
         RestauranteDatos.append('numeroCLABE', this.terceraFaseForm.get('numeroCLABE')?.value);
         RestauranteDatos.append('horaApertura', this.segundaFaseForm.get('horaApertura')?.value);
         RestauranteDatos.append('horaCierre', this.segundaFaseForm.get('horaCierre')?.value);
+        RestauranteDatos.append('categoriaRestaurante', this.segundaFaseForm.get('categoriaRestaurante')?.value); // Enviar solo un valor
         
         // Agregar imágenes solo si están presentes
         RestauranteDatos.append('menuImagen', this.menuImagenFile[0]);

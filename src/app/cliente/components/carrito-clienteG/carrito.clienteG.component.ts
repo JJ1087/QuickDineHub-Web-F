@@ -38,7 +38,7 @@ export class CarritoClienteComponentG implements OnInit {
 
   //LOGICA PARA LAS DIRECCIONES------------------------------------------------------------------------------------------
 
-  idCliente: string = '661e7ad5a82e3dbd2d0c3067';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE
+  idCliente: string = '';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE
 
 
   agregarDireccion() {
@@ -83,7 +83,7 @@ export class CarritoClienteComponentG implements OnInit {
   }
 
 
-  comensalId: string = '661e7ad5a82e3dbd2d0c3067';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE
+  comensalId: string = '';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE
   obtenerDirecciones() {
 
     if (this.comensalId) {
@@ -228,12 +228,14 @@ export class CarritoClienteComponentG implements OnInit {
   product: any;
 
   ngOnInit(): void {
-
+    if (typeof window !== 'undefined' && localStorage !== null) {
+    this.idCliente = localStorage.getItem('ID_USER')|| '';
+    this.comensalId = localStorage.getItem('ID_USER')|| '';
     // Llama a la función para obtener las direcciones al iniciar el componente
     this.obtenerDirecciones();
     this.obtenerCuentas();
     this.obtenerDatoComensal();
-
+    }
 
   }
 

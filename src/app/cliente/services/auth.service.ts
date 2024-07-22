@@ -52,6 +52,7 @@ export class AuthService {
                     localStorage.setItem("ACCESS_TOKEN", res.dataUser.accessToken);
                     localStorage.setItem("EXPIRES_IN", res.dataUser.expiresIn);
                     localStorage.setItem("ID_USER", res.dataUser.id);
+                    localStorage.setItem("NOMBRE", res.dataUser.nombre);
 
                 }
             })
@@ -62,20 +63,9 @@ export class AuthService {
         this.token = '';
         localStorage.removeItem("ACCESS_TOKEN");
         localStorage.removeItem("EXPIRES_IN");
+        localStorage.removeItem("ID_USER");
+        localStorage.removeItem("NOMBRE");
     }
-
-    // private saveToken(token:string, expiresIn:string): void{
-    //     localStorage.setItem("ACCESS_TOKEN", token);
-    //     localStorage.setItem("EXPIRES_IN", expiresIn);
-    //     this.token=token;
-    // }
-
-    // private getToken(): string | null {
-    //     if(!this.token){
-    //         this.token = localStorage.getItem("ACCESS_TOKEN");
-    //     }
-    //     return this.token;
-    // }
 
 //-------------------------Treaer la informacion de los platillos
 
@@ -115,7 +105,7 @@ insertarCuenta(pagoData: any): Observable<any> {
 }
 
 obtenerCuentas(comensalId: string): Observable<any> {
-    return this.httpClient.get<any>(`${this.AUTH_SERVER}/obtener-cuentas/${comensalId}`);
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/obtener-cuentas/${comensalId}`);
 }
 
 // Método para insertar información de direccion ------------------------------------------------------------------------------
@@ -124,17 +114,22 @@ insertarDireccion(direccionData: any): Observable<any> {
 }
 
 obtenerDirecciones(comensalId: string): Observable<any> {
-    return this.httpClient.get<any>(`${this.AUTH_SERVER}/obtener-direcciones/${comensalId}`);
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/obtener-direcciones/${comensalId}`);
 }
 
 obtenerDirecciones2(comensalId: string): Observable<any> {
-    return this.httpClient.get<any>(`${this.AUTH_SERVER}/obtener-direcciones2/${comensalId}`);
+  return this.httpClient.get<any>(`${this.AUTH_SERVER}/obtener-direcciones2/${comensalId}`);
 }
 
 
 //----COMPONENTE MIS PEDIDOS-----------------------------------------------------------------------------------------------
 obtenerdetalleOrdenes(): Observable<any[]> {
     return this.httpClient.get<any[]>(`${this.AUTH_SERVER}/info-detalleOrden`);
+}
+
+// auth.service.ts
+obtenerdetalleOrdenesID(comensalId: string): Observable<any[]> {
+  return this.httpClient.get<any[]>(`/api/ordenes/${comensalId}`);
 }
 
 obtenerInfoDeOrdenPorId(ordenId: string): Observable<any> {
@@ -163,6 +158,7 @@ obtenercuentaBancoId(cuentaBancoId: string): Observable<any> {
 obtenerOrdenes(comensalId: string): Observable<any> {
     return this.httpClient.get<any>(`${this.AUTH_SERVER}/obtener-ordenes/${comensalId}`);
 }
+
 
 //Carrito-----------------------------------------------------------------------------------------------
 

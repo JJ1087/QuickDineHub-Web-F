@@ -12,8 +12,6 @@ import { AuthService } from '../../services/auth.service';
 
 export class MisPedidosComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthService) { }
-  
   mostrarModal = false;
   resena = '';
   calificacion = 0;
@@ -21,9 +19,51 @@ export class MisPedidosComponent implements OnInit {
   idDetalleActual: string | null = null;
 
   mostrarModalRepartidor = false;
-resenaRepartidor = '';
-calificacionRepartidor = 0;
-  
+  resenaRepartidor = '';
+  calificacionRepartidor = 0;
+
+  detalleOrdenes: any[] = [];
+  ordenes1: any[] = [];
+  ordenesConEstadoUno: any[] = [];
+  ordenesConEstadoDos: any[] = [];
+  ordenesConEstadoSiete: any[] = [];
+  ordenes: { [idOrden: string]: any[] } = {};
+  comensalId: string = '';
+
+  constructor(private router: Router, private authService: AuthService) { }
+
+  ngOnInit(): void {
+    if (typeof window !== 'undefined' && localStorage !== null) {
+      this.comensalId = localStorage.getItem('ID_USER') || '';
+      if (this.comensalId) {
+        this.authService.obtenerOrdenes(this.comensalId).subscribe(
+          (ordenes: any[]) => {
+            this.ordenes1 = ordenes;
+            console.log('Órdenes obtenidas:', this.ordenes1);
+            // Filtrar detalles de órdenes basados en las órdenes del usuario.
+            this.authService.obtenerdetalleOrdenes().subscribe(
+              (detalleOrdenes: any[]) => {
+                this.detalleOrdenes = detalleOrdenes.filter(detalle =>
+                  this.ordenes1.some(orden => orden._id === detalle.idOrden)
+                );
+                this.organizarDetallesPorOrden();
+                this.obtenerEstadosOrdenes();
+                this.obtenerDetallesProducto();
+              },
+              (error) => {
+                console.error('Error al obtener los detalles de las órdenes:', error);
+              }
+            );
+          },
+          (error) => {
+            console.error('Error al obtener las órdenes:', error);
+          }
+        );
+      } else {
+        console.log('ID de usuario no encontrado en localStorage');
+      }
+    }
+  }
 
   abrirFormularioResena(idDetalle: string) {
     this.idDetalleActual = idDetalle;
@@ -43,7 +83,6 @@ calificacionRepartidor = 0;
 
   enviarResena() {
     if (this.idDetalleActual) {
-      // Aquí puedes guardar la reseña y la calificación
       const nuevaResena = {
         idDetalle: this.idDetalleActual,
         calificacion: this.calificacion,
@@ -54,153 +93,81 @@ calificacionRepartidor = 0;
       this.cerrarFormularioResena();
     }
   }
+
   agregarAnimacion(calificacion: number) {
     const estrellas = document.querySelectorAll('.fa-star');
     estrellas.forEach((estrella: Element, index: number) => {
-        if (index < calificacion) {
-            estrella.classList.add('animate');
-            setTimeout(() => estrella.classList.remove('animate'), 500); // Remover la clase después de 0.5s
-        }
+      if (index < calificacion) {
+        estrella.classList.add('animate');
+        setTimeout(() => estrella.classList.remove('animate'), 500);
+      }
     });
-}
+  }
 
-abrirFormularioResenaRepartidor(idDetalle: string) {
-  this.idDetalleActual = idDetalle;
-  this.mostrarModalRepartidor = true;
-}
+  abrirFormularioResenaRepartidor(idDetalle: string) {
+    this.idDetalleActual = idDetalle;
+    this.mostrarModalRepartidor = true;
+  }
 
-cerrarFormularioResenaRepartidor() {
-  this.mostrarModalRepartidor = false;
-  this.resenaRepartidor = '';
-  this.calificacionRepartidor = 0;
-  this.idDetalleActual = null;
-}
+  cerrarFormularioResenaRepartidor() {
+    this.mostrarModalRepartidor = false;
+    this.resenaRepartidor = '';
+    this.calificacionRepartidor = 0;
+    this.idDetalleActual = null;
+  }
 
-setCalificacionRepartidor(valor: number) {
-  this.calificacionRepartidor = valor;
-}
+  setCalificacionRepartidor(valor: number) {
+    this.calificacionRepartidor = valor;
+  }
 
-enviarResenaRepartidor() {
-  if (this.idDetalleActual) {
+  enviarResenaRepartidor() {
+    if (this.idDetalleActual) {
       const nuevaResenaRepartidor = {
-          idDetalle: this.idDetalleActual,
-          calificacion: this.calificacionRepartidor,
-          resena: this.resenaRepartidor,
-          fecha: new Date()
+        idDetalle: this.idDetalleActual,
+        calificacion: this.calificacionRepartidor,
+        resena: this.resenaRepartidor,
+        fecha: new Date()
       };
       console.log('Reseña del repartidor enviada:', nuevaResenaRepartidor);
       this.cerrarFormularioResenaRepartidor();
-  }
-}
-
-agregarAnimacionRepartidor(calificacion: number) {
-  const estrellas = document.querySelectorAll('.fa-star');
-  estrellas.forEach((estrella: Element, index: number) => {
-      if (index < calificacion) {
-          estrella.classList.add('animate');
-          setTimeout(() => estrella.classList.remove('animate'), 500); // Remover la clase después de 0.5s
-      }
-  });
-}
-  detalleOrdenes: any[] = [];
-  ngOnInit(): void {
-   
-    this.authService.obtenerdetalleOrdenes().subscribe((detalleOrdenes: any[]) => {
-      console.log('Detalle de órdenes:', detalleOrdenes);
-      this.detalleOrdenes = detalleOrdenes;
-
-      this.obtenerOrdenes(); 
-      this.organizarDetallesPorOrden(); // Llamada para organizar los detalles por "orden"
-      this.obtenerEstadosOrdenes(); // Llamada para obtener el estado de cada orden
-      this.obtenerDetallesProducto();
-
-
-    }, (error) => {
-      console.error('Error al obtener los detalles de las órdenes:', error);
-    }); 
-    
-  }
-
-//esta funcion para traer ordenes ayuda a la parte de las notificaciones--------------------------------
-//Funcion para llamar a mis ordenes--------------------------------------------------------------------------
-
-    ordenes1: any[] = [];
-    ordenesConEstadoUno: any[] = [];
-    ordenesConEstadoDos: any[] = [];
-    ordenesConEstadoSiete: any[] = [];
-    
-   comensalId: string = '661e7ad5a82e3dbd2d0c3067';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE en el futuro 
-    obtenerOrdenes() {
-    
-
-    if (this.comensalId) {
-     // Llama a la función del servicio para obtener las direcciones desde el backend
-     this.authService.obtenerOrdenes(this.comensalId).subscribe(
-       (data) => {
-         // Actualiza la lista de ordenes con los datos obtenidos
-         this.ordenes1 = data;
-         console.log('Ordenes recibidas', this.ordenes1);
-         
-        // Filtra las órdenes para encontrar aquellas con estadoOrden igual a 2
-        this.ordenesConEstadoDos = this.ordenes1.filter((orden: any) => orden.estadoOrden === 2);
-        console.log('Ordenes con estadoOrden igual a 2:', this.ordenesConEstadoDos);
-
-        // Filtra las órdenes para encontrar aquellas con estadoOrden igual a 1
-        this.ordenesConEstadoUno = this.ordenes1.filter((orden: any) => orden.estadoOrden === 1);
-        console.log('Ordenes con estadoOrden igual a 1:', this.ordenesConEstadoDos);
-
-        // Filtra las órdenes para encontrar aquellas con estadoOrden igual a 7 esperando a finalizar la entrega
-        this.ordenesConEstadoSiete = this.ordenes1.filter((orden: any) => orden.estadoOrden === 7);
-        console.log('Ordenes con estadoOrden igual a 7:', this.ordenesConEstadoSiete);
-
-       },
-       (error) => {
-         console.error('Error al obtener las ordenes:', error);
-         
-         // Maneja el error según sea necesario
-       }
-     );
-
-    }else{
-      console.log('No se esta recibiendo el id de la orden');
     }
-   }
+  }
 
+  agregarAnimacionRepartidor(calificacion: number) {
+    const estrellas = document.querySelectorAll('.fa-star');
+    estrellas.forEach((estrella: Element, index: number) => {
+      if (index < calificacion) {
+        estrella.classList.add('animate');
+        setTimeout(() => estrella.classList.remove('animate'), 500);
+      }
+    });
+  }
 
-//ORganizar y agrupar los productos de las ordenes---------------------------------------------------------------
-
-  ordenes: { [idOrden: string]: any[] } = {}; 
- 
   organizarDetallesPorOrden() {
-    this.ordenes = {}; // Limpiar el objeto de órdenes
+    this.ordenes = {};
     this.detalleOrdenes.forEach(detalle => {
       if (!this.ordenes[detalle.idOrden]) {
-        this.ordenes[detalle.idOrden] = []; // Inicializar el arreglo de detalles para esta orden
+        this.ordenes[detalle.idOrden] = [];
       }
-      this.ordenes[detalle.idOrden].push(detalle); // Agregar el detalle a la orden correspondiente
+      this.ordenes[detalle.idOrden].push(detalle);
     });
 
-    // Invertir el orden de los detalles de cada orden
-  Object.keys(this.ordenes).forEach(key => {
-    this.ordenes[key] = this.ordenes[key].reverse();
-  });
-  
+    Object.keys(this.ordenes).forEach(key => {
+      this.ordenes[key] = this.ordenes[key].reverse();
+    });
+
     console.log('Detalles de órdenes organizados por orden:', this.ordenes);
   }
 
-  //este funciona para la lista y las agrupaciones
   obtenerEstadosOrdenes() {
     const idsOrdenes = Object.keys(this.ordenes);
     idsOrdenes.forEach(ordenId => {
       this.authService.obtenerInfoDeOrdenPorId(ordenId).subscribe((orden: any) => {
-        //console.log('Orden:', orden); 
-        // Agregar el estado de la orden a cada detalleOrden correspondiente
         this.ordenes[ordenId].forEach(detalle => {
           detalle.estadoOrden = orden.estadoOrden;
           detalle.fechaPedido = orden.createdAt;
-          detalle.idRestaurante = orden.idRestaurante; // Guardar el valor de isRestaurante
-          //console.log('parangacutirimicuaro1: ',detalle);
-          this.obtenerInformacionRestaurante(detalle); // Obtener información del restaurante
+          detalle.idRestaurante = orden.idRestaurante;
+          this.obtenerInformacionRestaurante(detalle);
         });
       }, (error) => {
         console.error('Error al obtener la orden con ID', ordenId, ':', error);
@@ -208,32 +175,27 @@ agregarAnimacionRepartidor(calificacion: number) {
     });
   }
 
-  obtenerInformacionRestaurante(detalle: any) {  
-    // Obtener el id del restaurante desde el detalle
-    const idRestaurante = detalle.idRestaurante; 
-    console.log('parangacutirimicuaro: ',detalle.idRestaurante);
-    // Utilizar el servicio para obtener la información del restaurante por su id
+  obtenerInformacionRestaurante(detalle: any) {
+    const idRestaurante = detalle.idRestaurante;
+    console.log('Restaurante ID:', idRestaurante);
     this.authService.obtenerRestaurante(idRestaurante).subscribe(
       (restaurante: any) => {
-        // Agregar el nombre del restaurante al detalle de orden
         detalle.nombreRestaurante = restaurante.nombreRestaurante;
       },
       (error) => {
-        console.error('Error al obtener la información del restaurante:', error); 
+        console.error('Error al obtener la información del restaurante:', error);
       }
     );
   }
-  
 
-  // Método para obtener el estado legible de la orden
   obtenerEstado(estadoOrden: number): string {
     switch (estadoOrden) {
       case 0:
         return 'Pedido en espera de ser aceptado por el restaurante';
       case 1:
-        return 'Orden rechazada';//Mensaje de enterado, cuando de aceptar eliminar los detalles de la orden cancelada
+        return 'Orden rechazada';
       case 2:
-        return '¿Desea continuar con la compra?';//Mensaje de que alimento se quito,si rechaza eliminar orden completa, si no solo eliminar un detalle de orden
+        return '¿Desea continuar con la compra?';
       case 3:
         return 'Pedido en espera de ser aceptado por el restaurante';
       case 4:
@@ -241,9 +203,9 @@ agregarAnimacionRepartidor(calificacion: number) {
       case 5:
         return 'Esperando repartidor';
       case 6:
-        return 'Salio de cocina, en camino';
+        return 'Salió de cocina, en camino';
       case 7:
-        return 'Confirmar entrega';//Alarma para finalizar pedido
+        return 'Confirmar entrega';
       case 8:
         return 'Pedido cancelado';
       case 9:
@@ -254,47 +216,49 @@ agregarAnimacionRepartidor(calificacion: number) {
   }
 
   obtenerDetallesProducto() {
-    // Array para almacenar los IDs de los productos
     let idsProductos: string[] = [];
-  
-    // Obtener los IDs de los productos de los detalles de las órdenes
+
     this.detalleOrdenes.forEach(detalle => {
       idsProductos.push(detalle.idProducto);
     });
-  
-    // Utilizar los IDs de los productos para hacer solicitudes para obtener los datos de los productos
+
     idsProductos.forEach((productId, index) => {
       this.authService.obtenerInfoDeProductoPorId(productId).subscribe((producto: any) => {
         console.log('Producto:', producto);
-        // Asignar la información del producto al detalle correspondiente en detalleOrdenes
         this.detalleOrdenes[index].producto = producto;
-        console.log('ya merito nos vamos: ', this.detalleOrdenes);
+        console.log('Detalles de órdenes actualizados:', this.detalleOrdenes);
       }, (error) => {
         console.error('Error al obtener el producto con ID', productId, ':', error);
       });
     });
   }
 
-  // Método para generar la URL completa de la imagen
-getImageUrl(relativePath: string): string {
-  // Aquí debes agregar la URL base de tu servidor
-  const baseUrl = 'http://localhost:3000';
-  return baseUrl + '/' + relativePath;
-}
+  getImageUrl(relativePath: string): string {
+    const baseUrl = 'http://localhost:3000';
+    return baseUrl + '/' + relativePath;
+  }
 
-  
-
-  // Función para ver detalles de compra
   verDetalles(detalleId: string) {
-
     this.router.navigate(['../estado-envio', detalleId]);
   }
-  
-  actualizarOrdenes(): void {
-    console.log('Ejecutando actualizacion de ordenes');
-    this.obtenerOrdenes();
-    this.ngOnInit();  
-    console.log('Si se pudo tilin');
-}
 
+  actualizarOrdenes(): void {
+    console.log('Ejecutando actualización de órdenes');
+    this.authService.obtenerOrdenes(this.comensalId).subscribe(
+      (ordenes: any[]) => {
+        this.ordenes1 = ordenes;
+        console.log('Órdenes actualizadas:', this.ordenes1);
+        this.detalleOrdenes = this.detalleOrdenes.filter(detalle =>
+          this.ordenes1.some(orden => orden.idOrden === detalle.idOrden)
+        );
+        this.organizarDetallesPorOrden();
+        this.obtenerEstadosOrdenes();
+        this.obtenerDetallesProducto();
+        console.log('Actualización completada');
+      },
+      (error) => {
+        console.error('Error al actualizar las órdenes:', error);
+      }
+    );
+  }
 }

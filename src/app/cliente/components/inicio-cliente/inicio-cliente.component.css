@@ -372,4 +372,9 @@ nav a.cart-icon-link i {
     color: #ff8c00;
 }
   /* Resto de los estilos */
+
+  .centered {
+    text-align: center;
+    margin-top: 20px; /* Ajusta este valor según sea necesario */
+  }
   

@@ -16,10 +16,9 @@
 <div class="voz-alta-container">
     <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
     <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
-
-    <h1>Hola "{{ nombreusuario }}"</h1>
+    
 </div>
-
+<h2 class="centered">Bienvenido {{ nombreusuario }}</h2>
 
 <!-- <app-notificaciones></app-notificaciones>  -->
 <div *ngFor="let orden of ordenesConEstadoDos">

@@ -32,15 +32,14 @@ header {
 }
 
 .edit-profile-button {
+    display: flex;
+    align-items: center;
     background-color: #fff;
     color: #ff8c00;
-    padding: 10px 20px;
-    border: none;
+    padding: 10px 15px;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    margin-right: 30px; /* Separación del botón de editar perfil */
+    text-decoration: none;
+    margin-right: 20px;
 }
 
 .edit-profile-button:hover {
@@ -85,3 +84,4 @@ nav a.current {
     background-color: #ff8c00;
     color: #fff;
 }
+

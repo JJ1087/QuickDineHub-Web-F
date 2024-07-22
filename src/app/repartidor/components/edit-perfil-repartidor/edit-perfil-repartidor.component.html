@@ -1,0 +1,50 @@
+<app-header-repartidor></app-header-repartidor>
+
+<div class="admin-menu">
+    <a routerLink="/inicio-repartidor">Inicio</a>
+    <a routerLink="/rep-pedidos">Pedidos</a>
+    <a routerLink="/rep-entregas">Entregas</a>
+    <a routerLink="/historial-repartidor">Historial</a>
+    <a routerLink="/rep-pagos">Pagos</a>
+    <a routerLink="/resenas-repartidor">Reseñas</a>
+</div>
+
+<div class="editar-perfil-container">
+    <h2>Editar Perfil</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="editarPerfilForm">
+        <!-- Correo Electrónico -->
+        <div class="form-group">
+            <label for="email">Correo Electrónico</label>
+            <input type="email" id="email" formControlName="email">
+        </div>
+        
+        <!-- Contraseña -->
+        <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" id="contrasena" formControlName="contrasena">
+        </div>
+        
+        <!-- Pregunta Secreta -->
+        <div class="form-group custom-select-wrapper">
+            <label for="preguntaSecreta">Pregunta Secreta</label>
+            <select formControlName="preguntaSecreta" id="preguntaSecreta" class="form-control">
+                <option value="">Selecciona una pregunta secreta</option>
+                <option value="mascota">¿Cuál es nombre de tu primer mascota?</option>
+                <option value="cancion">¿Cuál es tu canción favorita?</option>
+                <option value="pelicula">¿Cuál es tu película favorita?</option>
+                <option value="amigo">¿Cuál es el nombre de tu mejor amigo de la infancia?</option>
+                <option value="materia">¿Cuál es el nombre de tu materia favorita?</option>
+            </select>
+        </div>
+        
+        <!-- Respuesta Secreta -->
+        <div class="form-group">
+            <label for="respuestaSecreta">Respuesta Secreta</label>
+            <input type="text" formControlName="respuestaSecreta" id="respuestaSecreta">
+        </div>
+
+        <button type="submit" class="next-button">Guardar Cambios</button>
+    </form>
+</div>
+
+<app-footer></app-footer>

@@ -6,6 +6,8 @@ import { AdminActivacionPerfilesComponent } from '../components/admin-activacion
 import { InfoRegistroRestauranteComponent } from '../components/info-registro-restaurante/info-registro-restaurante.component';
 import { InfoRegistroRepartidorComponent } from '../components/info-registro-repartidor/info-registro-repartidor.component';
 import { InfoRegistroClienteComponent } from '../components/info-registro-cliente/info-registro-cliente.component';
+import { AdmnPagosComponent } from '../components/admn-pagos/admn-pagos.component';
+
 
 const routes: Routes = [
   { path: 'admin-perfiles', component: AdminPerfilesComponent },
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'info-registro-restaurante', component: InfoRegistroRestauranteComponent },
   { path: 'info-registro-repartidor', component: InfoRegistroRepartidorComponent},
   { path: 'info-registro-cliente', component: InfoRegistroClienteComponent},
+  { path: 'admn-pagos', component: AdmnPagosComponent},
+
 ];
 
 @NgModule({

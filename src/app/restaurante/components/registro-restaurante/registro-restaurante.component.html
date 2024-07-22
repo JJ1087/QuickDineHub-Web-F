@@ -38,18 +38,6 @@
             </div>
         </div>
 
-        <!-- Teléfono del restaurante -->
-        <div class="form-group">
-            <label for="telefonoRestaurante">Número telefonico de Teléfono:</label>
-            <input type="number" id="telefonoRestaurante" formControlName="telefonoRestaurante">
-            <div *ngIf="registroForm.get('telefonoRestaurante')?.invalid && (registroForm.get('telefonoRestaurante')?.dirty || registroForm.get('telefonoRestaurante')?.touched)">
-                <ng-container *ngIf="registroForm.get('telefonoRestaurante')?.errors as telefonoErrors">
-                    <small *ngIf="telefonoErrors['required']">Número de Teléfono es obligatorio</small>
-                    <small *ngIf="telefonoErrors['pattern']">Número de Teléfono no válido (debe tener 10 dígitos)</small>
-                </ng-container>
-            </div>
-        </div>
-
         <!-- Encargado del restaurante -->
         <div class="form-group">
             <div class="nombre-encargado">
@@ -69,6 +57,18 @@
                     <small *ngIf="registroForm.get('apellidoEncargado')?.errors?.['required']">Apellido del Encargado es obligatorio</small>
 
                 </div>
+            </div>
+        </div>
+        
+        <!-- Teléfono del restaurante -->
+        <div class="form-group">
+            <label for="telefonoRestaurante">Número telefonico del encargado:</label>
+            <input type="number" id="telefonoRestaurante" formControlName="telefonoRestaurante">
+            <div *ngIf="registroForm.get('telefonoRestaurante')?.invalid && (registroForm.get('telefonoRestaurante')?.dirty || registroForm.get('telefonoRestaurante')?.touched)">
+                <ng-container *ngIf="registroForm.get('telefonoRestaurante')?.errors as telefonoErrors">
+                    <small *ngIf="telefonoErrors['required']">Número de Teléfono es obligatorio</small>
+                    <small *ngIf="telefonoErrors['pattern']">Número de Teléfono no válido (debe tener 10 dígitos)</small>
+                </ng-container>
             </div>
         </div>
 

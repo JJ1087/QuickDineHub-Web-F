@@ -1,0 +1,88 @@
+<!-- inicio-restaurante.component.html -->
+<header>
+    <app-header-restaurante></app-header-restaurante>
+</header>
+<div class="admin-menu">
+    <a routerLink="/inicio-restaurante">Inicio</a>
+    <a routerLink="/rest-productos">Productos</a>
+    <a routerLink="/rest-pedidos">Pedidos</a>
+    <a routerLink="/ventas-restaurante">Ventas</a>
+    <a href="rest-inventario.html">Inventario</a>
+    <a routerLink="/resenas-restaurante">Reseñas</a>
+    <a routerLink="/rest-pagos">Pagos</a>
+</div>
+
+<div class="edit-profile-container">
+    <h2>Editar Perfil del Restaurante <span class="material-icons icon">edit</span></h2>
+    <form [formGroup]="editProfileForm" (ngSubmit)="guardarCambios()">
+        <!-- Nombre del restaurante -->
+        <div class="form-group">
+            <label for="nombreRestaurante">Nombre del Restaurante:</label>
+            <input type="text" id="nombreRestaurante" formControlName="nombreRestaurante">
+        </div>
+
+        <!-- Correo del restaurante -->
+        <div class="form-group">
+            <label for="correoRestaurante">Correo Electrónico:</label>
+            <input type="email" id="correoRestaurante" formControlName="correoRestaurante">
+        </div>
+
+        <!-- Teléfono del restaurante -->
+        <div class="form-group">
+            <label for="telefonoRestaurante">Número Telefónico del Restaurante:</label>
+            <input type="number" id="telefonoRestaurante" formControlName="telefonoRestaurante">
+        </div>
+
+        <!-- Nombre del encargado del restaurante -->
+        <div class="form-group">
+            <label for="nombreEncargado">Nombre del Encargado:</label>
+            <input type="text" id="nombreEncargado" formControlName="nombreEncargado">
+        </div>
+
+        <!-- Apellido del encargado del restaurante -->
+        <div class="form-group">
+            <label for="apellidoEncargado">Apellido del Encargado:</label>
+            <input type="text" id="apellidoEncargado" formControlName="apellidoEncargado">
+        </div>
+
+        <!-- Contraseña -->
+        <div class="form-group">
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" formControlName="contrasena">
+        </div>
+
+        <!-- Número del restaurante -->
+        <div class="form-group">
+            <label for="numeroRestaurante">Número del Restaurante:</label>
+            <input type="number" id="numeroRestaurante" formControlName="numeroRestaurante">
+        </div>
+
+        <!-- Logo del restaurante -->
+        <div class="form-group">
+            <label for="logoRestaurante">Logo del Restaurante:</label>
+            <input type="file" id="logoRestaurante" (change)="onFileSelected($event)">
+            <div *ngIf="logoError">
+                <small>{{ logoError }}</small>
+            </div>
+        </div>
+
+        <!-- Hora de apertura -->
+        <div class="form-group">
+            <label for="horaApertura">Hora de Apertura:</label>
+            <input type="time" id="horaApertura" formControlName="horaApertura">
+        </div>
+
+        <!-- Hora de cierre -->
+        <div class="form-group">
+            <label for="horaCierre">Hora de Cierre:</label>
+            <input type="time" id="horaCierre" formControlName="horaCierre">
+        </div>
+
+        <!-- Botón de guardar cambios -->
+        <button type="submit" [disabled]="editProfileForm.invalid">Guardar Cambios</button>
+    </form>
+</div>
+
+<footer>
+    <app-footer-restaurante></app-footer-restaurante>
+</footer>

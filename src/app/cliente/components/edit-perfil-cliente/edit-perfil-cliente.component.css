@@ -1,0 +1,185 @@
+nav {
+    background-color: #ffdbac;
+    padding: 10px 0;
+    text-align: center;
+    border-radius: 10px;
+  }
+  
+  nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  nav a:hover,
+  nav a.cart-icon-link:hover {
+    background-color: #ff8c00;
+    color: #fff;
+  }
+  
+  nav a.current {
+    background-color: #ff8c00;
+    color: #fff;
+  }
+  
+  .cart-icon-container {
+    margin-top: 15%;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    z-index: 9999;
+    font-size: 24px;
+  }
+  
+  nav a.cart-icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+  
+  nav a.cart-icon-link i {
+    margin-right: 5px;
+  }
+  
+  .product-info-container {
+    max-width: 80%;
+    margin: 20px auto 20px; /* Ajusta el margen inferior a 40px */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  footer {
+    margin-top: 40px; /* Asegura un espacio antes del footer */
+    /* Otros estilos del footer */
+    padding-top: 20px; /* Agrega un espacio adicional en la parte superior del footer */
+  }
+  .back-button {
+    background-color: #ff8c00; /* Color de fondo */
+    color: #fff; /* Color del texto */
+    padding: 10px 20px; /* Padding para tamaño */
+    border: none; /* Sin bordes */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor en forma de mano */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s ease; /* Transición suave */
+    text-decoration: none; /* Eliminar subrayado de enlace */
+    display: inline-block; /* Para permitir el padding */
+    margin-top: 20px; /* Margen superior */
+  }
+  
+  .back-button:hover {
+    background-color: #ffdbac; /* Color al pasar el ratón */
+    color: #333; /* Color del texto al pasar el ratón */
+  }
+  
+  
+  .breadcrumbs {
+    margin: 10px 0;
+    font-size: 17px;
+    color: #555;
+    margin-top: 1%;
+    margin-left: 3.5%;
+  }
+  
+  .breadcrumbs a {
+    text-decoration: none;
+    color: #3498db;
+    cursor: pointer;
+  }
+  
+  .breadcrumbs a:hover {
+    text-decoration: underline;
+  }
+
+/*---------------------------------------------------------------------------------------*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Edit Profile Container */
+.edit-profile-container {
+    width: 60%;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-profile-container h2 {
+    text-align: center;
+    color: #2ecc71;
+    margin-bottom: 20px;
+}
+
+.edit-profile-container .form-group {
+    margin-bottom: 20px;
+}
+
+.edit-profile-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.edit-profile-container input, .edit-profile-container select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.edit-profile-container input:focus, .edit-profile-container select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.edit-profile-container .password-container p-password {
+    width: 100%;
+}
+
+.edit-profile-container small {
+    color: #e74c3c;
+}
+
+/* Buttons */
+.edit-profile-container .form-group.buttons {
+    text-align: center;
+}
+
+.edit-profile-container button {
+    background-color: #2ecc71;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.edit-profile-container button:hover {
+    background-color: #27ae60;
+}
+
+.edit-profile-container .cancel-button {
+    background-color: #e74c3c;
+    margin-left: 10px;
+}
+
+.edit-profile-container .cancel-button:hover {
+    background-color: #c0392b;
+}
+

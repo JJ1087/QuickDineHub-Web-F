@@ -81,6 +81,15 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RepPagosComponent } from './repartidor/components/rep-pagos/rep-pagos.component';
 import { RepPedidosComponent } from './repartidor/components/rep-pedidos/rep-pedidos.component';
 import { RepEntregasComponent } from './repartidor/components/rep-entregas/rep-entregas.component';
+import { EditPerfilClienteComponent } from './cliente/components/edit-perfil-cliente/edit-perfil-cliente.component';
+import { CliOfertasComponent } from './cliente/components/cli-ofertas/cli-ofertas.component';
+import { RestPagosComponent } from './restaurante/components/rest-pagos/rest-pagos.component';
+import { AdmnPagosComponent } from './admin/components/admn-pagos/admn-pagos.component';
+import { EditPerfilRestauranteComponent } from './restaurante/components/edit-perfil-restaurante/edit-perfil-restaurante.component';
+import { EditPerfilRepartidorComponent } from './repartidor/components/edit-perfil-repartidor/edit-perfil-repartidor.component';
+// Asegúrate de importar PayPalModule
+import { CommonModule } from '@angular/common';
+import { PaypalButtonComponent } from './compartido/components/paypal-button/paypal-button.component';
 
 
 @NgModule({
@@ -146,6 +155,13 @@ import { RepEntregasComponent } from './repartidor/components/rep-entregas/rep-e
     RepPagosComponent,
     RepPedidosComponent,
     RepEntregasComponent,
+    EditPerfilClienteComponent,
+    CliOfertasComponent,
+    RestPagosComponent,
+    AdmnPagosComponent,
+    EditPerfilRestauranteComponent,
+    EditPerfilRepartidorComponent,
+    PaypalButtonComponent,
 
   ],
   imports: [
@@ -171,6 +187,7 @@ import { RepEntregasComponent } from './repartidor/components/rep-entregas/rep-e
     MatCardModule,
     MatFormFieldModule,
     PasswordModule,
+    CommonModule,
 
   ],
   providers: [

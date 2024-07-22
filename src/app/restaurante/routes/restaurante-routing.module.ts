@@ -8,6 +8,8 @@ import { RestProductosComponent } from '../components/rest-productos/rest-produc
 import { RestPedidosComponent } from '../components/rest-pedidos/rest-pedidos.component';
 import { RegistroRestauranteComponent } from '../components/registro-restaurante/registro-restaurante.component';
 import { ResenasRestauranteComponent } from '../components/resenas-restaurante/resenas-restaurante.component';
+import { RestPagosComponent } from '../components/rest-pagos/rest-pagos.component';
+import { EditPerfilRestauranteComponent } from '../components/edit-perfil-restaurante/edit-perfil-restaurante.component';
 
 const routes: Routes = [
 
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'rest-pedidos', component: RestPedidosComponent },
   { path: 'registro-restaurante', component: RegistroRestauranteComponent },
   { path: 'resenas-restaurante', component: ResenasRestauranteComponent },
+  { path: 'rest-pagos', component: RestPagosComponent },
+  { path: 'edit-perfil-restaurante', component: EditPerfilRestauranteComponent },
 
 ];
 

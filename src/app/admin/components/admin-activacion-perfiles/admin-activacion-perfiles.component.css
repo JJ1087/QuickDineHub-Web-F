@@ -18,7 +18,9 @@ nav {
     border-radius: 5px;
     transition: background-color 0.3s ease;
   }
-  
+  button{
+    background-color: #ffdbac;
+  }
   nav a:hover {
     background-color: #ff8c00;
     color: #fff;

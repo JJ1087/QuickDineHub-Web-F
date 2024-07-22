@@ -1,0 +1,105 @@
+<header>
+    <app-header-cliente></app-header-cliente>
+    </header>
+    <nav>
+        <a routerLink="/inicio-cliente" >Inicio</a>
+        <a routerLink="/cli-restaurantes">Restaurantes</a>
+        <a routerLink="/cli-envios">Envíos</a>
+        <a routerLink="/cli-ofertas">Ofertas</a>
+        <a routerLink="/mis-pedidos" >Mis pedidos</a>
+        <!-- Icono del carrito dentro del nav -->
+        <a routerLink="/carrito-cliente" class="cart-icon-link" >
+            <i class="fas fa-shopping-cart" ></i> Carrito
+        </a>
+    </nav>
+
+    <div class="breadcrumbs">
+        <a routerLink="/">Inicio</a>
+        <span> > </span>
+        <span>Editar Perfil</span>
+      </div>
+
+    <div class="edit-profile-container">
+        <h2>Editar Perfil de Cliente <span class="material-icons icon">edit</span></h2>
+        <form [formGroup]="editProfileForm" (ngSubmit)="guardarCambios()">
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" formControlName="nombre">
+            <div *ngIf="editProfileForm.get('nombre')?.invalid && (editProfileForm.get('nombre')?.dirty || editProfileForm.get('nombre')?.touched)">
+              <small *ngIf="editProfileForm.get('nombre')?.errors?.['required']">El nombre es obligatorio</small>
+            </div>
+          </div>
+      
+          <div class="form-group">
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" formControlName="correo">
+            <div *ngIf="editProfileForm.get('correo')?.invalid && (editProfileForm.get('correo')?.dirty || editProfileForm.get('correo')?.touched)">
+              <ng-container *ngIf="editProfileForm.get('correo')?.errors as correoErrors">
+                <small *ngIf="correoErrors['required']">Correo Electrónico es obligatorio</small>
+                <small *ngIf="correoErrors['email']">Correo Electrónico no válido</small>
+              </ng-container>
+            </div>
+          </div>
+      
+          <div class="form-group">
+            <label for="contrasena">Contraseña:</label>
+            <div class="password-container">
+              <p-password
+                [weakLabel]="'Complejidad baja '"
+                [promptLabel]="getPromptLabel()"
+                [mediumLabel]="'Complejidad media'"
+                [strongLabel]="'Contraseña fuerte'"
+                formControlName="contrasena"
+                [toggleMask]="true"
+                placeholder="********"
+              ></p-password>
+            </div>
+          </div>
+          <div *ngIf="editProfileForm.get('contrasena')?.invalid && (editProfileForm.get('contrasena')?.dirty || editProfileForm.get('contrasena')?.touched)">
+            <ng-container *ngIf="editProfileForm.get('contrasena')?.errors as contrasenaErrors">
+              <small class="error-message" *ngIf="contrasenaErrors['required']">Contraseña es obligatoria</small>
+            </ng-container>
+          </div>
+      
+          <div class="form-group">
+            <label for="telefono">Número de Teléfono:</label>
+            <input type="number" id="telefono" formControlName="telefono">
+            <div *ngIf="editProfileForm.get('telefono')?.invalid && (editProfileForm.get('telefono')?.dirty || editProfileForm.get('telefono')?.touched)">
+              <ng-container *ngIf="editProfileForm.get('telefono')?.errors as telefonoErrors">
+                <small *ngIf="telefonoErrors['required']">Número de Teléfono es obligatorio</small>
+                <small *ngIf="telefonoErrors['pattern']">Número de Teléfono no válido (debe tener 10 dígitos)</small>
+              </ng-container>
+            </div>
+          </div>
+      
+          <div class="form-group custom-select-wrapper">
+            <label for="preguntaSecreta">Pregunta Secreta:</label>
+            <select formControlName="preguntaSecreta" id="preguntaSecreta" class="form-control">
+              <option value="" disabled>Selecciona una pregunta secreta</option>
+              <option value="mascota">¿Cuál es nombre de tu primer mascota?</option>
+              <option value="cancion">¿Cúal es tu canción favorita?</option>
+              <option value="pelicula">¿Cuál es tu película favorita?</option>
+              <option value="amigo">¿Cuál es el nombre de tu mejor amigo de la infancia?</option>
+              <option value="materia">¿Cuál es el nombre de tu materia favorita?</option>
+            </select>
+          </div>
+      
+          <div class="form-group">
+            <label for="respuestaSecreta">Respuesta Secreta:</label>
+            <input type="text" id="respuestaSecreta" formControlName="respuestaSecreta">
+            <div *ngIf="editProfileForm.get('respuestaSecreta')?.invalid && (editProfileForm.get('respuestaSecreta')?.dirty || editProfileForm.get('respuestaSecreta')?.touched)">
+              <small *ngIf="editProfileForm.get('respuestaSecreta')?.errors?.['required']">La respuesta secreta es obligatoria</small>
+            </div>
+          </div>
+      
+          <div class="form-group buttons">
+            <button type="submit" [disabled]="editProfileForm.invalid">Guardar Cambios</button>
+            <button type="button" class="cancel-button" (click)="cancelar()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+        
+    <footer>
+        <app-footer></app-footer>
+    </footer>
+        

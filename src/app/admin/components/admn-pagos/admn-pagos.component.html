@@ -1,0 +1,63 @@
+<app-header-admin></app-header-admin>
+
+<nav>
+    <a routerLink="/inicio-clientes" >Inicio</a>
+    <a routerLink="/admin-activacion-perfiles">Activacion/Desactivación</a>
+    <a routerLink="/admin-perfiles">acceso de clientes</a>
+    <a routerLink="/admn-pagos"class="current">Pagos</a>
+</nav>
+<div class="admin-pagos-container">
+    <h2>Validar Pagos</h2>
+    
+    <!-- Tabla para Repartidores -->
+    <div class="table-container">
+        <h3>Pagos a Repartidores</h3>
+        <table class="payments-table">
+            <thead>
+                <tr>
+                    <th>Nombre del Repartidor</th>
+                    <th>Perfil</th>
+                    <th>Monto de Transferencia</th>
+                    <th>Fecha de Pedido</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se pueden iterar los datos de los repartidores -->
+                <tr *ngFor="let repartidor of repartidores">
+                    <td>{{ repartidor.nombre }}</td>
+                    <td>{{ repartidor.perfil }}</td>
+                    <td>{{ repartidor.monto | currency:'MXN' }}</td>
+                    <td>{{ repartidor.fecha | date:'dd/MM/yyyy' }}</td>
+                    <td><button (click)="pagar(repartidor)">Pagar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Tabla para Restaurantes -->
+    <div class="table-container">
+        <h3>Pagos a Restaurantes</h3>
+        <table class="payments-table">
+            <thead>
+                <tr>
+                    <th>Nombre del Restaurante</th>
+                    <th>Perfil</th>
+                    <th>Monto de Transferencia</th>
+                    <th>Fecha de Pedido</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se pueden iterar los datos de los restaurantes -->
+                <tr *ngFor="let restaurante of restaurantes">
+                    <td>{{ restaurante.nombre }}</td>
+                    <td>{{ restaurante.perfil }}</td>
+                    <td>{{ restaurante.monto | currency:'MXN' }}</td>
+                    <td>{{ restaurante.fecha | date:'dd/MM/yyyy' }}</td>
+                    <td><button (click)="pagar(restaurante)">Pagar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

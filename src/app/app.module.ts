@@ -87,6 +87,9 @@ import { RestPagosComponent } from './restaurante/components/rest-pagos/rest-pag
 import { AdmnPagosComponent } from './admin/components/admn-pagos/admn-pagos.component';
 import { EditPerfilRestauranteComponent } from './restaurante/components/edit-perfil-restaurante/edit-perfil-restaurante.component';
 import { EditPerfilRepartidorComponent } from './repartidor/components/edit-perfil-repartidor/edit-perfil-repartidor.component';
+// Asegúrate de importar PayPalModule
+import { CommonModule } from '@angular/common';
+import { PaypalButtonComponent } from './compartido/components/paypal-button/paypal-button.component';
 
 
 @NgModule({
@@ -158,6 +161,7 @@ import { EditPerfilRepartidorComponent } from './repartidor/components/edit-perf
     AdmnPagosComponent,
     EditPerfilRestauranteComponent,
     EditPerfilRepartidorComponent,
+    PaypalButtonComponent,
 
   ],
   imports: [
@@ -183,6 +187,7 @@ import { EditPerfilRepartidorComponent } from './repartidor/components/edit-perf
     MatCardModule,
     MatFormFieldModule,
     PasswordModule,
+    CommonModule,
 
   ],
   providers: [

@@ -75,6 +75,9 @@
     <!-- Contenedor de resumen del pedido -->
     <div class="resumen-container">
         <h2>Resumen del Pedido</h2>
+        
+        <h2>CLIENTE "{{ idCliente }}"</h2>
+        <h2>COMENSAL "{{ comensalId }}"</h2>
         <div class="resumen-item-container">
 
         <div class="resumen-item">
@@ -158,6 +161,15 @@
 
         </div>
         <button class="comprar-button" (click)="realizarCompra()">Comprar</button>
+        <!-- Integración del botón PayPal -->
+        <!--  --->
+        <app-paypal-button
+        [createOrder]="createOrder"
+        [onApprove]="onApprove"
+        [fundingSource]="'paypal'">
+        </app-paypal-button>
+
+       
 
         </div>
         </div>

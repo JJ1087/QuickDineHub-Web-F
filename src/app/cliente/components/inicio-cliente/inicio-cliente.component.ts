@@ -10,6 +10,9 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class InicioClienteComponent implements OnInit{//
+
+  nombreusuario: string = '';
+  comensalId: string = '';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE en el futuro 
   currentIndex = 0;
   showMessage = false;
   showMessage1 = false;
@@ -34,7 +37,7 @@ export class InicioClienteComponent implements OnInit{//
 
 
   constructor(private router: Router, private authService: AuthService) {}//
-
+  
   prevImage() {
     // Ajusta según la cantidad de imágenes que desees mostrar al mismo tiempo
     const imagesToShow = 3;
@@ -195,6 +198,13 @@ obtenerHoraActual(): string {
    products: any[] = [];
 
    ngOnInit(): void {
+    if (typeof window !== 'undefined' && localStorage !== null) {
+      this.comensalId = localStorage.getItem('ID_USER') || '';
+      if (this.comensalId) {
+        this.nombreusuario = localStorage.getItem('NOMBRE')|| '';
+      } else {
+        console.error("No se encontró 'ID_USER' en localStorage.");
+      }
     
      this.authService.obtenerInfoDeProducto().subscribe((products: any[]) => {
        console.log('Productos:', products);
@@ -216,6 +226,9 @@ obtenerHoraActual(): string {
     this.obtenerOrdenes();
     //Actualizar el valor del carrito
     this.obtenerDatoComensal();
+  } else {
+    console.error("El entorno no admite 'localStorage'.");
+  }
 
    }
 
@@ -253,8 +266,6 @@ obtenerHoraActual(): string {
     ordenesConEstadoUno: any[] = [];
     ordenesConEstadoDos: any[] = [];
     ordenesConEstadoSiete: any[] = [];
-    
-   comensalId: string = '661e7ad5a82e3dbd2d0c3067';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE en el futuro 
     obtenerOrdenes() {
     
 

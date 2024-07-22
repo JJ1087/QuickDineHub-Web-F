@@ -17,8 +17,11 @@ export class EstadoEnvioComponent implements OnInit {
   constructor(private route: ActivatedRoute, private authService: AuthService) { }
 
   detalleId: string='';
+  comensalid: string='';
 
   ngOnInit(): void {
+    if (typeof window !== 'undefined' && localStorage !== null) {
+      this.comensalid = localStorage.getItem('ID_USER')|| '';
     // Obtén el ID del detalleOrden de la URL
     this.route.params.subscribe(params => {
       this.detalleId = params['id']; // El 'id' corresponde al parámetro definido en la ruta
@@ -27,6 +30,7 @@ export class EstadoEnvioComponent implements OnInit {
       this.obtenerDetalleOrdenid(this.detalleId);
     });
   }
+}
 
 
 //comenzaremos trallendo los datos de el detalle orden---------------------------------------

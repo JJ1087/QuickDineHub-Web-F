@@ -141,15 +141,15 @@ export class CarritoClienteComponentG implements OnInit {
   obtenerPrecioEnvio(colonia: string): number {
     switch (colonia) {
       case "Capitan Antonio Reyes":
-        return 38;
+        return 1;
       case "Linda Vista":
-        return 42;
+        return 2;
       case "Hidalgo":
-        return 29;
+        return 3;
       case "Parque de poblamiento":
-        return 49;
+        return 1;
       case "Lomas de Chapultepec":
-        return 25;
+        return 2;
       default:
         return 0;
     }
@@ -520,15 +520,11 @@ export class CarritoClienteComponentG implements OnInit {
     const productosPorRestaurante = this.agruparProductosPorRestaurante();
     console.log(productosPorRestaurante)
 
-    //  const datosPago = {
-    //    productos:this.productosParaElpago
-    //  }
-
-    console.log(this.precioTotalGeneral)
+    /*console.log(this.precioTotalGeneral)
     this.authService.pagoCompra({ total_pago: this.precioTotalGeneral }).subscribe(data => {
       window.open(data.url_pago)
       console.log(data);
-    })
+    })*/
 
     // Para cada grupo de productos del mismo restaurante, crear una orden de pedido
     for (const restauranteId in productosPorRestaurante) {
@@ -771,12 +767,17 @@ createOrder = (data: any, actions: any): Promise<any> => {
   });
 }
 
-async onApprove(data: any, actions: any): Promise<any> {
+onApprove = async (data: any, actions: any): Promise<any> => {
   try {
-    // Aquí puedes agregar la lógica para enviar el pedido a tu servidor
+    // Captura el pedido de PayPal
     const order = await actions.order.capture();
     console.log('Orden capturada:', order);
+
+    // Lógica para realizar la compra
+    this.realizarCompra();
+
     // Mostrar mensaje de éxito u otras acciones
+    alert('Pago completado con éxito.');
   } catch (error) {
     console.error('Error al capturar la orden:', error);
     alert(`Error al completar el pago: ${error}`);

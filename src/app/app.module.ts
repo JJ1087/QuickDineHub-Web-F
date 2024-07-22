@@ -85,6 +85,8 @@ import { EditPerfilClienteComponent } from './cliente/components/edit-perfil-cli
 import { CliOfertasComponent } from './cliente/components/cli-ofertas/cli-ofertas.component';
 import { RestPagosComponent } from './restaurante/components/rest-pagos/rest-pagos.component';
 import { AdmnPagosComponent } from './admin/components/admn-pagos/admn-pagos.component';
+import { EditPerfilRestauranteComponent } from './restaurante/components/edit-perfil-restaurante/edit-perfil-restaurante.component';
+import { EditPerfilRepartidorComponent } from './repartidor/components/edit-perfil-repartidor/edit-perfil-repartidor.component';
 // Asegúrate de importar PayPalModule
 import { CommonModule } from '@angular/common';
 import { PaypalButtonComponent } from './compartido/components/paypal-button/paypal-button.component';
@@ -157,6 +159,8 @@ import { PaypalButtonComponent } from './compartido/components/paypal-button/pay
     CliOfertasComponent,
     RestPagosComponent,
     AdmnPagosComponent,
+    EditPerfilRestauranteComponent,
+    EditPerfilRepartidorComponent,
     PaypalButtonComponent,
 
   ],

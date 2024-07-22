@@ -1,43 +1,100 @@
 /* header-restaurante.component.css */
 
 .header-restaurante {
-    background-color: #333; /* Color de fondo del header */
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo img {
-    max-width: 100px; /* Ajusta el tamaño del logo según sea necesario */
-    height: auto;
-    border-radius: 11%;
-  }
-  
-  .title {
-    flex-grow: 1; /* Ocupa el espacio disponible en el centro */
-    text-align: center;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  nav ul li {
-    font-size: 18px;
-  }
-  
-  nav ul li a {
-    text-decoration: none;
-    color: white;
-  }
-  
-  nav ul li a:hover {
-    color: #00B14F; /* Color al pasar el mouse sobre los enlaces */
-  }
-#p{
-margin-left: auto;
-margin-right: auto;}  
+  background-color: #004d40; /* Verde oscuro para el fondo del header */
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  max-width: 100px; /* Ajusta el tamaño del logo según sea necesario */
+  height: auto;
+  border-radius: 11%;
+}
+
+.company-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 15%; /* Ajustado para mejorar la distribución */
+  margin-left: 10%;
+  color: #ffffff; /* Dorado para el nombre de la empresa */
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+}
+
+.user-icon {
+  margin-right: 10px;
+}
+
+.edit-profile-button {
+  display: flex;
+  align-items: center;
+  background-color: #ffd700; /* Dorado para el botón de editar perfil */
+  color: #004d40; /* Verde oscuro para el texto del botón */
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.edit-profile-button:hover {
+  background-color: #ffc107; /* Dorado claro para el hover del botón de editar perfil */
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+}
+
+nav ul li {
+  font-size: 18px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+nav ul li a:hover {
+  color: #004d40; /* Dorado para el hover de los enlaces */
+}
+
+nav {
+  background-color: #004d40; /* Verde oscuro para el fondo del nav */
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #ffc107; /* Dorado claro para el hover de los enlaces del nav */
+  color: #004d40; /* Verde oscuro para el texto del hover */
+}
+
+nav a.current {
+  background-color: #ffd700; /* Dorado para el enlace actual */
+  color: #004d40; /* Verde oscuro para el texto del enlace actual */
+}
+
+#p {
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -29,6 +29,8 @@ const routes: Routes = [
   { path: 'restaurantes-cliente', component: RestaurantesClienteComponent },
   { path: 'info-restaurante/:id', component: InfoRestauranteComponent },
   { path: 'cli-ofertas', component: CliOfertasComponent },
+  { path: 'edit-perfil-cliente', component: EditPerfilClienteComponent },
+
 
 ];
 

@@ -16,7 +16,10 @@
 <div class="voz-alta-container">
     <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
     <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
+
+    <h1>Hola "{{ nombreusuario }}"</h1>
 </div>
+
 
 <!-- <app-notificaciones></app-notificaciones>  -->
 <div *ngFor="let orden of ordenesConEstadoDos">
@@ -70,7 +73,7 @@
         </div>
         <!-- Lógica para habilitar/deshabilitar botones según la hora de apertura y cierre -->
         <div >
-        <div *ngIf="!isRestaurantOpen(product.idRestaurante)">
+        <div *ngIf="isRestaurantOpen(product.idRestaurante)">
             <div class="action-buttons">
                 <a [routerLink]="['/carrito-cliente', product?._id]" class="buy-button">Comprar</a>
                 <button class="add-to-cart-button" (click)="addToCart(product?._id, product?.idRestaurante)">Agregar al carrito</button>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module'; 
 import { AppComponent } from './app.component';
 import { LoginClientesComponent } from './cliente/components/login-clientes/login-clientes.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -90,8 +90,6 @@ import { EditPerfilRepartidorComponent } from './repartidor/components/edit-perf
 // Asegúrate de importar PayPalModule
 import { CommonModule } from '@angular/common';
 import { PaypalButtonComponent } from './compartido/components/paypal-button/paypal-button.component';
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -188,7 +186,6 @@ import { PaypalButtonComponent } from './compartido/components/paypal-button/pay
     MatFormFieldModule,
     PasswordModule,
     CommonModule,
-
   ],
   providers: [
     

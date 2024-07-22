@@ -85,6 +85,9 @@ import { EditPerfilClienteComponent } from './cliente/components/edit-perfil-cli
 import { CliOfertasComponent } from './cliente/components/cli-ofertas/cli-ofertas.component';
 import { RestPagosComponent } from './restaurante/components/rest-pagos/rest-pagos.component';
 import { AdmnPagosComponent } from './admin/components/admn-pagos/admn-pagos.component';
+// Asegúrate de importar PayPalModule
+import { CommonModule } from '@angular/common';
+import { PaypalButtonComponent } from './compartido/components/paypal-button/paypal-button.component';
 
 
 @NgModule({
@@ -154,6 +157,7 @@ import { AdmnPagosComponent } from './admin/components/admn-pagos/admn-pagos.com
     CliOfertasComponent,
     RestPagosComponent,
     AdmnPagosComponent,
+    PaypalButtonComponent,
 
   ],
   imports: [
@@ -179,6 +183,7 @@ import { AdmnPagosComponent } from './admin/components/admn-pagos/admn-pagos.com
     MatCardModule,
     MatFormFieldModule,
     PasswordModule,
+    CommonModule,
 
   ],
   providers: [

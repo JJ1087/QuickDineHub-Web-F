@@ -6,7 +6,6 @@ import { MensajeComponent } from '../../../compartido/components/mensaje/mensaje
 import { MatDialog } from '@angular/material/dialog';
 import { Producto } from '../../interfaces/producto.interface';
 
-
 @Component({
   selector: 'app-carrito-clienteG',
   templateUrl: './carrito-clienteG.component.html',
@@ -372,6 +371,7 @@ export class CarritoClienteComponentG implements OnInit {
   calcularTotalGeneral() {
     this.precioTotalGeneral = 0;
     this.precioTotalGeneral = this.sumaSubTotales + this.precioEnvio1;
+    console.log(this.precioTotalGeneral);
   }
 
 
@@ -746,6 +746,43 @@ export class CarritoClienteComponentG implements OnInit {
       }
     );
   }
+
+  //----------Nuevo metodo de Pago-paypal---------------------------------------------------------------------------------------------------
+
+
+createOrder = (data: any, actions: any): Promise<any> => {
+  const totalAmount = this.precioTotalGeneral;
+  console.log('Valor de total:', totalAmount);
+
+  if (isNaN(totalAmount) || totalAmount <= 0) {
+    console.error('Monto inválido:', totalAmount);
+    throw new Error('Monto inválido');
+  }
+
+  return actions.order.create({
+    purchase_units: [{
+      amount: {
+        value: totalAmount.toFixed(2)
+      }
+    }],
+    application_context: {
+      shipping_preference: 'NO_SHIPPING'
+    }
+  });
+}
+
+async onApprove(data: any, actions: any): Promise<any> {
+  try {
+    // Aquí puedes agregar la lógica para enviar el pedido a tu servidor
+    const order = await actions.order.capture();
+    console.log('Orden capturada:', order);
+    // Mostrar mensaje de éxito u otras acciones
+  } catch (error) {
+    console.error('Error al capturar la orden:', error);
+    alert(`Error al completar el pago: ${error}`);
+    throw error;
+  }
+}
 
 }
 

@@ -246,8 +246,17 @@ console.error("Error al comunicarse con el servidor:", error);
   actualizarPedidos() {
     this.authRestauranteService.mostrarPedidos(this.restauranteId).subscribe(
       (data: any[]) => {
-        this.pedidos = data.filter(pedido => pedido.estadoOrden !== 1 && pedido.estadoOrden !== 6);
-
+        // Filtra los pedidos y los ordena por fecha (más reciente primero)
+        const pedidosOrdenados = data
+          .filter(pedido => pedido.estadoOrden !== 1 && pedido.estadoOrden !== 6)
+          .sort((a, b) => new Date(b.fechaPedido).getTime() - new Date(a.fechaPedido).getTime());
+  
+        // Asigna números de orden de manera inversa (el más reciente será el último número)
+        this.pedidos = pedidosOrdenados.map((pedido, index) => {
+          pedido.noOrden = pedidosOrdenados.length - index; // Asigna el número de orden desde el más alto hacia el más bajo
+          return pedido;
+        });
+  
         // Verifica el estado de cada pedido y deshabilita los botones si es necesario
         this.pedidos.forEach((pedido) => {
           if (pedido.estadoOrden === 2) {
@@ -262,5 +271,5 @@ console.error("Error al comunicarse con el servidor:", error);
       }
     );
   }
+  
 }
-

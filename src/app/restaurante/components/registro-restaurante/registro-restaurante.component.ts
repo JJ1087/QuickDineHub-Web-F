@@ -35,7 +35,7 @@ export class RegistroRestauranteComponent implements OnInit {
   cuartaFaseForm: FormGroup;
   categoriaRestaurante: string[] = [
     'Asiática', 'Bar de Vinos', 'Buffet', 'Carnes a la Parrilla', 'Cafetería', 'Comida Caribeña', 'Comida del Medio Oriente',
-    'Comida Rápida', 'Comida Típica', 'Comida Tradicional Mexicana', 'Cocina Centroamericana', 'Cocina Sudamericana', 'Dulcería',
+    'Comida Rápida', 'Comida Regional', 'Comida Tradicional Mexicana', 'Cocina Centroamericana', 'Cocina Sudamericana', 'Dulcería',
     'Francesa', 'Fonda', 'Gourmet', 'Hamburguesas', 'Italiana', 'Mariscos', 'Mediterránea', 'Mexicana', 'Pastas', 'Pastelería',
     'Panes y Pasteles', 'Pizzería', 'Postres', 'Sandwiches', 'Tacos', 'Tortas', 'Vegana', 'Bebidas y Cócteles'
 ];

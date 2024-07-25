@@ -23,10 +23,9 @@ export class InicioRestauranteComponent {
             console.error("No se encontró 'RESTAURANT_ID' en localStorage.");
         }
     } else {
-        console.error("El entorno no admite 'localStorage'.");
+        console.error("Yusels no esta en casa");
     }
 }
-  
 
   toggleVozAlta() {
     const enableVozAlta = document.getElementById('enableVozAlta') as HTMLInputElement;

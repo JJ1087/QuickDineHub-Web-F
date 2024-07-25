@@ -53,9 +53,6 @@
             <label for="descripcion">Descripción del Producto:</label>
             <textarea id="descripcion" placeholder="Descripción del producto" required [(ngModel)]="descripcion"></textarea>
 
-            <label for="categoria">Categoría del Producto:</label>
-            <input type="text" id="categoria" placeholder="Categoría del producto" required [(ngModel)]="categoria">
-
             <label for="categoria">Tiempo de preparación:</label>
             <input type="number" id="tiempoP" placeholder="Tiempo en minutos" required [(ngModel)]="tiempoP">
 
@@ -88,7 +85,6 @@
             </div>
             <p><strong>Nombre del producto:</strong>{{ producto.nombre }}</p>
             <p><strong>Descripción del Producto:</strong> {{ producto.descripcion }}</p>
-            <p><strong>Categoría del Producto:</strong> {{ producto.categoria }}</p>
             <p><strong>Tiempo de Preparación:</strong> {{ formatTiempoPreparacion(producto.tiempoP) }}</p>
             <p><strong>Precio del Producto:</strong> ${{ producto.precio }}</p>
             <p><strong>Etiquetas:</strong> {{ producto.etiquetas.join(',') }}</p>

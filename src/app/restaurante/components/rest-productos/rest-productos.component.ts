@@ -17,7 +17,6 @@ export class RestProductosComponent implements OnInit {
   imagenes: File[] = [];
   nombre: string = '';
   descripcion: string = '';
-  categoria: string = '';
   tiempoP: string = '';
   precio: string = '';
   etiquetas: string[] = ['Desayuno', 'Almuerzo', 'Cena', 'Comida Rapida', 'Vegetariana', 'Asiatica', 'Postres', 'helados', 'congelados', 'pays', 'carnes', 'dulce'];
@@ -46,8 +45,6 @@ export class RestProductosComponent implements OnInit {
       } else {
           console.error("No se encontró 'RESTAURANT_ID' en localStorage.");
       }
-  } else {
-      console.error("El entorno no admite 'localStorage'.");
   }
   }
   
@@ -158,7 +155,6 @@ validarTipoYTamano(archivo: File): boolean {
       imagen: this.imagenes,
       nombre: this.nombre,
       descripcion: this.descripcion,
-      categoria: this.categoria,
       tiempoP: this.tiempoP,
       precio: this.precio,
       etiquetas: this.obtenerEtiquetasSeleccionadas().join(','), // Convertir el array de etiquetas a una cadena separada por comas
@@ -177,7 +173,6 @@ validarTipoYTamano(archivo: File): boolean {
     NuevoProducto.append('idRestaurante', this.restauranteId);
     NuevoProducto.append('nombre', this.nombre);
     NuevoProducto.append('descripcion', this.descripcion);
-    NuevoProducto.append('categoria', this.categoria);
     NuevoProducto.append('tiempoP', this.tiempoP);
     NuevoProducto.append('precio', this.precio);
     NuevoProducto.append('etiquetas',JSON.stringify(this.obtenerEtiquetasSeleccionadas()));
@@ -216,7 +211,6 @@ validarTipoYTamano(archivo: File): boolean {
       !this.nombre ||
       !this.descripcion ||
       !this.tiempoP ||
-      !this.categoria ||
       !this.precio ||
       this.obtenerEtiquetasSeleccionadas().length === 0
     );
@@ -243,7 +237,6 @@ validarTipoYTamano(archivo: File): boolean {
     this.imagenes = [];
     this.nombre = '';
     this.descripcion = '';
-    this.categoria = '';
     this.tiempoP = '';
     this.precio = '';
     this.etiquetas.forEach(etiqueta => {
@@ -259,7 +252,6 @@ validarTipoYTamano(archivo: File): boolean {
     this.imagenes = productoAEditar.imagen;
     this.nombre = productoAEditar.nombre;
     this.descripcion = productoAEditar.descripcion;
-    this.categoria = productoAEditar.categoria;
     this.precio = productoAEditar.precio;
     this.tiempoP = productoAEditar.tiempoP,
     // Actualiza el estado de las etiquetas seleccionadas según el producto

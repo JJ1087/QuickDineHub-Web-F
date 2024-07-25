@@ -234,7 +234,7 @@ export class MisPedidosComponent implements OnInit {
   }
 
   getImageUrl(relativePath: string): string {
-    const baseUrl = 'http://localhost:3000';
+    const baseUrl = 'http://localhost:3000';//const baseUrl = 'http://localhost:3000';
     return baseUrl + '/' + relativePath;
   }
 

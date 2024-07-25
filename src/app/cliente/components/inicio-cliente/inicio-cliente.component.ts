@@ -219,7 +219,7 @@ obtenerHoraActual(): string {
      (error) => {
       console.error('Error al obtener los productos:', error);
       // Registra el error en la base de datos
-      this.registrarErrorEnBD('Error al obtener los productos', 'inicio-cliente.component.ts:166 GET http://localhost:3000/info-producto1 404 (Not Found)');
+      this.registrarErrorEnBD('Error al obtener los productos', 'inicio-cliente.component.ts:166 GET http://localhost:3000/info-producto1 404 (Not Found)');//'inicio-cliente.component.ts:166 GET http://localhost:3000/info-producto1 404 (Not Found)');
     });
 
     //llamar a la funcion para recopilar las ordenes
@@ -257,7 +257,7 @@ obtenerHoraActual(): string {
 
     // Método para generar la URL completa de la imagen
     getImageUrl(relativePath: string): string {
-      return `http://localhost:3000/${relativePath}`;
+      return `http://localhost:3000/${relativePath}`;//return `http://localhost:3000/${relativePath}`;
     }
 
 //Funcion para llamar a mis ordenes--------------------------------------------------------------------------

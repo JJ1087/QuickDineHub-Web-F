@@ -141,7 +141,7 @@ export class CarritoClienteComponentG implements OnInit {
   obtenerPrecioEnvio(colonia: string): number {
     switch (colonia) {
       case "Capitan Antonio Reyes":
-        return 1;
+        return 0;
       case "Linda Vista":
         return 2;
       case "Hidalgo":
@@ -659,7 +659,7 @@ export class CarritoClienteComponentG implements OnInit {
                 //this.resetearValores();
                 this.mostrarCompraExitosa = true;
                 this.compraRealizada = true;
-              }, 5000);
+              }, 1000);
 
               if (this.noProductos1 === 2) {
                 this.actualizarCantidadProductos(orderId);

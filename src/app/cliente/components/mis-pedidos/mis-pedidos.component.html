@@ -3,7 +3,7 @@
 <nav>
     <a routerLink="/inicio-cliente">Inicio</a>
     <a routerLink="/restaurantes-cliente">Restaurantes</a>
-    <a routerLink="/cli-envios">Envíos</a>
+    <!--<a routerLink="/cli-envios">Envíos</a>-->
     <a routerLink="/cli-ofertas">Ofertas</a>
     <a routerLink="/mis-pedidos" class="current">Mis pedidos</a>
     <!-- Icono del carrito dentro del nav -->
@@ -45,6 +45,18 @@
 </div> 
 
 <div class="pedidos-container">
+    <h2>Recomendaciones</h2>
+    <ul *ngIf="recomendaciones.length > 0; else noRecomendaciones">
+      <li *ngFor="let recomendacion of recomendaciones">{{ recomendacion }}</li>
+    </ul>
+    <ng-template #noRecomendaciones>
+      <p>En este momento no tenemos recomendaciones para usted.</p>
+    </ng-template>
+  </div>
+  
+  
+
+<div class="pedidos-container">
     <h2>Pedidos realizados</h2>
 
     <!-- Contenedores de pedidos -->
@@ -70,8 +82,8 @@
             </div>
             <!-- Botón para ver detalles -->
             <button class="ver-detalles-button" (click)="verDetalles(detalle?._id)">Ver detalles de compra</button>
-            <button class="agregar-resena-button" (click)="abrirFormularioResena(detalle?._id)">Agregar reseña al restaurante</button>
-            <button class="agregar-resena-button" (click)="abrirFormularioResenaRepartidor(detalle?._id)">Agregar reseña al repartidor</button>
+            <!--<button class="agregar-resena-button" (click)="abrirFormularioResena(detalle?._id)">Agregar reseña al restaurante</button>-->
+            <!-- <button class="agregar-resena-button" (click)="abrirFormularioResenaRepartidor(detalle?._id)">Agregar reseña al repartidor</button>-->
         </div>
     </div>
 </div>

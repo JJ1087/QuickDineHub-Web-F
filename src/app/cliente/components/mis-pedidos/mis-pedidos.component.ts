@@ -3,6 +3,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+//import { reglas } from './regla';
+import { reglas } from './reglas';
 
 @Component({
   selector: 'app-mis-pedidos',
@@ -11,6 +13,8 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class MisPedidosComponent implements OnInit {
+
+  recomendaciones: string[] = [];
 
   mostrarModal = false;
   resena = '';
@@ -215,7 +219,7 @@ export class MisPedidosComponent implements OnInit {
     }
   }
 
-  obtenerDetallesProducto() {
+  /*obtenerDetallesProducto() {
     let idsProductos: string[] = [];
 
     this.detalleOrdenes.forEach(detalle => {
@@ -231,7 +235,100 @@ export class MisPedidosComponent implements OnInit {
         console.error('Error al obtener el producto con ID', productId, ':', error);
       });
     });
+  }*/
+//------------------------------------------------------------CODIGO FUNCIONAL
+  /*obtenerDetallesProducto() {
+    let idsProductos: string[] = [];
+
+    this.detalleOrdenes.forEach(detalle => {
+      idsProductos.push(detalle.idProducto);
+    });
+
+    idsProductos.forEach((productId, index) => {
+      this.authService.obtenerInfoDeProductoPorId(productId).subscribe((producto: any) => {
+        console.log('Producto:', producto);
+        this.detalleOrdenes[index].producto = producto;
+        console.log('Detalles de órdenes actualizados:', this.detalleOrdenes);
+
+        //if (index === idsProductos.length - 1) {
+          // Extraer los últimos 5 productos
+          let nombresProductos = this.detalleOrdenes.slice(-5).map(detalle => detalle.nombreProducto);
+          console.log('Recomendaciones:', nombresProductos);
+          this.recomendaciones = this.recomendarProductos(nombresProductos);
+          console.log('Recomendaciones:', this.recomendaciones);
+          // Aquí puedes manejar las recomendaciones, por ejemplo, mostrarlas en la interfaz
+        //}
+      }, (error) => {
+        console.error('Error al obtener el producto con ID', productId, ':', error);
+      });
+    });
   }
+
+  recomendarProductos(productosSolicitados: string[]): string[] {
+    let recomendaciones = new Set<string>();
+
+    reglas.forEach(regla => {
+      if (regla.antecedents.every(antecedente => productosSolicitados.includes(antecedente))) {
+        regla.consequents.forEach(consecuente => {
+          if (!productosSolicitados.includes(consecuente)) {
+            recomendaciones.add(consecuente);
+          }
+        });
+      }
+    });
+
+    return Array.from(recomendaciones);
+  }*/
+
+  obtenerDetallesProducto() {
+    let idsProductos: string[] = [];
+
+    this.detalleOrdenes.forEach(detalle => {
+      idsProductos.push(detalle.idProducto);
+    });
+
+    const totalProductos = idsProductos.length;
+    let productosObtenidos = 0;
+
+    idsProductos.forEach((productId, index) => {
+      this.authService.obtenerInfoDeProductoPorId(productId).subscribe((producto: any) => {
+        console.log('Producto:', producto);
+        this.detalleOrdenes[index].producto = producto;
+        productosObtenidos++;
+
+          let nombresProductos = this.detalleOrdenes
+            .slice(-7)
+            .map(detalle => detalle.nombreProducto);
+          console.log('Productos solicitados:', nombresProductos);
+          this.recomendaciones = this.recomendarProductos(nombresProductos);
+          console.log('Recomendaciones:', this.recomendaciones);
+          // Aquí puedes manejar las recomendaciones, por ejemplo, mostrarlas en la interfaz
+        //}
+
+        console.log('Detalles de órdenes actualizados:', this.detalleOrdenes);
+      }, (error) => {
+        console.error('Error al obtener el producto con ID', productId, ':', error);
+      });
+    });
+  }
+
+  recomendarProductos(productosSolicitados: string[]): string[] {
+    let recomendaciones = new Set<string>();
+
+    reglas.forEach(regla => {
+      if (regla.antecedents.every(antecedente => productosSolicitados.includes(antecedente))) {
+        regla.consequents.forEach(consecuente => {
+          if (!productosSolicitados.includes(consecuente)) {
+            recomendaciones.add(consecuente);
+          }
+        });
+      }
+    });
+
+    return Array.from(recomendaciones);
+  }
+
+
 
   getImageUrl(relativePath: string): string {
     const baseUrl = 'http://localhost:3000';//const baseUrl = 'http://localhost:3000';

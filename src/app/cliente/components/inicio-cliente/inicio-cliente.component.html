@@ -4,7 +4,7 @@
 <nav>
     <a routerLink="/inicio-cliente" class="current">Inicio</a>
     <a routerLink="/restaurantes-cliente">Restaurantes</a>
-    <a routerLink="/cli-envios">Envíos</a>
+    <!--<a routerLink="/cli-envios">Envíos</a>-->
     <a routerLink="/cli-ofertas">Ofertas</a>
     <a routerLink="/mis-pedidos">Mis pedidos</a>
     <!-- Icono del carrito dentro del nav -->
@@ -21,11 +21,11 @@
 <h2 class="centered">Bienvenido {{ nombreusuario }}</h2>
 
 <!-- <app-notificaciones></app-notificaciones>  -->
-<div *ngFor="let orden of ordenesConEstadoDos">
+<!-- <div *ngFor="let orden of ordenesConEstadoDos">
     <app-notificaciones [nombreProducto]="orden.productoCancelado[0].nombreProducto" [fechaPedido]="orden.createdAt" [idOrden]="orden._id" [idCliente]="orden.idCliente" [noProductos]="orden.noProductos" [idDetalle]="orden.productoCancelado[0].idDetalle" (actualizarOrdenes)="actualizarOrdenes()">
 
     </app-notificaciones>
-</div>
+</div>-->
 
 <div *ngFor="let orden of ordenesConEstadoUno">
     <app-notificaciones-enterado [fechaPedido]="orden.createdAt" [idRestaurante]="orden.idRestaurante" [idOrden]="orden._id" (actualizarOrdenes)="actualizarOrdenes()">

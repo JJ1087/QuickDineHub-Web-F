@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class PreguntaSecretaService {
 
-  private apiUrl = 'http://localhost:3000'; // URL de tu backend//private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'https://quickdinehub-back1.onrender.com'; // URL de tu backend//private apiUrl = 'http://localhost:3000';
   constructor(private HttpClient: HttpClient) {}
   
   obtenerPreguntaYRespuestaSecreta(email: string): Observable<any> {

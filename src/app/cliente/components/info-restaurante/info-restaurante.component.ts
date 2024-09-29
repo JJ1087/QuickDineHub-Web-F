@@ -89,7 +89,7 @@ export class InfoRestauranteComponent {
       (error) => {
        console.error('Error al obtener los productos:', error);
        // Registra el error en la base de datos
-       this.registrarErrorEnBD('Error al obtener los productos', 'inicio-cliente.component.ts:166 GET http://localhost:3000/info-producto1 404 (Not Found)');//http://localhost:3000/info-producto1
+       this.registrarErrorEnBD('Error al obtener los productos', 'inicio-cliente.component.ts:166 GET https://quickdinehub-back1.onrender.com/info-producto1 404 (Not Found)');//http://localhost:3000/info-producto1
      });
   
      //llamar a la funcion para recopilar las ordenes
@@ -144,7 +144,7 @@ obtenerRestaurante(detalleId: string) {
 
     // Método para generar la URL completa de la imagen
     getImageUrl(relativePath: string): string {
-      return `http://localhost:3000/${relativePath}`;// return `http://localhost:3000/${relativePath}`;
+      return `https://quickdinehub-back1.onrender.com/${relativePath}`;// return `http://localhost:3000/${relativePath}`;
     }
 
 //Funcion para llamar a mis ordenes--------------------------------------------------------------------------

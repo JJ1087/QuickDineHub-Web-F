@@ -219,16 +219,24 @@ console.error("Error al comunicarse con el servidor:", error);
     const confirmation = confirm("¿Estás seguro de que la orden salió de la cocina?");
     if (confirmation) {
       pedido.estadoOrden = 6;
+      const perruchis = pedido._id;
         // Realiza la solicitud al servidor para actualizar el estado del pedido
-        this.authRestauranteService.OrdenEnvio(pedido._id).subscribe(
+        this.authRestauranteService.OrdenEnvio(perruchis).subscribe(
             (response) => {
                 // Verifica si la solicitud se realizó con éxito
                 if (response) {
                      // Actualiza el estado del pedido y habilita el botón de completado
                     this.pedidos = this.pedidos.filter(p => p !== pedido);
-
-                  
-                } else {
+                console.log("pedido id:" , perruchis);
+                    this.authRestauranteService.agregarCompraRealizadaSitio({ pedidoId: perruchis }).subscribe(
+                      (response) => {
+                        console.log('Compra realizada registrada:', response);
+                      },
+                      (error) => {
+                        console.error('Error al registrar la compra realizada:', error);
+                      }
+                    );
+                  } else {
                     // Si la solicitud no se realizó con éxito, muestra un mensaje de error o maneja el error según sea necesario
                     console.error("Error al actualizar el estado del pedido.");
           }
@@ -238,8 +246,6 @@ console.error("Error al comunicarse con el servidor:", error);
                 console.error("Error al comunicarse con el servidor:", error);
           }
         );
-
-
     }
   }
   
@@ -256,7 +262,7 @@ console.error("Error al comunicarse con el servidor:", error);
           pedido.noOrden = pedidosOrdenados.length - index; // Asigna el número de orden desde el más alto hacia el más bajo
           return pedido;
         });
-  
+
         // Verifica el estado de cada pedido y deshabilita los botones si es necesario
         this.pedidos.forEach((pedido) => {
           if (pedido.estadoOrden === 2) {

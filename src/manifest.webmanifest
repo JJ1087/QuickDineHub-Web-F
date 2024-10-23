@@ -1,8 +1,8 @@
 {
-  "name": "proyecto",
-  "short_name": "proyecto",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "QuickDineHub",
+  "short_name": "QuickDineHub",
+  "theme_color": "#83D7FF",
+  "background_color": "#83D7FF",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
@@ -55,5 +55,30 @@
       "type": "image/png",
       "purpose": "maskable any"
     }
-  ]
+  ],
+     "dataGroups": [
+  {
+    "name": "api",
+    "urls": [
+      "https://quickdinehub-back1.onrender.com",
+      "https://quickdinehub-back1.onrender.com/info-producto1",
+      "https://quickdinehub-back1.onrender.com/mostrar-oferta2",
+      "https://quickdinehub-back1.onrender.com/obtener-ordenes/*",
+      "https://quickdinehub-back1.onrender.com/info-comensalId/*",
+      "https://quickdinehub-back1.onrender.com/info-restauranteId/*",
+      
+"https://quickdinehub-back1.onrender.com/uploads/restaurante/Productos/*",
+    "https://quickdinehub-back1.onrender.com/restaurantes/nombres",
+    "https://quickdinehub-back1.onrender.com/info-producto/*"
+
+
+    ],
+    "cacheConfig": {
+      "maxSize": 100,
+      "maxAge": "1d",
+      "timeout": "10s",
+      "strategy": "freshness"
+    }
+  }
+]
 }

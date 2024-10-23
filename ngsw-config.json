@@ -26,5 +26,30 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "api",
+      "urls": [
+        "https://quickdinehub-back1.onrender.com",
+        "https://quickdinehub-back1.onrender.com/info-producto1",
+        "https://quickdinehub-back1.onrender.com/mostrar-oferta2",
+        "https://quickdinehub-back1.onrender.com/obtener-ordenes/*",
+        "https://quickdinehub-back1.onrender.com/info-comensalId/*",
+        "https://quickdinehub-back1.onrender.com/info-restauranteId/*",
+        
+  "https://quickdinehub-back1.onrender.com/uploads/restaurante/Productos/*",
+      "https://quickdinehub-back1.onrender.com/restaurantes/nombres",
+      "https://quickdinehub-back1.onrender.com/info-producto/*"
+  
+  
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "1d",
+        "timeout": "10s",
+        "strategy": "freshness"
+      }
+    }
   ]
 }

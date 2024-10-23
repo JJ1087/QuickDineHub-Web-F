@@ -1,255 +1,277 @@
 nav {
-    background-color: #ffdbac;
-    padding: 10px 0;
-    text-align: center;
-    border-radius: 10px;
-  }
-  
-  nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #333;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  nav a:hover,
-  nav a.cart-icon-link:hover {
-    background-color: #ff8c00;
-    color: #fff;
-  }
-  
-  nav a.current {
-    background-color: #ff8c00;
-    color: #fff;
-  }
-  
-  .cart-icon-container {
-    margin-top: 15%;
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    z-index: 9999;
-    font-size: 24px;
-  }
-  
-  nav a.cart-icon-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 12px;
-    font-size: 16px;
-  }
-  
-  nav a.cart-icon-link i {
-    margin-right: 5px;
-  }
-  
-  .product-info-container {
-    max-width: 80%;
-    margin: 20px auto 20px; /* Ajusta el margen inferior a 40px */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  
-  footer {
-    margin-top: 40px; /* Asegura un espacio antes del footer */
-    /* Otros estilos del footer */
-    padding-top: 20px; /* Agrega un espacio adicional en la parte superior del footer */
-  }
-  .back-button {
-    background-color: #ff8c00; /* Color de fondo */
-    color: #fff; /* Color del texto */
-    padding: 10px 20px; /* Padding para tamaño */
-    border: none; /* Sin bordes */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor en forma de mano */
-    font-size: 16px; /* Tamaño de fuente */
-    transition: background-color 0.3s ease; /* Transición suave */
-    text-decoration: none; /* Eliminar subrayado de enlace */
-    display: inline-block; /* Para permitir el padding */
-    margin-top: 20px; /* Margen superior */
-  }
-  
-  .back-button:hover {
-    background-color: #ffdbac; /* Color al pasar el ratón */
-    color: #333; /* Color del texto al pasar el ratón */
-  }
-  
-  
-  .breadcrumbs {
-    margin: 10px 0;
-    font-size: 17px;
-    color: #555;
-    margin-top: 1%;
-    margin-left: 3.5%;
-  }
-  
-  .breadcrumbs a {
-    text-decoration: none;
-    color: #3498db;
-    cursor: pointer;
-  }
-  
-  .breadcrumbs a:hover {
-    text-decoration: underline;
-  }
+  background-color: #ffdbac;
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 10px;
+}
 
-  /*-------------------------------------------------------------------------------------------------*/
-  body {
-    font-family: 'Lato', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover,
+nav a.cart-icon-link:hover {
+  background-color: #ff8c00;
+  color: #fff;
+}
+
+nav a.current {
+  background-color: #ff8c00;
+  color: #fff;
+}
+
+.cart-icon-container {
+  margin-top: 15%;
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  z-index: 9999;
+  font-size: 24px;
+}
+
+nav a.cart-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  font-size: 16px;
+}
+
+nav a.cart-icon-link i {
+  margin-right: 5px;
+}
+
+.product-info-container {
+  max-width: 80%;
+  margin: 20px auto 20px; /* Ajusta el margen inferior a 40px */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+footer {
+  margin-top: 40px; /* Asegura un espacio antes del footer */
+  /* Otros estilos del footer */
+  padding-top: 20px; /* Agrega un espacio adicional en la parte superior del footer */
+}
+.back-button {
+  background-color: #ff8c00; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  padding: 10px 20px; /* Padding para tamaño */
+  border: none; /* Sin bordes */
+  border-radius: 5px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor en forma de mano */
+  font-size: 16px; /* Tamaño de fuente */
+  transition: background-color 0.3s ease; /* Transición suave */
+  text-decoration: none; /* Eliminar subrayado de enlace */
+  display: inline-block; /* Para permitir el padding */
+  margin-top: 20px; /* Margen superior */
+}
+
+.back-button:hover {
+  background-color: #ffdbac; /* Color al pasar el ratón */
+  color: #333; /* Color del texto al pasar el ratón */
+}
+
+
+.breadcrumbs {
+  margin: 10px 0;
+  font-size: 17px;
+  color: #555;
+  margin-top: 1%;
+  margin-left: 3.5%;
+}
+
+.breadcrumbs a {
+  text-decoration: none;
+  color: #3498db;
+  cursor: pointer;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+/*-------------------------------------------------------------------------------------------------*/
+body {
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
 }
 .offer-container {
-    max-width: 80%;
-    margin: 20px auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+  max-width: 80%;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .offer {
-    position: relative;
-    background-color: #fff;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
-    transition: transform 0.3s ease;
+  position: relative;
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease;
 }
 
 .offer:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .img-container {
-    overflow: hidden;
-    border-radius: 5px;
+  overflow: hidden;
+  border-radius: 5px;
 }
 
 .offer img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
 .offer:hover img {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .offer h3 {
-    color: #ff8c00;
-    margin-bottom: 5px;
+  color: #ff8c00;
+  margin-bottom: 5px;
 }
 
 .offer-description {
-    color: #666;
-    margin-bottom: 10px;
+  color: #666;
+  margin-bottom: 10px;
 }
 
 .categoria {
-    font-size: 14px;
-    color: #888;
-    margin-bottom: 10px;
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 10px;
 }
 
 .original-price {
-    color: #999;
-    text-decoration: line-through;
-    margin-bottom: 10px;
+  color: #999;
+  text-decoration: line-through;
+  margin-bottom: 10px;
 }
 
 .discount {
-    color: #e74c3c;
-    font-size: 38px;
-    font-weight: bold;
-    margin-bottom: 10px;
+  color: #e74c3c;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .offer-price {
-    color: #ff8c00;
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 20px;
+  color: #ff8c00;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .offer-label {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #e74c3c;
-    color: #fff;
-    padding: 5px;
-    border-radius: 5px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #e74c3c;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .action-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .buy-button,
 .view-button,
 .cart-button {
-    flex: 1;
-    text-align: center;
-    text-decoration: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0 5px;
-    transition: background-color 0.3s ease;
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
 }
 
 .buy-button {
-    background-color: #ff8c00;
-    color: #fff;
+  background-color: #ff8c00;
+  color: #fff;
 }
 
 .buy-button:hover {
-    background-color: #ffdbac;
-    color: #333;
+  background-color: #ffdbac;
+  color: #333;
 }
 
 .view-button {
-    background-color: #3498db;
-    color: #fff;
+  background-color: #3498db;
+  color: #fff;
 }
 
 .view-button:hover {
-    background-color: #85c1e9;
-    color: #333;
+  background-color: #85c1e9;
+  color: #333;
 }
 
 .cart-button {
-    background-color: #2ecc71;
-    color: #fff;
+  background-color: #2ecc71;
+  color: #fff;
 }
 
 .cart-button:hover {
-    background-color: #58d68d;
-    color: #333;
+  background-color: #58d68d;
+  color: #333;
 }
 
 .back-to-products {
-    text-align: center;
-    margin: 20px 0;
+  text-align: center;
+  margin: 20px 0;
 }
 
 .back-to-products a {
-    text-decoration: none;
-    color: #ff8c00;
-    font-weight: bold;
-    transition: color 0.3s ease;
+  text-decoration: none;
+  color: #ff8c00;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 768px) {
+nav a {
+    font-size: 16px; /* Tamaño de fuente más pequeño */
+    padding: 6px 10px; /* Menor padding para que los enlaces se ajusten mejor */
+    margin: 0 8px; /* Reduce el margen entre los enlaces */
+}
+}
+
+/* Media queries para pantallas aún más pequeñas (móviles) */
+@media (max-width: 480px) {
+nav {
+    padding: 8px 0; /* Reduce el padding de la barra en pantallas pequeñas */
+}
+
+nav a {
+    font-size: 14px; /* Tamaño de fuente más pequeño para móviles */
+    padding: 5px 8px; /* Aún más pequeño padding para ajustarse mejor */
+    margin: 0 5px; /* Menor margen entre los enlaces en pantallas pequeñas */
+}
 }

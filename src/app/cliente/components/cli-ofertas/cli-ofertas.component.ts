@@ -1,35 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-cli-ofertas',
   templateUrl: './cli-ofertas.component.html',
   styleUrl: './cli-ofertas.component.css'
 })
-export class CliOfertasComponent {
+export class CliOfertasComponent implements OnInit {
 
-  ofertas = [
-    {
-      titulo: 'Oferta Especial 1',
-      descripcion: 'Descripción detallada de la oferta especial. Aprovecha esta increíble oferta limitada.',
-      categoria: 'Categoría 1',
-      precioOriginal: 79.99,
-      descuento: '-20%',
-      precioOferta: 63.99,
-      imagen: 'assets/Espagueti.jpg'
-    },
-    {
-      titulo: 'Oferta Especial 2',
-      descripcion: 'Descripción detallada de la oferta especial. Aprovecha esta increíble oferta limitada.',
-      categoria: 'Categoría 2',
-      precioOriginal: 49.99,
-      descuento: '-15%',
-      precioOferta: 42.49,
-      imagen: 'assets/Frappe.jpg'
-    }
-  ];
+  ofertas: any[] = [];
 
-  constructor() { }
+  constructor(private AuthService: AuthService) { }
 
   ngOnInit(): void {
+    
+    if (typeof window !== 'undefined' && localStorage !== null) {
+     
+      this.cargarOfertas();
+  
+    } else {
+      console.error("El entorno no admite 'localStorage'.");
+
+
+    }
+
   }
+  cargarOfertas(): void {
+    this.AuthService.obtenerInfoOferta().subscribe(
+      (data) => {
+        this.ofertas = data;
+      },
+      (error) => {
+        console.error('Error al obtener ofertas:', error);
+      }
+    );
+  }
+ // Método para generar la URL completa de la imagen
+ getImageUrl(relativePath: string): string {
+  return `https://quickdinehub-back1.onrender.com/${relativePath}`;//
+  //return http://localhost:3000/${relativePath};
+}
+
 }

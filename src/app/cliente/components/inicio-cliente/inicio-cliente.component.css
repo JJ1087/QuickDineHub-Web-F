@@ -14,6 +14,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 .logo img {
@@ -79,38 +80,35 @@ nav a.current {
 }
 
 .products-container {
-    max-width: 90%;
-    margin: 30px auto;
-    display: flex;
+    max-width: 100%;
+    margin: 2px auto;
+    display: flex ;
     flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 20px;
+    justify-content: space-around; /* Ajusta el espaciado */
+    gap: 10px; /* Reduce la distancia entre los productos */
+    padding: 10px; /* Añadir padding alrededor del contenedor */
 }
+
 
 .product {
     background-color: #fff;
-    padding: 30px;
-    margin: 20px;
+    padding: 2%;
+    margin: 2%; /* Reduce el margen entre productos */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 29%;
+    width: 25%; /* Ajusta el ancho de las cajas */
+    height: 40%; /* Fija la altura de todas las cajas */
     display: flex;
-    flex-direction: column; /* Establece la dirección de los items en columna */
-    justify-content: space-between; /* Distribuye el espacio */
-    height: auto; /* Opcional: ajusta esto según tus necesidades */
+    flex-direction: column;
+    justify-content: space-between;
     text-align: center;
 }
-
-.product-tags, .action-buttons {
-    margin-top: 4%; /* Empuja las etiquetas y los botones hacia la parte inferior */
-}
-
 .product img {
     width: 100%;
-    height: 300px; /* Altura de las imágenes */
-    object-fit: cover; /* Ajusta el comportamiento de la imagen para cubrir la caja */
-    border-radius: 10px;
-    margin-bottom: 15px;
+    height: 200px; /* Fija la altura de las imágenes */
+    object-fit: cover; /* Asegura que las imágenes llenen la caja correctamente */
+    border-radius: 10%;
+    margin-bottom: 10%;
 }
 
 .product h3 {
@@ -120,7 +118,7 @@ nav a.current {
 
 /* Aplicamos un margen derecho solo para los productos que no son el último */
 .product:not(:last-child) {
-    margin-right: 20px;
+    margin-right: 0%;
 }
 
 .product-description {
@@ -179,7 +177,7 @@ nav a.current {
     flex: 1;
     text-align: center;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 5% ;
     border-radius: 5px;
     cursor: pointer;   
 }
@@ -187,7 +185,7 @@ nav a.current {
 .buy-button {
     background-color: #ff8c00;
     color: #fff;
-    margin-right: 5px;
+    margin-right: 1%;
 }
 
 .view-button {
@@ -204,14 +202,15 @@ nav a.current {
 
 .carousel-container {
     position: relative;
-    max-width: 70%;
-    margin: 20px auto 10px;
+    max-width: 60%;
+    max-height: 20%;
+    margin: 5px auto 2%;
     overflow: hidden;
 }
 
 .product-image {
     width: 100%;
-    height: 200px; /* Altura de las imágenes */
+    height: 100%; /* Altura de las imágenes */
     object-fit: cover; /* Ajusta el comportamiento de la imagen para cubrir la caja */
     border-radius: 10px;
     transition: transform 0.3s ease-in-out;
@@ -294,7 +293,7 @@ label {
   .add-to-cart-button {
     background-color: #4CAF50; /* Color de fondo */
     color: white; /* Color del texto */
-    padding: 10px 20px; /* Espaciado interno */
+    padding: 5%; /* Espaciado interno */
     border: none; /* Borde */
     border-radius: 5px; /* Borde redondeado */
     cursor: pointer; /* Cursor al pasar */
@@ -378,3 +377,155 @@ nav a.cart-icon-link i {
     margin-top: 20px; /* Ajusta este valor según sea necesario */
   }
   
+  .search-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 60px 12px 20px; /* Espacio adicional para ambos íconos */
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+}
+
+.search-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+}
+
+.search-icon, .voice-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #aaa;
+    pointer-events: none;
+}
+
+.search-icon {
+    right: 40px; /* Espacio para el icono de micrófono */
+    pointer-events: none;
+}
+
+.voice-icon {
+    right: 12px; /* El micrófono a la derecha del icono de búsqueda */
+    pointer-events: all; /* Para hacer clic en el micrófono */
+    cursor: pointer;
+    color: #000; /* Color inicial */
+    transition: color 0.3s ease; /* Suavizar el cambio de color */
+}
+
+/* Cambiar color cuando esté activo */
+.voice-icon.active {
+    color: red; /* Color verde cuando está activo */
+}
+ 
+/* Media queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    nav a {
+        font-size: 16px; /* Tamaño de fuente más pequeño */
+        padding: 6px 10px; /* Menor padding para que los enlaces se ajusten mejor */
+        margin: 0 8px; /* Reduce el margen entre los enlaces */
+    }
+}
+
+/* Media queries para pantallas aún más pequeñas (móviles)  */
+@media (max-width: 480px) {
+    nav {
+        padding: 8px 0; /* Reduce el padding de la barra en pantallas pequeñas */
+    }
+
+    nav a {
+        font-size: 14px; /* Tamaño de fuente más pequeño para móviles */
+        padding: 5px 8px; /* Aún más pequeño padding para ajustarse mejor */
+        margin: 0 5px; /* Menor margen entre los enlaces en pantallas pequeñas */
+    }
+
+}
+/* CAJAS  */
+
+@media (max-width: 1024px) {
+    .product {
+        width: 35%; /* Ajusta el ancho de las cajas en pantallas medianas */
+    }
+
+    .product img {
+        width: 100%;
+        height: 150px; /* Reducir la altura de las imágenes */
+    }
+
+    .buy-button, .view-button, .add-to-cart-button {
+        padding: 4% 0; /* Ajusta el tamaño de los botones */
+        font-size: 14px; /* Ajusta el tamaño del texto en los botones */
+    }
+
+    .product h3, .product-price, .product-description {
+        font-size: 14px; /* Ajusta el tamaño de los textos */
+    }
+}
+
+/* Media queries para pantallas pequeñas (hasta 768px) */
+@media (max-width: 768px) {
+    nav a {
+        font-size: 14px; /* Reduce el tamaño de la fuente en los enlaces del menú */
+        padding: 5px 8px; /* Reduce el padding en los enlaces */
+    }
+
+    .product {
+        width: 40%; /* Los productos ocupan un 48% de la pantalla (2 por fila) */
+        margin: 2% 0; /* Reduce el margen entre los productos */
+    }
+
+    .product img {
+        width: 100%;
+        height: 120px; /* Ajusta el tamaño de las imágenes */
+    }
+
+    .buy-button, .view-button, .add-to-cart-button {
+        padding: 4% 0; /* Ajusta el tamaño de los botones */
+        font-size: 14px; /* Ajusta el tamaño del texto en los botones */
+    }
+
+    .product h3, .product-price, .product-description {
+        font-size: 14px; /* Ajusta el tamaño de los textos */
+    }
+}
+
+/* Media queries para pantallas extra pequeñas (hasta 480px) */
+@media (max-width: 480px) {
+    nav {
+        padding: 8px 0; /* Reduce el padding de la barra en pantallas pequeñas */
+    }
+
+    nav a {
+        font-size: 12px; /* Tamaño de fuente más pequeño para móviles */
+        padding: 4px 6px; /* Aún más pequeño padding para ajustarse mejor */
+        margin: 0 4px; /* Menor margen entre los enlaces en pantallas pequeñas */
+    }
+
+    .product {
+        width: 40%; /* Los productos ocupan un 48% de la pantalla (2 por fila) */
+        margin: 2% 0; /* Reduce el margen entre los productos */
+        height: auto; /* Ajusta la altura de las cajas */
+    }
+
+    .product img {
+        width: 100%;
+        height: 100px; /* Ajusta la altura de las imágenes */
+    }
+
+    .buy-button, .view-button, .add-to-cart-button {
+        padding: 3% 0; /* Ajusta el tamaño de los botones */
+        font-size: 12px; /* Ajusta el tamaño del texto en los botones */
+    }
+
+    .product h3, .product-price, .product-description {
+        font-size: 12px; /* Ajusta el tamaño de los textos */
+    }
+}

@@ -77,7 +77,7 @@ import { ResenasRepartidorComponent } from './repartidor/components/resenas-repa
 import { ResenasRestauranteComponent } from './restaurante/components/resenas-restaurante/resenas-restaurante.component';
 import { HistorialRepartidorComponent } from './repartidor/components/historial-repartidor/historial-repartidor.component';
 import { FooterHomeComponent } from './compartido/components/footer-home/footer-home.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, isDevMode } from '@angular/core';
 import { RepPagosComponent } from './repartidor/components/rep-pagos/rep-pagos.component';
 import { RepPedidosComponent } from './repartidor/components/rep-pedidos/rep-pedidos.component';
 import { RepEntregasComponent } from './repartidor/components/rep-entregas/rep-entregas.component';
@@ -91,6 +91,7 @@ import { EditPerfilRepartidorComponent } from './repartidor/components/edit-perf
 import { CommonModule } from '@angular/common';
 import { PaypalButtonComponent } from './compartido/components/paypal-button/paypal-button.component';
 import { OfertasRestauranteComponent } from './restaurante/components/ofertas-restaurante/ofertas-restaurante.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 @NgModule({
   declarations: [
     AppComponent,
@@ -188,6 +189,12 @@ import { OfertasRestauranteComponent } from './restaurante/components/ofertas-re
     MatFormFieldModule,
     PasswordModule,
     CommonModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     

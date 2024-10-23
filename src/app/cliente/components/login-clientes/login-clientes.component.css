@@ -6,8 +6,8 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    
 }
-
 
 /* login-cliente.component.css */
 
@@ -37,6 +37,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
 }
 
 .logo img {

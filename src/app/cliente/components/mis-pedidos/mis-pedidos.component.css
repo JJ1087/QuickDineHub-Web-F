@@ -298,3 +298,66 @@ textarea:focus {
     justify-content: flex-start; /* Alinear a la izquierda */
     gap: 8px; /* Espaciado entre elementos */
 }
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    nav a {
+        font-size: 16px; /* Tamaño de fuente más pequeño */
+        padding: 6px 10px; /* Menor padding para que los enlaces se ajusten mejor */
+        margin: 0 8px; /* Reduce el margen entre los enlaces */
+    }
+}
+
+/* Media queries para pantallas aún más pequeñas (móviles) */
+@media (max-width: 480px) {
+    nav {
+        padding: 8px 0; /* Reduce el padding de la barra en pantallas pequeñas */
+    }
+
+    nav a {
+        font-size: 14px; /* Tamaño de fuente más pequeño para móviles */
+        padding: 5px 8px; /* Aún más pequeño padding para ajustarse mejor */
+        margin: 0 5px; /* Menor margen entre los enlaces en pantallas pequeñas */
+    }
+}
+
+
+@media (max-width: 768px) {
+    .pedidos-container {
+        max-width: 90%; /* Slightly reduce the max-width for tablets */
+    }
+
+    .pedido {
+        padding: 15px; /* Adjust padding for medium screens */
+    }
+
+    .pedido-imagen {
+        width: 90px; /* Slightly larger images for tablets */
+        height: 90px;
+    }
+
+    .pedido-info {
+        width: 100%; /* Ensure full width is used on medium screens */
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .pedidos-container {
+        max-width: 90%; /* Slightly reduce the max-width for tablets */
+    }
+
+    .pedido {
+        padding: 15px; /* Adjust padding for medium screens */
+    }
+
+    .pedido-imagen {
+        width: 90px; /* Slightly larger images for tablets */
+        height: 90px;
+    }
+
+    .pedido-info {
+        width: 100%; /* Ensure full width is used on medium screens */
+        margin-right: 0;
+    }
+}

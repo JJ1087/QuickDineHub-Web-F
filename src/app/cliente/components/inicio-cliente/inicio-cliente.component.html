@@ -1,6 +1,6 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <!-- inicio-cliente.component.html -->
 <app-header-cliente></app-header-cliente>
-
 <nav>
     <a routerLink="/inicio-cliente" class="current">Inicio</a>
     <a routerLink="/restaurantes-cliente">Restaurantes</a>
@@ -18,6 +18,51 @@
     <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
     
 </div>
+<br>
+<div>
+<!-- Input de búsqueda mejorado con el icono dentro -->
+<div class="search-container">
+    <input type="text" class="search-input" [(ngModel)]="searchTerm" placeholder="Buscar productos..." (input)="filtrarProductos()" />
+    <i class="fas fa-search search-icon"></i> <!-- Icono de búsqueda -->
+    <i class="fas fa-microphone voice-icon" id="micIcon" (click)="activarBusquedaVoz()"></i> <!-- Icono de micrófono -->
+</div>
+
+<!-- Mostrar productos filtrados si hay resultados -->
+<div *ngIf="productosFiltrados.length > 0" class="products-container">
+    <div *ngFor="let product of productosFiltrados" class="product">
+      <img [src]="getImageUrl(product.imagen[0])" [alt]="product?.nombre">
+      <h3>{{ product?.nombre }}</h3>
+      <p class="product-description">Del restaurante: <strong>{{ restaurantes[product?.idRestaurante]?.nombreRestaurante}}</strong></p>
+      <p class="product-description">HORA APERTURA: <strong>{{formatTime(restaurantes[product?.idRestaurante]?.horaApertura)}}</strong></p>
+      <p class="product-description">HORA CIERRE: <strong>{{formatTime(restaurantes[product?.idRestaurante]?.horaCierre)}}</strong></p>
+      <p class="product-description">{{ product?.descripcion }}</p>
+      <div class="product-price">${{ product?.precio.$numberDecimal }}</div>
+      <div class="product-tags">
+          <ng-container *ngFor="let tag of product.etiquetas">
+              <a href="#" class="product-tag">{{ tag }}</a>
+          </ng-container>
+      </div>
+      <br>
+      <!-- Lógica para habilitar/deshabilitar botones según la hora de apertura y cierre -->
+      <div *ngIf="isRestaurantOpen(product.idRestaurante)">
+          <div class="action-buttons">
+              <a [routerLink]="['/carrito-cliente', product?._id]" class="buy-button">Comprar</a>
+              <button class="add-to-cart-button" (click)="addToCart(product?._id, product?.idRestaurante)">Agregar al carrito</button>
+              <a [routerLink]="['/info-producto', product?._id]" class="view-button">Ver</a>
+          </div>
+      </div>
+      <div *ngIf="!isRestaurantOpen(product.idRestaurante)">
+          <p>Por el momento, el restaurante está cerrado. *Realiza tu compra en hora de servicio*</p>
+      </div>
+    </div>
+  </div>
+
+<!-- Mostrar mensaje si no hay productos filtrados -->
+<div *ngIf="productosFiltrados.length === 0 && searchTerm.trim() !== ''">
+  <p>No se encontraron productos para "{{ searchTerm }}"</p>
+</div>
+
+
 <h2 class="centered">Bienvenido {{ nombreusuario }}</h2>
 
 <!-- <app-notificaciones></app-notificaciones>  -->
@@ -70,6 +115,7 @@
                 <a href="#" class="product-tag">{{ tag }}</a>
             </ng-container>
         </div>
+        <br>
         <!-- Lógica para habilitar/deshabilitar botones según la hora de apertura y cierre -->
         <div >
         <div *ngIf="isRestaurantOpen(product.idRestaurante)">
@@ -80,8 +126,8 @@
             </div>
         </div>
         <div *ngIf="!isRestaurantOpen(product.idRestaurante)">
-            <p>Estimado cliente, por el momento, el restaurante está cerrado.</p>
-            <p>*Te invitamos a volver más tarde para realizar tu compra.*</p>
+            <p>Por el momento, el restaurante está cerrado.
+            *Realiza tu compra en hora de servicio*</p>
         </div>
     </div>
 

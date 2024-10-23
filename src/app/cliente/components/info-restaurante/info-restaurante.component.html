@@ -15,7 +15,7 @@
     </a>
 </nav>
 <div class="restaurant-info">
-    <img [src]="getImageUrl(Restaurante.logoRestaurant)" [alt]="Restaurante?.nombreRestaurante">
+    <img class="restaurant-logo" [src]="getImageUrl(Restaurante.logoRestaurant)" [alt]="Restaurante?.nombreRestaurante">
     <div class="restaurant-name">{{ Restaurante.nombreRestaurante }}</div>
     <p class="restaurant-description">Descripción detallada del restaurante. Puedes incluir información sobre la historia, la especialidad culinaria, etc.</p>
 </div>
@@ -33,7 +33,7 @@
         <a href="#" class="product-tag">{{ tag }}</a>
     </ng-container>
 </div>
-
+<br>
 
           <!-- Lógica para habilitar/deshabilitar botones según la hora de apertura y cierre -->
           <div *ngIf="isRestaurantOpen()">
@@ -45,9 +45,8 @@
         </div>
         <div *ngIf="!isRestaurantOpen()">
            
-            <p>Estimado cliente, por el momento, el restaurante está cerrado.</p>
-            <p>*Te invitamos a volver más tarde para realizar tu compra.*</p>
-        </div>
+            <p>Por el momento, el restaurante está cerrado.
+                *Realiza tu compra en hora de servicio*</p> </div>
     </div>
 </div>
 

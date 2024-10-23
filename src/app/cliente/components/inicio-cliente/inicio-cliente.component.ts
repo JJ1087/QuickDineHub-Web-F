@@ -1,3 +1,5 @@
+// Al principio de tu archivo TypeScript
+declare var webkitSpeechRecognition: any;
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -10,6 +12,7 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class InicioClienteComponent implements OnInit{//
+  
 
   nombreusuario: string = '';
   comensalId: string = '';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE en el futuro 
@@ -17,6 +20,16 @@ export class InicioClienteComponent implements OnInit{//
   showMessage = false;
   showMessage1 = false;
   showWarning = false;
+  searchTerm: string = ''; // Término de búsqueda
+  productosFiltrados: any[] = []; // Lista de productos filtrados
+  recognition: any;
+  micIcon: HTMLElement | null = null;
+
+    // Lista original de productos
+    products: any[] = [
+      // Agrega aquí tus productos
+    ];
+    
 
   images: string[] = [
     'assets/Hamburguesa.jpg',
@@ -34,7 +47,7 @@ export class InicioClienteComponent implements OnInit{//
   autoPlayInterval: any;
   private synth!: SpeechSynthesis;
   private utterance: SpeechSynthesisUtterance | null = null!;
-
+  
 
   constructor(private router: Router, private authService: AuthService) {}//
   
@@ -194,44 +207,99 @@ obtenerHoraActual(): string {
 
 
 //-------------------------------------------------------------------------------------------
-//Vamos a traer a los productos de forma dinamica
-   products: any[] = [];
 
    ngOnInit(): void {
+    
     if (typeof window !== 'undefined' && localStorage !== null) {
+      this.micIcon = document.getElementById('micIcon'); 
       this.comensalId = localStorage.getItem('ID_USER') || '';
       if (this.comensalId) {
         this.nombreusuario = localStorage.getItem('NOMBRE')|| '';
       } else {
         console.error("No se encontró 'ID_USER' en localStorage.");
       }
-    
-     this.authService.obtenerInfoDeProducto().subscribe((products: any[]) => {
-       console.log('Productos:', products);
-       this.products = products; 
+   
+      this.authService.obtenerInfoDeProducto().subscribe((products: any[]) => {
+        console.log('Productos:', products);
+        this.products = products; 
+        this.filtrarProductos(); // Filtrar productos al cargar la lista
+  
+        const idsRestaurante: string[] = Array.from(new Set(products.map(product => product.idRestaurante)));
+        this.obtenerRestaurante(idsRestaurante);
+      },
+      (error) => {
+        console.error('Error al obtener los productos:', error);
+        this.registrarErrorEnBD('Error al obtener los productos', 'inicio-cliente.component.ts:166 GET https://quickdinehub-back1.onrender.com/info-producto1 404 (Not Found)');
+      });
+  
+      this.obtenerOrdenes();
+      this.obtenerDatoComensal();
+    } else {
+      console.error("El entorno no admite 'localStorage'.");
 
-       // Obtener IDs únicos de restaurantes
-      const idsRestaurante: string[] = Array.from(new Set(products.map(product => product.idRestaurante)));
-      
-      // Obtener información de los restaurantes
-    this.obtenerRestaurante(idsRestaurante);
-     },
-     (error) => {
-      console.error('Error al obtener los productos:', error);
-      // Registra el error en la base de datos
-      this.registrarErrorEnBD('Error al obtener los productos', 'inicio-cliente.component.ts:166 GET https://quickdinehub-back1.onrender.com/info-producto1 404 (Not Found)');//'inicio-cliente.component.ts:166 GET http://localhost:3000/info-producto1 404 (Not Found)');
-    });
 
-    //llamar a la funcion para recopilar las ordenes
-    this.obtenerOrdenes();
-    //Actualizar el valor del carrito
-    this.obtenerDatoComensal();
-  } else {
-    console.error("El entorno no admite 'localStorage'.");
+    }
+
+  }
+  
+  // Activar la búsqueda por voz
+  activarBusquedaVoz() {
+    if ('webkitSpeechRecognition' in window) {
+      this.recognition = new webkitSpeechRecognition();
+      this.recognition.lang = 'es-ES'; // Idioma de reconocimiento
+      this.recognition.continuous = false;
+      this.recognition.interimResults = false;
+
+      // Cambiar el icono del micrófono
+      this.micIcon?.classList.add('active');
+
+      // Iniciar el reconocimiento de voz
+      this.recognition.start();
+
+      this.recognition.onstart = () => {
+        console.log('Reconocimiento de voz iniciado');
+        this.micIcon?.classList.add('active');
+      };
+
+      this.recognition.onend = () => {
+        console.log('Reconocimiento de voz finalizado');
+        this.micIcon?.classList.remove('active');
+      };
+
+      this.recognition.onerror = (event: any) => {
+        console.error('Error en el reconocimiento de voz:', event.error);
+        this.micIcon?.classList.remove('active');
+      };
+
+      // Obtener el resultado de la búsqueda
+      this.recognition.onresult = (event: any) => {
+        const result = event.results[0][0].transcript;
+        console.log('Resultado del reconocimiento de voz:', result);
+
+        // Asignar el resultado al término de búsqueda
+        this.searchTerm = result.endsWith('.') ? result.slice(0, -1) : result;
+
+        // Filtrar los productos según el término de búsqueda
+        this.filtrarProductos();
+      };
+    } else {
+      console.log('API de reconocimiento de voz no compatible con este navegador');
+    }
   }
 
-   }
 
+// Filtrar productos
+filtrarProductos() {
+  if (this.searchTerm.trim() !== '') {
+    this.productosFiltrados = this.products.filter(product =>
+      product.nombre.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  } else {
+    // Si no hay búsqueda, limpia los productos filtrados para no mostrarlos
+    this.productosFiltrados = [];
+  }
+}
+  
 
 
 //REGISTRO DE ERROR EN LOGS----------------------------------------------------------------------
@@ -255,7 +323,7 @@ obtenerHoraActual(): string {
 
 
 
-    // Método para generar la URL completa de la imagen
+    // Método para generar la URL completa de la imagen www
     getImageUrl(relativePath: string): string {
       return `https://quickdinehub-back1.onrender.com/${relativePath}`;//return `http://localhost:3000/${relativePath}`;
     }

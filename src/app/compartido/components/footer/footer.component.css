@@ -1,11 +1,16 @@
+/* Estilos globales */
 body {
     font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el body cubra al menos toda la altura de la pantalla */
 }
 
+/* Header */
 header {
     background-color: #00B14F;
     color: #fff;
@@ -16,12 +21,11 @@ header {
     align-items: center;
 }
 
-
 .logo img {
     max-width: 10%;
     height: auto;
     border-radius: 10px; /* Añadido para borde redondeado */
-    margin-left:-80%;
+    margin-left: -80%;
 }
 
 nav ul {
@@ -35,6 +39,13 @@ nav ul li {
     margin-right: 20px;
 }
 
+/* Contenedor principal */
+main {
+    flex: 1; /* Permite que el contenido principal se expanda y empuje el footer hacia abajo */
+    padding: 20px;
+}
+
+/* Login container */
 .login-container {
     width: 50%;
     margin: 50px auto;
@@ -79,14 +90,15 @@ nav ul li {
     font-size: 18px;
 }
 
+/* Footer */
 footer {
-    background-color: #333;
+    background-color: #464141;
     color: #fff;
     padding: 10px 20px;
     text-align: center;
-    position: fixed;
-    bottom: 0;
     width: 100%;
+    position:fixed; /* Elimina la posición fija */
+    bottom: 0; /* Asegura que siempre esté al final */
 }
 
 footer a {
@@ -100,4 +112,3 @@ footer a {
     margin-bottom: 20px;
     color: #00B14F;
 }
-

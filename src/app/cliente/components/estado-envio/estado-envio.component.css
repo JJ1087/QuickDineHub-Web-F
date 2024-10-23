@@ -132,3 +132,64 @@ nav a.cart-icon-link i {
   .breadcrumbs a:hover {
     text-decoration: underline;
   }
+
+  /* Para pantallas más pequeñas, como móviles */
+@media (max-width: 768px) {
+    .estado-envio-container {
+        max-width: 100%;
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .info-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-info,
+    .order-status,
+    .shipping-info,
+    .payment-info {
+        flex-basis: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+    }
+
+    nav {
+        padding: 5px 0;
+    }
+
+    nav a {
+        font-size: 16px;
+        padding: 6px 10px;
+    }
+
+    .cart-icon-container {
+        top: 15px;
+        right: 20px;
+        font-size: 20px;
+    }
+
+    .breadcrumbs {
+        font-size: 14px;
+        margin-left: 5%;
+    }
+}
+
+/* Ajustes adicionales para pantallas muy pequeñas (menos de 480px) */
+@media (max-width: 480px) {
+    .estado-envio-header i {
+        font-size: 28px;
+    }
+
+    nav a {
+        font-size: 14px;
+        padding: 5px 8px;
+    }
+
+    .cart-icon-container {
+        top: 10px;
+        right: 15px;
+        font-size: 18px;
+    }
+}

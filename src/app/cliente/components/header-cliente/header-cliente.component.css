@@ -1,15 +1,17 @@
-/* header-cliente.component.css */
 header {
     background-color: #ff8c00;
     color: #fff;
-    padding: 15px;
+    padding: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+   
+    
 }
 
 .logo img {
-    max-width: 110px; /* Ajusta este valor según tus preferencias */
+    max-width: 100px;
     height: auto;
     border-radius: 10px;
     margin-left: 1%;
@@ -18,7 +20,7 @@ header {
 .company-name {
     font-size: 24px;
     font-weight: bold;
-    margin-right: 15%; /* Ajustado para mejorar la distribución */
+    margin-right: 15%; 
     margin-left: 10%;
 }
 
@@ -57,12 +59,12 @@ nav ul {
     display: flex;
     align-items: center;
     list-style: none;
-    margin: 10;
+    margin: 0;
     padding: 0;
 }
 
 nav li {
-    margin: 0 10px; /* Ajustado para aumentar el espacio entre los elementos de la lista */
+    margin: 0 10px;
 }
 
 nav a {
@@ -85,3 +87,31 @@ nav a.current {
     color: #fff;
 }
 
+
+/* Media queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    .logo img {
+        max-width: 80px; /* Reduce el tamaño de la imagen en pantallas pequeñas */
+    }
+
+    .company-name {
+        font-size: 20px;
+        margin-right: 10px;
+        margin-left: 5px;
+    }
+
+    .edit-profile-button {
+        padding: 8px 12px;
+        font-size: 14px;
+        margin-right: 10px;
+    }
+
+    nav ul {
+        flex-direction: row; /* Mantén la disposición en línea */
+    }
+
+    nav a {
+        font-size: 16px; /* Ajuste menor de tamaño de fuente */
+        padding: 6px 10px; /* Reduce el padding para ajustarse mejor */
+    }
+}

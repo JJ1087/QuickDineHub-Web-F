@@ -10,7 +10,7 @@ import { RegistroRestauranteComponent } from '../components/registro-restaurante
 import { ResenasRestauranteComponent } from '../components/resenas-restaurante/resenas-restaurante.component';
 import { RestPagosComponent } from '../components/rest-pagos/rest-pagos.component';
 import { EditPerfilRestauranteComponent } from '../components/edit-perfil-restaurante/edit-perfil-restaurante.component';
-
+import { OfertasRestauranteComponent} from '../components/ofertas-restaurante/ofertas-restaurante.component';
 const routes: Routes = [
 
   {path: 'login-restaurante', component: LoginRestauranteComponent },
@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'resenas-restaurante', component: ResenasRestauranteComponent },
   { path: 'rest-pagos', component: RestPagosComponent },
   { path: 'edit-perfil-restaurante', component: EditPerfilRestauranteComponent },
+  { path: 'ofertas-restaurante', component: OfertasRestauranteComponent },
 
 ];
 

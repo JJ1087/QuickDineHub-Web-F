@@ -83,7 +83,9 @@ obtenerInfoDeProductoPorId(productId: string): Observable<any> {
 obtenerInfoProductoPorRestaurante(productId: string): Observable<any> {
   return this.httpClient.get<any>(`${this.AUTH_SERVER}/info-productoPorRestaurante/${productId}`);
 }
-
+obtenerInfoOferta(): Observable<any[]> {
+  return this.httpClient.get<any[]>(`${this.AUTH_SERVER}/mostrar-oferta2`);
+}
 //metodos para la compra------------------------------------------------------------------
 // Método para insertar información de envío
 crearOrden(ordenData: any): Observable<any> {

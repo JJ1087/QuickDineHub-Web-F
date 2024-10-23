@@ -90,6 +90,7 @@ import { EditPerfilRepartidorComponent } from './repartidor/components/edit-perf
 // Asegúrate de importar PayPalModule
 import { CommonModule } from '@angular/common';
 import { PaypalButtonComponent } from './compartido/components/paypal-button/paypal-button.component';
+import { OfertasRestauranteComponent } from './restaurante/components/ofertas-restaurante/ofertas-restaurante.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -160,6 +161,7 @@ import { PaypalButtonComponent } from './compartido/components/paypal-button/pay
     EditPerfilRestauranteComponent,
     EditPerfilRepartidorComponent,
     PaypalButtonComponent,
+    OfertasRestauranteComponent,
 
   ],
   imports: [

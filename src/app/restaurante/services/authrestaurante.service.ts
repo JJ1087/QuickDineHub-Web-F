@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 })
 
 export class AuthrestauranteService {
-  AUTH_SERVER: string = 'https://quickdinehub-back1.onrender.com';//AUTH_SERVER: string = 'http://localhost:3000';
+  AUTH_SERVER: string = 'https://quickdinehub-back1.onrender.com';//
+ //AUTH_SERVER: string = 'http://localhost:3000';
   private token: string | null = null;
 
   constructor(private httpClient: HttpClient) { }
@@ -25,7 +26,7 @@ export class AuthrestauranteService {
           localStorage.setItem("RESTAURANT_ID", res.dataRestaurant.id);
           localStorage.setItem("RESTAURANT_NAME", res.dataRestaurant.nombreRestaurante);
           localStorage.setItem("ACCESS_TOKEN", res.dataRestaurant.accessToken);
-          localStorage.setItem("EXPIRES_IN", res.dataRestaurant.expiresIn);
+          localStorage.setItem("EXPIRES_IN", res.dataRestaurant.expiresIn);//eyt
         }
       })
     );
@@ -89,4 +90,33 @@ correoCancelarProducto(email: string, nombreProducto: string, nombreCliente: str
 correoCancelarOrden(email: string,  nombreCliente: string): Observable<any> {
   return this.httpClient.post<any>(`${this.AUTH_SERVER}/enviar-correo-cancelarOrden`, { email, nombreCliente});
 }
+
+//agregar nueva compra completada en el sitio web:
+agregarCompraRealizadaSitio(pedidoId: any): Observable<any> {
+  return this.httpClient.post<any>(`${this.AUTH_SERVER}/comprasRealizadasSitio`, pedidoId);
+}
+
+getProductos2(restauranteId: any): Observable<any[]> {
+  return this.httpClient.get<any[]>(`${this.AUTH_SERVER}/mostrar-producto/${restauranteId}`);
+}
+
+obtenerComprasPorRestaurante(idRestaurante: any): Observable<any[]> {
+  return this.httpClient.get<any[]>(`${this.AUTH_SERVER}/compras-realizada/${idRestaurante}`);
+}
+
+agregarVenta(newSale: any): Observable<any> {
+  return this.httpClient.post(`${this.AUTH_SERVER}/compras`, newSale);
+}
+//Oferta
+CrearOferta(Oferta: FormData): Observable<any> {
+  return this.httpClient.post(`${this.AUTH_SERVER}/crear-oferta`, Oferta);
+}
+
+eliminarOferta(idOferta: string): Observable<any> {
+  return this.httpClient.delete<any>(`${this.AUTH_SERVER}/eliminar-oferta/${idOferta}`);
+}
+getOfertas(restauranteId: any): Observable<any[]> {
+  return this.httpClient.get<any[]>(`${this.AUTH_SERVER}/mostrar-oferta/${restauranteId}`);
+}
+
 }

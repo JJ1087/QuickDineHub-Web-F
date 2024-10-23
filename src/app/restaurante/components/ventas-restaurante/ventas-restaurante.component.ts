@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AuthrestauranteService } from '../../services/authrestaurante.service';
+
 
 @Component({
   selector: 'app-ventas-restaurante',
@@ -6,199 +9,184 @@ import { Component } from '@angular/core';
   styleUrl: './ventas-restaurante.component.css'
 })
 
-export class VentasRestauranteComponent {
-  folioCounter: string = '1'; // Inicializamos con '1' como cadena
+export class VentasRestauranteComponent implements OnInit {
+  restauranteId: string | null = null;
+  folioCounter: string = '1';
   editedProduct = '';
   editedQuantity = '';
   editedTotalCost = '';
   editedSaleDate = '';
   editedSaleLocation = '';
-  sortBy: string = 'folio'; // Campo por defecto para ordenar
-  sortOrder: string = 'asc'; // Dirección de orden por defecto
+  sortBy: string = 'folio';
+  sortOrder: string = 'asc';
   private synth!: SpeechSynthesis;
-  private utterance: SpeechSynthesisUtterance | null = null!;
-  toggleVozAlta() {
+  private utterance: SpeechSynthesisUtterance | null = null;
+  compras: any[] = [];
+
+  constructor(public dialog: MatDialog, private authRestauranteService: AuthrestauranteService) {}
+
+  ngOnInit(): void {
+    if (typeof window !== 'undefined') {
+      const restaurantId = localStorage.getItem('RESTAURANT_ID');
+      if (restaurantId) {
+        this.restauranteId = restaurantId;
+        this.getCompras();
+      } else {
+        console.error("No se encontró 'RESTAURANT_ID' en localStorage.");
+      }
+    }
+  }
+
+  toggleVozAlta(): void {
     const enableVozAlta = document.getElementById('enableVozAlta') as HTMLInputElement;
     this.synth = window.speechSynthesis;
-  
-    const elementos = document.querySelectorAll('a, img, h1, p, li, h2, .title, .option, label, button, strong, th, .sales-title' );
-  
-    elementos.forEach(elemento => {
-      elemento.addEventListener('mouseover', () => {
-        if (enableVozAlta.checked) {
-          if (this.synth.speaking && this.utterance) {
-            this.synth.cancel();
-          }
-  
-          let texto = '';
-  
-          // Verificar si el elemento es una imagen antes de acceder a 'alt'
-          if (elemento instanceof HTMLImageElement) {
-            texto = elemento.alt;
-          } else if (elemento instanceof HTMLElement) {
-            texto = elemento.innerText || elemento.textContent || '';
-          }
-  
-          if (texto.trim() !== '') {
-            this.utterance = new SpeechSynthesisUtterance(texto);
-            this.synth.speak(this.utterance);
-          }
-        }
-      });
+
+    const elementos = document.querySelectorAll('.sales-table, .admin-menu a');
+    elementos.forEach(element => {
+      if (enableVozAlta.checked) {
+        element.addEventListener('mouseover', this.handleMouseOver);
+      } else {
+        element.removeEventListener('mouseover', this.handleMouseOver);
+      }
     });
   }
+
+  handleMouseOver = (event: Event) => {
+    const target = event.target as HTMLElement;
+    if (this.utterance) {
+      this.synth.cancel();
+    }
+    const text = target.textContent || target.getAttribute('alt') || target.getAttribute('aria-label') || '';
+    if (text) {
+      this.utterance = new SpeechSynthesisUtterance(text);
+      this.synth.speak(this.utterance);
+    }
+  };
+
+  getCompras(): void {
+    if (this.restauranteId) {
+      this.authRestauranteService.obtenerComprasPorRestaurante(this.restauranteId).subscribe({
+        next: (response: any) => {
+          this.compras = response.map((compra: any, index: number) => ({
+            ...compra,
+            precioTotal: parseFloat(compra.precioTotal.$numberDecimal),
+            fechaHoraEntrega: new Date(compra.fechaHoraEntrega),
+            folio: index + 1 // Calcula el folio basado en el índice
+          }));
+          this.folioCounter = (this.compras.length + 1).toString(); // Actualiza el folioCounter
+        },
+        error: (error: any) => {
+          console.error('Error al obtener las compras:', error);
+        }
+      });
+    }
+  }
+
+  filterTable(): void {
+    const input = document.getElementById('search') as HTMLInputElement;
+    const input2 = document.getElementById('search2') as HTMLInputElement;
+    const input3 = document.getElementById('search3') as HTMLInputElement;
+    const input4 = document.getElementById('search4') as HTMLInputElement;
+
+    const filter = input.value.toUpperCase();
+    const filter2 = input2.value.toUpperCase();
+    const filter3 = input3.value.toUpperCase();
+    const filter4 = input4.value.toUpperCase();
+
+    const selectColumn = document.getElementById('searchColumn') as HTMLSelectElement;
+    const selectColumn2 = document.getElementById('searchColumn2') as HTMLSelectElement;
+    const selectColumn3 = document.getElementById('searchColumn3') as HTMLSelectElement;
+    const selectColumn4 = document.getElementById('searchColumn4') as HTMLSelectElement;
+
+    const table = document.getElementById('salesTable') as HTMLTableElement;
+    const tr = table.getElementsByTagName('tr');
+
+    for (let i = 1; i < tr.length; i++) {
+      let td = tr[i].getElementsByTagName('td')[selectColumn.selectedIndex];
+      let td2 = tr[i].getElementsByTagName('td')[selectColumn2.selectedIndex];
+      let td3 = tr[i].getElementsByTagName('td')[selectColumn3.selectedIndex];
+      let td4 = tr[i].getElementsByTagName('td')[selectColumn4.selectedIndex];
+
+      if (td && td2 && td3 && td4) {
+        const txtValue = td.textContent || td.innerText || '';
+        const txtValue2 = td2.textContent || td2.innerText || '';
+        const txtValue3 = td3.textContent || td3.innerText || '';
+        const txtValue4 = td4.textContent || td4.innerText || '';
+
+        tr[i].style.display =
+          (txtValue.toUpperCase().indexOf(filter) > -1 || filter === '') &&
+          (txtValue2.toUpperCase().indexOf(filter2) > -1 || filter2 === '') &&
+          (txtValue3.toUpperCase().indexOf(filter3) > -1 || filter3 === '') &&
+          (txtValue4.toUpperCase().indexOf(filter4) > -1 || filter4 === '')
+            ? ''
+            : 'none';
+      }
+    }
+  }
+
   toggleAddSaleForm(): void {
-    const addSaleForm = document.getElementById('addSaleForm');
-    if (addSaleForm) {
-      addSaleForm.style.display = (addSaleForm.style.display === 'none' || addSaleForm.style.display === '') ? 'block' : 'none';
-      // Limpiar el formulario al mostrarlo
-      (document.getElementById('saleForm') as HTMLFormElement).reset();
+    const form = document.getElementById('addSaleForm');
+    if (form) {
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
     }
   }
 
   addSale(event: Event): void {
     event.preventDefault();
+    const form = event.target as HTMLFormElement;
 
-    const product = (document.getElementById('product') as HTMLInputElement).value;
-    const quantity = (document.getElementById('quantity') as HTMLInputElement).value;
-    const totalCost = (document.getElementById('totalCost') as HTMLInputElement).value;
-    const saleDate = (document.getElementById('saleDate') as HTMLInputElement).value;
-    const saleLocation = (document.getElementById('saleLocation') as HTMLInputElement).value;
+    const newSale = {
+      nombreProducto: form['product'].value,
+      cantidadProducto: form['quantity'].value,
+      precioTotal: parseFloat(form['totalCost'].value),
+      fechaHoraEntrega: new Date(form['saleDate'].value),
+      direccion: form['saleLocation'].value,
+      folio: this.folioCounter // Asigna el folio actual
+    };
 
-    if (product && quantity && totalCost && saleDate && saleLocation) {
-      const salesTable = document.getElementById('salesTable') as HTMLTableElement;
-      const newRow = salesTable.insertRow(1);
-
-      const cell1 = newRow.insertCell(0);
-      const cell2 = newRow.insertCell(1);
-      const cell3 = newRow.insertCell(2);
-      const cell4 = newRow.insertCell(3);
-      const cell5 = newRow.insertCell(4);
-      const cell6 = newRow.insertCell(5);
-      const cell7 = newRow.insertCell(6);
-
-      cell1.innerHTML = product;
-      cell2.innerHTML = quantity;
-      cell3.innerHTML = "$" + totalCost;
-      cell4.innerHTML = saleDate;
-      cell5.innerHTML = saleLocation;
-      this.folioCounter = (parseInt(this.folioCounter) + 1).toString();
-      cell6.innerHTML = this.folioCounter;
-      cell7.innerHTML = '<span class="edit-icon" onclick="editSale(this)">✏️</span>';
-    }
+    this.authRestauranteService.agregarVenta(newSale).subscribe({
+      next: () => {
+        this.folioCounter = (parseInt(this.folioCounter, 10) + 1).toString(); // Incrementa el folioCounter
+        this.getCompras(); // Refresca la lista de compras
+      },
+      error: (error: any) => {
+        console.error('Error al agregar la venta:', error);
+      }
+    });
 
     this.toggleAddSaleForm();
   }
 
-  filterTable(): void {
-    const input1 = document.getElementById("search") as HTMLInputElement;
-    const filter1 = input1.value.toUpperCase();
-  
-    const input2 = document.getElementById("search2") as HTMLInputElement;
-    const filter2 = input2.value.toUpperCase();
-  
-    const input3 = document.getElementById("search3") as HTMLInputElement;
-    const filter3 = input3.value.toUpperCase();
-  
-    const input4 = document.getElementById("search4") as HTMLInputElement;
-    const filter4 = input4.value.toUpperCase();
-  
-    const table = document.getElementById("salesTable") as HTMLTableElement;
-    const tr = table.getElementsByTagName("tr");
-  
-    const columnIndex1 = (document.getElementById("searchColumn") as HTMLSelectElement).value;
-    const columnIndex2 = (document.getElementById("searchColumn2") as HTMLSelectElement).value;
-    const columnIndex3 = (document.getElementById("searchColumn3") as HTMLSelectElement).value;
-    const columnIndex4 = (document.getElementById("searchColumn4") as HTMLSelectElement).value;
-  
-    for (let i = 1; i < tr.length; i++) {
-      const td1 = tr[i].getElementsByTagName("td")[parseInt(columnIndex1, 10)];
-      const td2 = tr[i].getElementsByTagName("td")[parseInt(columnIndex2, 10)];
-      const td3 = tr[i].getElementsByTagName("td")[parseInt(columnIndex3, 10)];
-      const td4 = tr[i].getElementsByTagName("td")[parseInt(columnIndex4, 10)];
-  
-      if (td1 && td2 && td3 && td4) {
-        const shouldShowRow = (
-          td1.innerHTML.toUpperCase().indexOf(filter1) > -1 &&
-          td2.innerHTML.toUpperCase().indexOf(filter2) > -1 &&
-          td3.innerHTML.toUpperCase().indexOf(filter3) > -1 &&
-          td4.innerHTML.toUpperCase().indexOf(filter4) > -1
-        );
-  
-        tr[i].style.display = shouldShowRow ? "" : "none";
-      }
-    }
-  }
-  
-  
-  
-
-  editSale(element: HTMLElement): void {
-    const row = element.parentNode?.parentNode as HTMLTableRowElement;
-    const cells = row.getElementsByTagName('td');
-
-    // Llenar el formulario de edición con los datos de la fila seleccionada
-    this.editedProduct = cells[0].innerHTML;
-    this.editedQuantity = cells[1].innerHTML;
-    this.editedTotalCost = cells[2].innerHTML.replace('$', '');
-    this.editedSaleDate = cells[3].innerHTML;
-    this.editedSaleLocation = cells[4].innerHTML;
-
-    // Marcar la fila como seleccionada
-    row.classList.add('selected-row');
-
-    // Mostrar el formulario de edición
-    const editSaleForm = document.getElementById('editSaleForm');
-    if (editSaleForm) {
-      editSaleForm.style.display = 'block';
-    }
-  }
-
-  saveEditedSale(event: Event): void {
-    console.log('Guardando cambios...');
-    event.preventDefault();
-
-    // Obtener la fila seleccionada para editar
-    const selectedRow = document.querySelector('.selected-row') as HTMLTableRowElement;
-
-    if (selectedRow) {
-      // Actualizar los valores en la fila
-      const cells = selectedRow.cells;
-      cells[0].innerHTML = this.editedProduct;
-      cells[1].innerHTML = this.editedQuantity;
-      cells[2].innerHTML = "$" + this.editedTotalCost;
-      cells[3].innerHTML = this.editedSaleDate;
-      cells[4].innerHTML = this.editedSaleLocation;
-
-      // Ocultar el formulario de edición
-      const editSaleForm = document.getElementById('editSaleForm');
-      if (editSaleForm) {
-        editSaleForm.style.display = 'none';
-      }
-      // Desmarcar la fila
-      selectedRow.classList.remove('selected-row');
-    }
-  }
-
-  cancelEdit(): void {
-    // Lógica para cancelar la edición y ocultar el formulario de edición
-    const editSaleForm = document.getElementById('editSaleForm');
-    if (editSaleForm) {
-      editSaleForm.style.display = 'none';
-    }
-
-    // Desmarcar la fila
-    const selectedRow = document.querySelector('.selected-row');
-    if (selectedRow) {
-      selectedRow.classList.remove('selected-row');
-    }
-  }
-
   cancelAdd(): void {
-    // Lógica para cancelar la adición y ocultar el formulario de adición
-    const addSaleForm = document.getElementById('addSaleForm');
-    if (addSaleForm) {
-      addSaleForm.style.display = 'none';
+    this.toggleAddSaleForm();
+  }
+
+  sortTable(column: string): void {
+    if (this.sortBy === column) {
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortBy = column;
+      this.sortOrder = 'asc';
+    }
+
+    this.compras.sort((a, b) => {
+      const aValue = a[column];
+      const bValue = b[column];
+      if (aValue < bValue) return this.sortOrder === 'asc' ? -1 : 1;
+      if (aValue > bValue) return this.sortOrder === 'asc' ? 1 : -1;
+      return 0;
+    });
+  }
+
+  editSale(compra: any): void {
+    const form = document.getElementById('editSaleForm');
+    if (form) {
+      this.editedProduct = compra.nombreProducto;
+      this.editedQuantity = compra.cantidadProducto;
+      this.editedTotalCost = compra.precioTotal;
+      this.editedSaleDate = compra.fechaHoraEntrega.toISOString().substring(0, 10); // Solo la parte de la fecha
+      this.editedSaleLocation = compra.direccion;
+      form.style.display = 'block';
     }
   }
 }

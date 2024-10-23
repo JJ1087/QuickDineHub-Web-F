@@ -1,0 +1,78 @@
+<!-- Ofertas.component.html -->
+<header>
+    <app-header-restaurante></app-header-restaurante>
+</header>
+<div class="admin-menu">
+    <a routerLink="/inicio-restaurante" >Inicio</a>
+    <a routerLink="/rest-productos">Productos</a>
+    <a href="/ofertas-restaurante" class="admin-current-page">Ofertas</a>
+    <a routerLink="/rest-pedidos">Pedidos</a>
+    <a routerLink="/ventas-restaurante">Ventas</a>
+<!--<a routerLink="/resenas-restaurante">Reseñas</a>-->
+    <a routerLink="/rest-pagos">Pagos</a>
+</div>
+<div class="voz-alta-container">
+    <label for="enableVozAlta">Habilitar voz alta al pasar el ratón:</label>
+    <input type="checkbox" id="enableVozAlta" (change)="toggleVozAlta()">
+</div>
+<div class="admin-welcome">
+    <h1>OFERTAS DE: {{ nombreRestaurante }}</h1>
+</div>
+
+<!-- Formulario para crear una nueva oferta -->
+<h2 style="text-align: center;">Crear Nueva Oferta</h2>
+<div class="oferta-form-container">
+    
+    <form (ngSubmit)="crearOferta()">
+        <div class="form-group">
+            <label for="imagen">Imagen</label>
+            <input type="file" id="imagen" (change)="capturarImagenPrincipal($event)" accept="image/jpeg, image/png" required>
+        </div>
+        <div class="imagen-preview">
+            <img class="zoomable-image" *ngIf="imagen && imagen.length > 0" [src]="getImagenURL(imagen[0])" alt="Imagen principal" width="200px">
+        </div>
+        <div class="form-group">
+            <label for="titulo">Platillo</label>
+            <input type="text" id="titulo" [(ngModel)]="nuevaOferta.titulo" name="titulo" required placeholder="Nombre de Platillo">
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" [(ngModel)]="nuevaOferta.descripcion" required placeholder="Descripcion del producto" name="descripcion" required ></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="precioOriginal">Precio Original</label>
+            <input type="number" id="precioOriginal" [(ngModel)]="nuevaOferta.precioOriginal" required placeholder="Precio original $" name="precioOriginal" required>
+        </div>
+        <div class="form-group">
+            <label for="tipoOferta">Tipo de Oferta</label>
+            <input type="text" id="tipoOferta" [(ngModel)]="nuevaOferta.TipoOferta" required placeholder="Describe la oferta (ej. 2x1, 30% descuento, etc.)" name="tipoOferta">
+        </div>
+
+        <div class="form-group">
+            <label for="precioOferta">Precio Oferta</label>
+            <input type="number" id="precioOferta" [(ngModel)]="nuevaOferta.precioOferta" required placeholder="Precio en la oferta $" name="precioOferta" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Crear Oferta</button>
+    </form>
+</div>
+<!-- Listado de ofertas existentes -->
+ 
+<h2 style="text-align: center;">Ofertas Actuales</h2>
+<div class="ofertas-list">
+    <div *ngFor="let oferta of ofertas, let i = index" class="oferta-card">
+   <img [src]="getImageUrl(oferta.imagen[0])" alt="Imagen del Producto" width="200px" height="200px">
+        <h3>{{ oferta.titulo }}</h3>
+        <p><strong>Descripción:</strong>{{ oferta.descripcion }}</p>
+        <p><strong>Precio Original:</strong> {{ oferta.precioOriginal }} MXN</p>
+        <p><strong>Tipo de Oferta:</strong>{{ oferta.TipoOferta }}</p>
+        <p><strong>Precio Oferta:</strong> {{ oferta.precioOferta }} MXN</p>
+        <button (click)="eliminarOferta(i)" class="btn btn-danger">Eliminar</button>
+    </div>
+</div>
+<footer>
+    <app-footer-restaurante></app-footer-restaurante>
+</footer>
+
+

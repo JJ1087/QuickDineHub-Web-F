@@ -327,7 +327,8 @@ productoAEditar.etiquetas.forEach((etiqueta: string) => {
   }
     // Método para generar la URL completa de la imagen
     getImageUrl(relativePath: string): string {
-      return `https://quickdinehub-back1.onrender.com/${relativePath}`;//return `http://localhost:3000/${relativePath}`;
+      return `https://quickdinehub-back1.onrender.com/${relativePath}`;
+      //return `http://localhost:3000/${relativePath}`;
     }
 
     formatTiempoPreparacion(tiempoMinutos: number): string {

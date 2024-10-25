@@ -16,7 +16,7 @@ permissions:
   contents: read
 
 jobs:
-  unit-tests:
+  Pruebas:
     #name: Run Unit Tests
     runs-on: ubuntu-latest
 
@@ -43,3 +43,7 @@ jobs:
       # 5. Ejecutar pruebas lint
       - name: Run lint
         run: npm run lint
+      
+      # 5. Ejecutar pruebas e2e con cypress
+      - name: e2e cypress
+        run: npx cypress run

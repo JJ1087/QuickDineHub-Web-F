@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CarritoClienteComponent } from './carrito-cliente.component';
+// import { CarritoClienteComponent } from './carrito-cliente.component';
 
 describe('CarritoClienteComponent', () => {
   // let component: CarritoClienteComponent;

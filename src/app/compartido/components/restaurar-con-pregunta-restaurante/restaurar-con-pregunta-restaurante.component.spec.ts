@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RestaurarConPreguntaRestauranteComponent } from './restaurar-con-pregunta-restaurante.component';
+// import { RestaurarConPreguntaRestauranteComponent } from './restaurar-con-pregunta-restaurante.component';
 
 describe('RestaurarConPreguntaRestauranteComponent', () => {
   // let component: RestaurarConPreguntaRestauranteComponent;

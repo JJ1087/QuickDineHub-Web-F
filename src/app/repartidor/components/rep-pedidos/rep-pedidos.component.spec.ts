@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RepPedidosComponent } from './rep-pedidos.component';
+// import { RepPedidosComponent } from './rep-pedidos.component';
 
 describe('RepPedidosComponent', () => {
   // let component: RepPedidosComponent;

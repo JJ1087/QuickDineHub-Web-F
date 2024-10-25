@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PoliticasDePrivacidadComponent } from './politicas-de-privacidad.component';
+// import { PoliticasDePrivacidadComponent } from './politicas-de-privacidad.component';
 
 describe('PoliticasDePrivacidadComponent', () => {
   // let component: PoliticasDePrivacidadComponent;

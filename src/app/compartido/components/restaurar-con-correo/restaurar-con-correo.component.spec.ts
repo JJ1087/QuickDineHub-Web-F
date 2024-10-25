@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RestaurarConCorreoComponent } from './restaurar-con-correo.component';
+// import { RestaurarConCorreoComponent } from './restaurar-con-correo.component';
 
 describe('RestaurarConCorreoComponent', () => {
   // let component: RestaurarConCorreoComponent;

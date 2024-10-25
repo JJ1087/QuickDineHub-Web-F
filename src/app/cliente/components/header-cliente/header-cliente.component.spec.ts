@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderClienteComponent } from './header-cliente.component';
+// import { HeaderClienteComponent } from './header-cliente.component';
 
 describe('HeaderClienteComponent', () => {
   // let component: HeaderClienteComponent;

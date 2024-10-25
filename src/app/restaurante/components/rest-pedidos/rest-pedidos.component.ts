@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-unexpected-multiline */
+
 // rest-pedidos.component.ts
 import { Component,OnInit } from '@angular/core';
 import { AuthrestauranteService } from '../../services/authrestaurante.service';

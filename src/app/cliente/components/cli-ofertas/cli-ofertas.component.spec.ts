@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CliOfertasComponent } from './cli-ofertas.component';
+// import { CliOfertasComponent } from './cli-ofertas.component';
 
 describe('CliOfertasComponent', () => {
   // let component: CliOfertasComponent;

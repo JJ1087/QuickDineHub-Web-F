@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditPerfilRestauranteComponent } from './edit-perfil-restaurante.component';
+// import { EditPerfilRestauranteComponent } from './edit-perfil-restaurante.component';
 
 describe('EditPerfilRestauranteComponent', () => {
   // let component: EditPerfilRestauranteComponent;

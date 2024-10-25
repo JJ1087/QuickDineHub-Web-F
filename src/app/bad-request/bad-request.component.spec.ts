@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BadRequestComponent } from './bad-request.component';
+// import { BadRequestComponent } from './bad-request.component';
 
 describe('BadRequestComponent', () => {
   // let component: BadRequestComponent;

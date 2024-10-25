@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditPerfilRepartidorComponent } from './edit-perfil-repartidor.component';
+// import { EditPerfilRepartidorComponent } from './edit-perfil-repartidor.component';
 
 describe('EditPerfilRepartidorComponent', () => {
   // let component: EditPerfilRepartidorComponent;

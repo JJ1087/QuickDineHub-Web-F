@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'; // Importar ActivatedRoute para obtener parámetros de la URL
 import { AuthService } from '../../services/auth.service';

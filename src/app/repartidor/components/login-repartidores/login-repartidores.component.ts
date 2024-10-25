@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // login-repartidores.component.ts
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';

@@ -19,7 +19,7 @@
     <!-- Aquí van los filtros que ya tienes -->
   </div>
   <span>🛒</span>
-  <button class="add-sale-button" (click)="toggleAddSaleForm()">Agregar Venta</button>
+  <button class="add-sale-button" (click)="toggleAddSaleForm()" (keyup.enter)="toggleAddSaleForm()" tabindex="0">Agregar Venta</button>
   <div class="add-sale-form" id="addSaleForm" style="display:none;">
     <form id="saleForm" (submit)="addSale($event)">
       <label for="product">Productos adquiridos:</label>
@@ -34,7 +34,7 @@
       <input type="text" id="saleLocation" name="saleLocation" required><br>
       <input type="submit" value="Agregar">
     </form>
-    <button type="button" (click)="cancelAdd()">Cancelar</button>
+    <button type="button" (click)="cancelAdd()" (keyup.enter)="cancelAdd()" tabindex="0">Cancelar</button>
   </div>
   <table class="sales-table" id="salesTable">
     <thead>
@@ -56,7 +56,7 @@
         <td>{{ compra.fechaHoraEntrega | date:'dd-MMMM-yyyy hh:mm' }}</td> <!-- Formato de fecha: 21-enero-2021 -->
         <td>{{ compra.direccion }}</td>
         <td>{{ compra.folio }}</td> <!-- Usar el folio calculado -->
-        <td><span class="edit-icon" (click)="editSale(compra)">✏️</span></td>
+        <td><button class="edit-icon" (click)="editSale(compra)" (keyup.enter)="editSale(compra)" tabindex="0">✏️</button></td>
       </tr>
     </tbody>
   </table>

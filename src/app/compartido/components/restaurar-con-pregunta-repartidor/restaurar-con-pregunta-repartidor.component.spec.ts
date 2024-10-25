@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RestaurarConPreguntaRepartidorComponent } from './restaurar-con-pregunta-repartidor.component';
+// import { RestaurarConPreguntaRepartidorComponent } from './restaurar-con-pregunta-repartidor.component';
 
 describe('RestaurarConPreguntaRepartidorComponent', () => {
   // let component: RestaurarConPreguntaRepartidorComponent;

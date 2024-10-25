@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CookiesComponent } from './cookies.component';
+// import { CookiesComponent } from './cookies.component';
 
 describe('CookiesComponent', () => {
   // let component: CookiesComponent;

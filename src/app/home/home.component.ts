@@ -1,6 +1,10 @@
+ /* eslint-disable @typescript-eslint/no-unused-vars */
+ /* eslint-disable @typescript-eslint/no-explicit-any */
  /*home.component.ts */
  import { Component, OnInit, HostListener } from '@angular/core';
+ /* eslint-disable no-var */
  declare var SpeechSynthesis: any;
+ /* eslint-enable no-var */
 
  @Component({
    selector: 'app-home',

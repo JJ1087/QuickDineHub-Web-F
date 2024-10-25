@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginRepartidoresComponent } from './login-repartidores.component';
+// import { LoginRepartidoresComponent } from './login-repartidores.component';
 
 describe('LoginRepartidoresComponent', () => {
   // let component: LoginRepartidoresComponent;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit  } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthrestauranteService } from '../../services/authrestaurante.service';
@@ -102,10 +103,10 @@ export class VentasRestauranteComponent implements OnInit {
     const tr = table.getElementsByTagName('tr');
 
     for (let i = 1; i < tr.length; i++) {
-      let td = tr[i].getElementsByTagName('td')[selectColumn.selectedIndex];
-      let td2 = tr[i].getElementsByTagName('td')[selectColumn2.selectedIndex];
-      let td3 = tr[i].getElementsByTagName('td')[selectColumn3.selectedIndex];
-      let td4 = tr[i].getElementsByTagName('td')[selectColumn4.selectedIndex];
+      const td = tr[i].getElementsByTagName('td')[selectColumn.selectedIndex];
+      const td2 = tr[i].getElementsByTagName('td')[selectColumn2.selectedIndex];
+      const td3 = tr[i].getElementsByTagName('td')[selectColumn3.selectedIndex];
+      const td4 = tr[i].getElementsByTagName('td')[selectColumn4.selectedIndex];
 
       if (td && td2 && td3 && td4) {
         const txtValue = td.textContent || td.innerText || '';

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InicioRepartidorComponent } from './inicio-repartidor.component';
+// import { InicioRepartidorComponent } from './inicio-repartidor.component';
 
 describe('InicioRepartidorComponent', () => {
   // let component: InicioRepartidorComponent;

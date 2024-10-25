@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResenasRepartidorComponent } from './resenas-repartidor.component';
+// import { ResenasRepartidorComponent } from './resenas-repartidor.component';
 
 describe('ResenasRepartidorComponent', () => {
   // let component: ResenasRepartidorComponent;

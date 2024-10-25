@@ -39,3 +39,7 @@ jobs:
       # 4. Ejecutar pruebas unitarias con Jest
       - name: Run Jest tests
         run: npm run test --no-watch --no-progress --browsers=ChromeHeadless
+
+      # 5. Ejecutar pruebas lint
+      - name: Run lint
+        run: npm run lint

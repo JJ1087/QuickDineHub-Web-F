@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditPerfilClienteComponent } from './edit-perfil-cliente.component';
+// import { EditPerfilClienteComponent } from './edit-perfil-cliente.component';
 
 describe('EditPerfilClienteComponent', () => {
   // let component: EditPerfilClienteComponent;

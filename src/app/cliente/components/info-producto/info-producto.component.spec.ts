@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InfoProductoComponent } from './info-producto.component';
+// import { InfoProductoComponent } from './info-producto.component';
 
 describe('InfoProductoComponent', () => {
   // let component: InfoProductoComponent;

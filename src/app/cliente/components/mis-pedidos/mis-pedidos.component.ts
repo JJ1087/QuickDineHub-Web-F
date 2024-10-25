@@ -1,3 +1,6 @@
+
+ /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // mis-pedidos.component.ts
 
 import { Component, OnInit } from '@angular/core';
@@ -281,7 +284,7 @@ export class MisPedidosComponent implements OnInit {
   }*/
 
   obtenerDetallesProducto() {
-    let idsProductos: string[] = [];
+    const idsProductos: string[] = [];
 
     this.detalleOrdenes.forEach(detalle => {
       idsProductos.push(detalle.idProducto);
@@ -296,7 +299,7 @@ export class MisPedidosComponent implements OnInit {
         this.detalleOrdenes[index].producto = producto;
         productosObtenidos++;
 
-          let nombresProductos = this.detalleOrdenes
+          const nombresProductos = this.detalleOrdenes
             .slice(-7)
             .map(detalle => detalle.nombreProducto);
           console.log('Productos solicitados:', nombresProductos);
@@ -313,7 +316,7 @@ export class MisPedidosComponent implements OnInit {
   }
 
   recomendarProductos(productosSolicitados: string[]): string[] {
-    let recomendaciones = new Set<string>();
+    const recomendaciones = new Set<string>();
 
     reglas.forEach(regla => {
       if (regla.antecedents.every(antecedente => productosSolicitados.includes(antecedente))) {

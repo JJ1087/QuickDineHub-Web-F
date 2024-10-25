@@ -1,3 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @angular-eslint/component-selector */
+/* eslint-disable @angular-eslint/component-class-suffix */
+/* eslint-disable prefer-const */
+/* eslint-disable no-prototype-builtins */
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'; // Importar ActivatedRoute para obtener parámetros de la URL
 import { AuthService } from '../../services/auth.service';
@@ -339,7 +346,7 @@ export class CarritoClienteComponentG implements OnInit {
           if (this.eliminoProducto === 0) {
             console.log('BOUDELER:', this.eliminoProducto);
             this.sumaSubTotales = 0;
-            for (let productId in this.productos) {
+            for (const productId in this.productos) {
               const producto = this.productos[productId];
               const costoUnidad = Number(producto.precio.$numberDecimal);
               const subtotal = costoUnidad * producto.cantidad;

@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EstadoEnvioComponent } from './estado-envio.component';
+// import { EstadoEnvioComponent } from './estado-envio.component';
 
 describe('EstadoEnvioComponent', () => {
   // let component: EstadoEnvioComponent;

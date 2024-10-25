@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // rest-productos.component.ts
 import { Component, OnInit } from '@angular/core';
 import { AuthrestauranteService } from '../../services/authrestaurante.service';

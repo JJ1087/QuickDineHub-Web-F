@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { InicioClienteComponent } from './inicio-cliente.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';

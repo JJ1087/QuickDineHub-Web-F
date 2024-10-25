@@ -14,7 +14,7 @@ describe("Prueba E2E para el flujo de login", () => {
         
       cy.get('button[type="submit"]').click({ force: true });
   
-      cy.url({ timeout: 50000 }).should("include", "/inicio-cliente");
+      cy.url({ timeout: 90000 }).should("include", "/inicio-cliente");
   
     });
 

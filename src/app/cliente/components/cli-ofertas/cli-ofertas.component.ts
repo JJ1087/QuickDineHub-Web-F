@@ -7,6 +7,8 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './cli-ofertas.component.css'
 })
 export class CliOfertasComponent implements OnInit {
+  isOnline: boolean = navigator.onLine;
+  offlineImageIcon: string = 'assets/sinconexion.png'; // Ruta al ícono de "Sin conexión"
 
   ofertas: any[] = [];
 
@@ -15,6 +17,8 @@ export class CliOfertasComponent implements OnInit {
   ngOnInit(): void {
     
     if (typeof window !== 'undefined' && localStorage !== null) {
+      window.addEventListener('online', this.updateOnlineStatus.bind(this));
+      window.addEventListener('offline', this.updateOnlineStatus.bind(this));
      
       this.cargarOfertas();
   
@@ -25,6 +29,11 @@ export class CliOfertasComponent implements OnInit {
     }
 
   }
+
+  updateOnlineStatus(): void {
+    this.isOnline = navigator.onLine;
+  }
+
   cargarOfertas(): void {
     this.AuthService.obtenerInfoOferta().subscribe(
       (data) => {
@@ -37,7 +46,7 @@ export class CliOfertasComponent implements OnInit {
   }
  // Método para generar la URL completa de la imagen
  getImageUrl(relativePath: string): string {
-  return `https://quickdinehub-back1.onrender.com/${relativePath}`;//
+  return this.isOnline ? `https://quickdinehub-back1.onrender.com/${relativePath}` : this.offlineImageIcon;//
   //return http://localhost:3000/${relativePath};
 }
 

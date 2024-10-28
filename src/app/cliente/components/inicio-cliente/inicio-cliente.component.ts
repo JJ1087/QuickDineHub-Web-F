@@ -12,6 +12,8 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class InicioClienteComponent implements OnInit{//
+  isOnline: boolean = navigator.onLine;
+  offlineImageIcon: string = 'assets/sinconexion.png'; // Ruta al ícono de "Sin conexión"
   
 
   nombreusuario: string = '';
@@ -211,6 +213,10 @@ obtenerHoraActual(): string {
    ngOnInit(): void {
     
     if (typeof window !== 'undefined' && localStorage !== null) {
+
+      window.addEventListener('online', this.updateOnlineStatus.bind(this));
+      window.addEventListener('offline', this.updateOnlineStatus.bind(this));
+   
       this.micIcon = document.getElementById('micIcon'); 
       this.comensalId = localStorage.getItem('ID_USER') || '';
       if (this.comensalId) {
@@ -240,6 +246,10 @@ obtenerHoraActual(): string {
 
     }
 
+  }
+
+  updateOnlineStatus(): void {
+    this.isOnline = navigator.onLine;
   }
   
   // Activar la búsqueda por voz
@@ -325,7 +335,7 @@ filtrarProductos() {
 
     // Método para generar la URL completa de la imagen www
     getImageUrl(relativePath: string): string {
-      return `https://quickdinehub-back1.onrender.com/${relativePath}`;//return `http://localhost:3000/${relativePath}`;
+      return this.isOnline ? `https://quickdinehub-back1.onrender.com/${relativePath}` : this.offlineImageIcon;//return `http://localhost:3000/${relativePath}`;
     }
 
 //Funcion para llamar a mis ordenes--------------------------------------------------------------------------

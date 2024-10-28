@@ -92,6 +92,7 @@ import { CommonModule } from '@angular/common';
 import { PaypalButtonComponent } from './compartido/components/paypal-button/paypal-button.component';
 import { OfertasRestauranteComponent } from './restaurante/components/ofertas-restaurante/ofertas-restaurante.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { FormularioMvpComponent } from './cliente/components/formulario-mvp/formulario-mvp.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -163,6 +164,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     EditPerfilRepartidorComponent,
     PaypalButtonComponent,
     OfertasRestauranteComponent,
+    FormularioMvpComponent,
 
   ],
   imports: [

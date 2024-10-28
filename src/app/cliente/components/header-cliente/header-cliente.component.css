@@ -88,6 +88,7 @@ nav a.current {
 }
 
 
+
 /* Media queries para pantallas pequeñas */
 @media (max-width: 768px) {
     .logo img {
@@ -114,4 +115,58 @@ nav a.current {
         font-size: 16px; /* Ajuste menor de tamaño de fuente */
         padding: 6px 10px; /* Reduce el padding para ajustarse mejor */
     }
+}
+
+/* Media queries para pantallas de 480px y menos */
+@media (max-width: 480px) {
+    .logo img {
+        max-width: 60px; /* Reduce aún más el tamaño de la imagen */
+    }
+
+    .company-name {
+        font-size: 18px; /* Tamaño de fuente más pequeño */
+        margin-right: 5px;
+        margin-left: 2px;
+    }
+
+    .edit-profile-button {
+        padding: 6px 10px; /* Menor padding */
+        font-size: 12px; /* Tamaño de fuente más pequeño */
+        margin-right: 5px;
+    }
+
+    nav {
+        padding: 5px 0; /* Reduce el padding del nav */
+    }
+
+    nav a {
+        font-size: 12px; /* Tamaño de fuente más pequeño */
+        padding: 4px 8px; /* Menor padding para enlaces */
+    }
+}
+
+/* Media queries para pantallas de menos de 390px */
+@media (max-width: 390px) {
+    .logo img {
+        max-width: 50px; /* Reduce aún más el tamaño de la imagen */
+    }
+
+    .company-name {
+        font-size: 16px; /* Tamaño de fuente más pequeño */
+        margin-right: 0; /* Sin margen derecho */
+        margin-left: 0; /* Sin margen izquierdo */
+        text-align: center; /* Centra el texto */
+    }
+
+    .edit-profile-button {
+        padding: 5px 8px; /* Menor padding */
+        font-size: 10px; /* Tamaño de fuente más pequeño */
+        margin-right: 5px;
+    }
+
+    nav a {
+        font-size: 10px; /* Tamaño de fuente más pequeño */
+        padding: 3px 6px; /* Menor padding para enlaces */
+    }
+
 }

@@ -7,13 +7,24 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './restaurantes-cliente.component.css'
 })
 export class RestaurantesClienteComponent {
+  isOnline: boolean = navigator.onLine;
+  offlineImageIcon: string = 'assets/sinconexion.png'; // Ruta al ícono de "Sin conexión"
+
   restaurantes: any[] = []; // Array para almacenar los restaurantes
   nombresRestaurantes: string[] = [];
   
   constructor(private authService: AuthService) { } // Inyecta el servicio de restaurante
 
   ngOnInit(): void {
+    
+    window.addEventListener('online', this.updateOnlineStatus.bind(this));
+    window.addEventListener('offline', this.updateOnlineStatus.bind(this));
     this.obtenerRestaurantes();
+
+  }
+
+  updateOnlineStatus(): void {
+    this.isOnline = navigator.onLine;
   }
 
   obtenerRestaurantes(): void {
@@ -38,7 +49,7 @@ export class RestaurantesClienteComponent {
 
    // Método para generar la URL completa de la imagen
    getImageUrl(relativePath: string): string {
-    return `https://quickdinehub-back1.onrender.com/${relativePath}`;//return `http://localhost:3000/${relativePath}`;
+    return this.isOnline ? `https://quickdinehub-back1.onrender.com/${relativePath}` : this.offlineImageIcon;//return `http://localhost:3000/${relativePath}`;
   }
 //------------------------------------------------------------------------------------------
 

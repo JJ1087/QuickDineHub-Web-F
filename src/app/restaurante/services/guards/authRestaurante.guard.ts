@@ -1,5 +1,6 @@
-import { Injectable, HostListener } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { MensajeComponent } from '../../../compartido/components/mensaje/mensaje.component'; // Importa el componente de mensaje
@@ -12,20 +13,22 @@ import { MensajeComponent } from '../../../compartido/components/mensaje/mensaje
 
 export class RestauranteGuard implements CanActivate {
   lastActivityTime: number = 0; 
-  private inactivityTimer: any;
+  //private inactivityTimer: any;
+  private inactivityTimer: NodeJS.Timeout | null = null;
+
   private readonly inactivityTimeout = 3600000; // 10 minutos en milisegundos
 
   constructor(private router: Router, private dialog: MatDialog) {}
 
-  @HostListener('window:mousemove', ['$event'])
-  onMouseMove(event: MouseEvent) {
-    this.handleUserActivity();
-  }
+  // @HostListener('window:mousemove', ['$event'])
+  // onMouseMove(event: MouseEvent) {
+  //   this.handleUserActivity();
+  // }
   
-  @HostListener('window:keypress', ['$event'])
-  onKeyPress(event: KeyboardEvent) {
-    this.handleUserActivity();
-  }
+  // @HostListener('window:keypress', ['$event'])
+  // onKeyPress(event: KeyboardEvent) {
+  //   this.handleUserActivity();
+  // }
 
   private handleUserActivity(): void {
     this.lastActivityTime = new Date().getTime(); // Actualiza el tiempo de la última actividad
@@ -33,8 +36,8 @@ export class RestauranteGuard implements CanActivate {
   }
   
   canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    // next: ActivatedRouteSnapshot,
+    // state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     if (typeof localStorage !== 'undefined') {
       const accessToken = localStorage.getItem('ACCESS_TOKEN');
@@ -80,7 +83,11 @@ export class RestauranteGuard implements CanActivate {
     }
   }
 
-  private decodeToken(token: string): any {
+
+  
+  //private decodeToken(token: string): any {
+  //private decodeToken(token: string): unknown {
+  private decodeToken(token: string): TokenPayload | null {
     try {
        const base64Url = token.split('.')[1];
        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -123,9 +130,17 @@ export class RestauranteGuard implements CanActivate {
     }, this.inactivityTimeout);
   }
   
+  // private stopInactivityTimer(): void {
+  //   clearTimeout(this.inactivityTimer);
+  // }
+
   private stopInactivityTimer(): void {
-    clearTimeout(this.inactivityTimer);
-  }
+    if (this.inactivityTimer) {
+        clearTimeout(this.inactivityTimer);
+        this.inactivityTimer = null; // Restablecer a null para evitar errores futuros
+    }
+}
+
   
   private resetInactivityTimer(): void {
     this.stopInactivityTimer();
@@ -143,4 +158,9 @@ export class RestauranteGuard implements CanActivate {
     }
   }
 }
-  
+
+// Define la interfaz del payload del token fuera de la clase
+interface TokenPayload {
+  rol: string;
+  // Otros campos que esperes en el token, si los hay
+}

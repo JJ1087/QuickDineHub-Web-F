@@ -1,3 +1,5 @@
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 

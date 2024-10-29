@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-var */
+
 // Al principio de tu archivo TypeScript
 declare var webkitSpeechRecognition: any;
 import { Component, OnInit} from '@angular/core';

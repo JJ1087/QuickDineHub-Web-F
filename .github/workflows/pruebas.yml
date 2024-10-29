@@ -16,7 +16,7 @@ permissions:
   contents: read
 
 jobs:
-  unit-tests:
+  Pruebas:
     #name: Run Unit Tests
     runs-on: ubuntu-latest
 
@@ -36,6 +36,24 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # 4. Ejecutar pruebas unitarias con Jest
+       # 4. Levantar la aplicación de Angular
+      - name: Start Angular App
+        run: npm run start &
+        env:
+          CI: true
+
+      # 5. Esperar a que el servidor esté arriba
+      - name: Wait for Angular App to be available
+        run: npx wait-on http://localhost:4200
+
+      # 6. Ejecutar pruebas unitarias con Jest
       - name: Run Jest tests
         run: npm run test --no-watch --no-progress --browsers=ChromeHeadless
+
+      # 7. Ejecutar pruebas lint
+      - name: Run lint
+        run: npm run lint
+      
+      # 8. Ejecutar pruebas e2e con cypress
+      - name: e2e cypress
+        run: npx cypress run

@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {Injectable} from '@angular/core'
 import { HttpClient } from "@angular/common/http";
 import { tap } from 'rxjs/operators';
 import { Observable} from 'rxjs';
 
 //import { response } from 'express';
-import { MatDialog } from '@angular/material/dialog';//AJUSTE
-import { MensajeComponent} from '../../compartido/components/mensaje/mensaje.component';//AJUSTE
+//import { MatDialog } from '@angular/material/dialog';//AJUSTE
+//import { MensajeComponent} from '../../compartido/components/mensaje/mensaje.component';//AJUSTE
 import { Producto } from '../interfaces/producto.interface';
 
 

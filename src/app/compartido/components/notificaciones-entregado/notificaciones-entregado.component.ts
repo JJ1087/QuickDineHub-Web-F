@@ -1,3 +1,5 @@
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit, Input } from '@angular/core';
 import { PreguntaSecretaService } from '../../services/preguntaSecreta.service';
 import { EventEmitter, Output } from '@angular/core';

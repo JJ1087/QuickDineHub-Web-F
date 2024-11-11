@@ -1,14 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-var */
-
 // Al principio de tu archivo TypeScript
 declare var webkitSpeechRecognition: any;
 import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-
-
+import { SwPush } from '@angular/service-worker';
+import { PreguntaSecretaService } from '../../../../app/compartido/services/preguntaSecreta.service';
+ 
 @Component({
   selector: 'app-inicio-cliente',
   templateUrl: './inicio-cliente.component.html',
@@ -19,6 +16,9 @@ export class InicioClienteComponent implements OnInit{//
   isOnline: boolean = navigator.onLine;
   offlineImageIcon: string = 'assets/sinconexion.png'; // Ruta al ícono de "Sin conexión"
   
+  readonly VAPID_PUBLIC_KEY = 'BOpKJl1P-s-gcH5dhTqjzF6-KbB-D8lenn3kYMhhpvGEq1TLSFUpaOa6698F5ZLg0yGVbLqSBdhvuO7I94m8cMc';
+  //{"publicKey":"BOpKJl1P-s-gcH5dhTqjzF6-KbB-D8lenn3kYMhhpvGEq1TLSFUpaOa6698F5ZLg0yGVbLqSBdhvuO7I94m8cMc","privateKey":"9HeLyr98wdMf1-sXyF5aducGyykqDP-D69nzIp1BgOA"}
+
 
   nombreusuario: string = '';
   comensalId: string = '';//TOMAR EL ID DEL CLIENTE EN LOCALSTORAGE en el futuro 
@@ -55,8 +55,46 @@ export class InicioClienteComponent implements OnInit{//
   private utterance: SpeechSynthesisUtterance | null = null!;
   
 
-  constructor(private router: Router, private authService: AuthService) {}//
-  
+  constructor(private router: Router, private authService: AuthService,
+  private swPush: SwPush, private pushnotificacion: PreguntaSecretaService)
+  {
+    this.subscribeToNotifications();
+  }//
+
+  subscribeToNotifications(): void {
+    // Verifica si las notificaciones push están habilitadas en el navegador
+    if (!this.swPush.isEnabled) {
+        console.log('Notificaciones push no están habilitadas en este navegador');
+        return;
+    }
+
+    console.log('Solicitando suscripción...');
+    
+    // Solicitar la suscripción a las notificaciones push
+    this.swPush.requestSubscription({
+        serverPublicKey: this.VAPID_PUBLIC_KEY
+    }).then(sub => {
+        console.log('Suscripción obtenida:', sub);  // Ver los detalles de la suscripción
+
+        // Convertir la suscripción a un objeto (aunque normalmente ya es un objeto, por si acaso)
+        const token = JSON.parse(JSON.stringify(sub));
+        console.log('Token de suscripción:', token);  // Ver el token completo
+
+        // Enviar la suscripción al servidor
+        this.pushnotificacion.sendSubscription(token).subscribe(
+            (res) => {
+                console.log('Respuesta del servidor después de enviar la suscripción:', res);
+            },
+            (err) => {
+                console.error('Error al enviar la suscripción al servidor:', err);
+            }
+        );
+    }).catch(err => {
+        // Captura errores durante la solicitud de la suscripción
+        console.error('Error al solicitar la suscripción de notificaciones push:', err);
+    });
+}
+
   prevImage() {
     // Ajusta según la cantidad de imágenes que desees mostrar al mismo tiempo
     const imagesToShow = 3;

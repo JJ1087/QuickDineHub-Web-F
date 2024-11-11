@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class PreguntaSecretaService {
 
-  private apiUrl = 'https://quickdinehub-back1.onrender.com'; // URL de tu backend//private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'https://quickdinehub-back1.onrender.com'; // URL de tu backend
+  //private apiUrl = 'http://localhost:3000';
   constructor(private HttpClient: HttpClient) {}
   
   obtenerPreguntaYRespuestaSecreta(email: string): Observable<any> {
@@ -85,5 +86,10 @@ actualizarEstadoOrden2(idOrden: string): Observable<any> {
   const url = `${this.apiUrl}/ordenes/${idOrden}/actualizarEstado`; // Suponiendo que tienes una ruta en tu backend para actualizar el estado de la orden
   return this.HttpClient.put<any>(url, null); // Envía una solicitud PUT vacía, ya que solo necesitas el ID de la orden
 }
-  
+  // APIS DE NOTIFICACIONES PUSH 
+  sendSubscription(token: any) {
+    const url = `${this.apiUrl}/pushSubscription/guardar/`;
+    return this.HttpClient.post(url, token);
+  }
+
 }

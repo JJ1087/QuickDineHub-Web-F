@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 })
 
 export class AuthrestauranteService {
-  AUTH_SERVER: string = 'https://quickdinehub-back1.onrender.com';//
- //AUTH_SERVER: string = 'http://localhost:3000';
+AUTH_SERVER: string = 'https://quickdinehub-back1.onrender.com';//
+//AUTH_SERVER: string = 'http://localhost:3000';
   private token: string | null = null;
 
   constructor(private httpClient: HttpClient) { }

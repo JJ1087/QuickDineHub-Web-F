@@ -93,6 +93,8 @@ import { PaypalButtonComponent } from './compartido/components/paypal-button/pay
 import { OfertasRestauranteComponent } from './restaurante/components/ofertas-restaurante/ofertas-restaurante.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { FormularioMvpComponent } from './cliente/components/formulario-mvp/formulario-mvp.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,

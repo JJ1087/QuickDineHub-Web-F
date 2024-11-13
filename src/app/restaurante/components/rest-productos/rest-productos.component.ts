@@ -27,6 +27,8 @@ export class RestProductosComponent implements OnInit {
   editandoProducto: boolean = false;
   indiceProductoAEditar: number | null = null;
 
+  nombreRestaurante: string | null = null;
+
   constructor(public dialog: MatDialog,
   private authRestauranteService: AuthrestauranteService,
   ) { }
@@ -42,6 +44,7 @@ export class RestProductosComponent implements OnInit {
       if (restaurantId) {
           // Si 'RESTAURANT_ID' está presente en 'localStorage', asigna su valor a 'restauranteId'
           this.restauranteId = restaurantId;
+          this.nombreRestaurante = localStorage.getItem('RESTAURANT_NAME');
           // Luego, procede con el resto de la inicialización del componente
           this.obtenerProductos();
       } else {
@@ -49,7 +52,8 @@ export class RestProductosComponent implements OnInit {
       }
   }
   }
-  
+
+
 
   //Capturar Imagen
   capturarImagenPrincipal(event: any): void {
@@ -136,7 +140,7 @@ validarTipoYTamano(archivo: File): boolean {
     const confirmation = confirm("¿Estas seguro de crear un nuevo producto?");
     if (confirmation) {
     // Validar campos vacíos
-    if (this.camposVacios() || this.restauranteId === null) {
+    if (this.camposVacios() || this.restauranteId === null || this.nombreRestaurante === null) {
       alert('Todos los campos son obligatorios. Por favor, completa la información del producto.');
       return;
     }
@@ -173,6 +177,7 @@ validarTipoYTamano(archivo: File): boolean {
 //form data de producto
     const NuevoProducto = new FormData();
     NuevoProducto.append('idRestaurante', this.restauranteId);
+    NuevoProducto.append('nombrerestaurante', this.nombreRestaurante);
     NuevoProducto.append('nombre', this.nombre);
     NuevoProducto.append('descripcion', this.descripcion);
     NuevoProducto.append('tiempoP', this.tiempoP);

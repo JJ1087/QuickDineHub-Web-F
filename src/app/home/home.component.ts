@@ -2,6 +2,10 @@
  /* eslint-disable @typescript-eslint/no-explicit-any */
  /*home.component.ts */
  import { Component, OnInit, HostListener } from '@angular/core';
+ import { SwPush } from '@angular/service-worker';
+ 
+import { PreguntaSecretaService } from '../../app/compartido/services/preguntaSecreta.service';
+ 
  /* eslint-disable no-var */
  declare var SpeechSynthesis: any;
  /* eslint-enable no-var */
@@ -17,10 +21,47 @@
    private utterance: SpeechSynthesisUtterance | null = null!;
    scrolledDown = false;
    
+  readonly VAPID_PUBLIC_KEY = 'BOpKJl1P-s-gcH5dhTqjzF6-KbB-D8lenn3kYMhhpvGEq1TLSFUpaOa6698F5ZLg0yGVbLqSBdhvuO7I94m8cMc';
+   //{"publicKey":"BOpKJl1P-s-gcH5dhTqjzF6-KbB-D8lenn3kYMhhpvGEq1TLSFUpaOa6698F5ZLg0yGVbLqSBdhvuO7I94m8cMc","privateKey":"9HeLyr98wdMf1-sXyF5aducGyykqDP-D69nzIp1BgOA"}
+   
+   constructor( private swPush: SwPush, private preguntaToken: PreguntaSecretaService ) {
+   
+   // this.subscribeToNotifications();
+  
+  }
+ // CODIGO NOTIFICACIONES 
+
+  //  subscribeToNotifications(): any{
+ 
+  //    this.swPush.requestSubscription(
+  //     {
+  //      serverPublicKey: this.VAPID_PUBLIC_KEY
+  //    }).then(sub =>{
+
+  //     const token = JSON.parse(JSON.stringify(sub));
+
+  //     this.preguntaToken.sendSubscription(token).subscribe((res)=>
+  //     {
+  //      console.log(res);
+  //     }, (err) => {
+  //       console.log('ERROR', err);
+  //     }  );
+ 
+  //    })
+  //    .catch(err =>console.error(' :(',err))
+  //  }
+   
+//FIN CODIGO NOTIFICACIONES
+
    ngOnInit(): void {
     if (typeof window !== 'undefined') {
       // Coloca aquí el código que utiliza window
     }
+    navigator.serviceWorker.register('/ngsw-worker.js').then(registration => {
+      console.log('Service worker registrado con éxito:', registration);
+  }).catch(error => {
+      console.error('Error al registrar el service worker:', error);
+  });
   }
   
   @HostListener('window:scroll', ['$event'])

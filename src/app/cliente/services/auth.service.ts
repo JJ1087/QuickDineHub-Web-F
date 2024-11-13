@@ -18,7 +18,8 @@ import { Producto } from '../interfaces/producto.interface';
   })
 
 export class AuthService {
-    AUTH_SERVER: string = 'https://quickdinehub-back1.onrender.com';//AUTH_SERVER: string = 'http://localhost:3000';
+    AUTH_SERVER: string = 'https://quickdinehub-back1.onrender.com';
+    //AUTH_SERVER: string = 'http://localhost:3000';
     //authSubject = new BehaviorSubject(false);
     private token: string | null = null;
 

@@ -46,14 +46,14 @@ jobs:
       - name: Wait for Angular App to be available
         run: npx wait-on http://localhost:4200
 
-      # # 6. Ejecutar pruebas unitarias con Jest
-      # - name: Run Jest tests
-      #   run: npm run test --no-watch --no-progress --browsers=ChromeHeadless
+      # 6. Ejecutar pruebas unitarias con Jest
+      - name: Run Jest tests
+        run: npm run test --no-watch --no-progress --browsers=ChromeHeadless
 
-      # # 7. Ejecutar pruebas lint
-      # - name: Run lint
-      #   run: npm run lint
+      # 7. Ejecutar pruebas lint
+      - name: Run lint
+        run: npm run lint
       
-      # # 8. Ejecutar pruebas e2e con cypress
-      # - name: e2e cypress
-      #   run: npx cypress run
+      # 8. Ejecutar pruebas e2e con cypress
+      - name: e2e cypress
+        run: npx cypress run

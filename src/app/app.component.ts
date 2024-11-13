@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component,OnInit } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { PreguntaSecretaService } from '../app/compartido/services/preguntaSecreta.service';

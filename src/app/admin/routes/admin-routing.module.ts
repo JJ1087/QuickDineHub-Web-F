@@ -7,6 +7,8 @@ import { InfoRegistroRestauranteComponent } from '../components/info-registro-re
 import { InfoRegistroRepartidorComponent } from '../components/info-registro-repartidor/info-registro-repartidor.component';
 import { InfoRegistroClienteComponent } from '../components/info-registro-cliente/info-registro-cliente.component';
 import { AdmnPagosComponent } from '../components/admn-pagos/admn-pagos.component';
+import { InicioAdminComponent } from '../components/inicio-admin/inicio-admin.component';
+import { LoginAdminComponent } from '../components/login-admin/login-admin.component';
 
 
 const routes: Routes = [
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'info-registro-repartidor', component: InfoRegistroRepartidorComponent},
   { path: 'info-registro-cliente', component: InfoRegistroClienteComponent},
   { path: 'admn-pagos', component: AdmnPagosComponent},
+  { path: 'inicio-admin', component: InicioAdminComponent},
+  { path: 'login-admin', component: LoginAdminComponent},
 
 ];
 

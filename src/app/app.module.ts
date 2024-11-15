@@ -93,6 +93,10 @@ import { PaypalButtonComponent } from './compartido/components/paypal-button/pay
 import { OfertasRestauranteComponent } from './restaurante/components/ofertas-restaurante/ofertas-restaurante.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { FormularioMvpComponent } from './cliente/components/formulario-mvp/formulario-mvp.component';
+import { InicioAdminComponent } from './admin/components/inicio-admin/inicio-admin.component';
+import { LoginAdminComponent } from './admin/components/login-admin/login-admin.component';
+import { HighchartsChartModule } from 'highcharts-angular'; // Importar módulo de Highcharts
+
 
 
 @NgModule({
@@ -167,6 +171,8 @@ import { FormularioMvpComponent } from './cliente/components/formulario-mvp/form
     PaypalButtonComponent,
     OfertasRestauranteComponent,
     FormularioMvpComponent,
+    InicioAdminComponent,
+    LoginAdminComponent,
 
   ],
   imports: [
@@ -193,6 +199,7 @@ import { FormularioMvpComponent } from './cliente/components/formulario-mvp/form
     MatFormFieldModule,
     PasswordModule,
     CommonModule,
+    HighchartsChartModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

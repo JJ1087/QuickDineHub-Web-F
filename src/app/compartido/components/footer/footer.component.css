@@ -101,6 +101,9 @@ footer {
     bottom: 0; /* Asegura que siempre esté al final */
 }
 
+.foot{
+    z-index: 200;
+    }
 footer a {
     color: #fff;
     margin: 0 10px;

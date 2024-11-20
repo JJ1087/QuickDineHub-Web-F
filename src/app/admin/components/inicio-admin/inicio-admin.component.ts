@@ -52,34 +52,65 @@ export class InicioAdminComponent implements OnInit {
     const respuestaUno = this.calcularPromedio('respuestaUno');
     const respuestaDos = this.calcularPromedio('respuestaDos');
     const respuestaTres = this.calcularPromedio('respuestaTres');
-
+  
     const respuestaUnoConteo = this.calcularConteos('respuestaUno');
     const respuestaDosConteo = this.calcularConteos('respuestaDos');
     const respuestaTresConteo = this.calcularConteos('respuestaTres');
-
+  
     const totalEncuestas = this.productos.length;
-
+  
     this.chartOptions = {
       chart: {
-        type: 'column'
+        type: 'column',
       },
       title: {
-        text: 'PROMEDIO RESPUESTAS DEL SITIO MOVIL'
+        text: 'PROMEDIO RESPUESTAS DEL SITIO MÓVIL',
       },
       xAxis: {
-        categories: [
-          `Respuestas pregunta 1:<br>😍=${respuestaUnoConteo[3]} 🙂=${respuestaUnoConteo[2]} 🙁=${respuestaUnoConteo[1]}`,
-          `Respuestas pregunta 2:<br>😍=${respuestaDosConteo[3]} 🙂=${respuestaDosConteo[2]} 🙁=${respuestaDosConteo[1]}`,
-          `Respuestas pregunta 3:<br>😍=${respuestaTresConteo[3]} 🙂=${respuestaTresConteo[2]} 🙁=${respuestaTresConteo[1]}`
-        ],
+        categories: ['😍', '🙂', '🙁'], // Solo los emojis debajo
         labels: {
-          useHTML: true
-        }
+          useHTML: true,
+          formatter: function () {
+            const emojis = [
+              `😍=${respuestaUnoConteo[3]} 🙂=${respuestaUnoConteo[2]} 🙁=${respuestaUnoConteo[1]}`,
+              `😍=${respuestaDosConteo[3]} 🙂=${respuestaDosConteo[2]} 🙁=${respuestaDosConteo[1]}`,
+              `😍=${respuestaTresConteo[3]} 🙂=${respuestaTresConteo[2]} 🙁=${respuestaTresConteo[1]}`,
+            ];
+            return `<span style="font-size:14px;">${emojis[this.pos]}</span>`;
+          },
+          align: 'center',
+          style: {
+            fontSize: '14px',
+          },
+        },
       },
       yAxis: {
         title: {
-          text: 'Promedio'
-        }
+          text: 'Promedio',
+        },
+      },
+      plotOptions: {
+        column: {
+          dataLabels: {
+            enabled: true,
+            formatter: function () {
+              const preguntas = [
+                '¿Consideras que los pasos para completar tu compra fueron claros?',
+                '¿El diseño de la aplicación te resultó visualmente agradable?',
+                '¿Te resultó conveniente el uso de esta aplicación?',
+              ];
+              const index = this.point?.index ?? 0; // Si `index` es null, usar 0
+              return `<div style="text-align: center; font-size: 12px;">
+                        <strong>${preguntas[index]}</strong>
+                      </div>`;
+            },
+            useHTML: true,
+            style: {
+              fontSize: '14px',
+              color: '#000',
+            },
+          },
+        },
       },
       series: [
         {
@@ -88,13 +119,13 @@ export class InicioAdminComponent implements OnInit {
           data: [
             { y: respuestaUno, color: this.obtenerColorPorPromedio(respuestaUno) },
             { y: respuestaDos, color: this.obtenerColorPorPromedio(respuestaDos) },
-            { y: respuestaTres, color: this.obtenerColorPorPromedio(respuestaTres) }
-          ]
-        }
-      ]
+            { y: respuestaTres, color: this.obtenerColorPorPromedio(respuestaTres) },
+          ],
+        },
+      ],
     };
   }
-
+  
   feedBacksweb(): void {
     this.inicioService.obtenerFeedbacksweb().subscribe(
       (productosweb: Feedbackweb[]) => {
@@ -112,34 +143,65 @@ export class InicioAdminComponent implements OnInit {
     const respuestaUno = this.calcularPromedioweb('respuestaUno');
     const respuestaDos = this.calcularPromedioweb('respuestaDos');
     const respuestaTres = this.calcularPromedioweb('respuestaTres');
-
+  
     const respuestaUnoConteo = this.calcularConteosweb('respuestaUno');
     const respuestaDosConteo = this.calcularConteosweb('respuestaDos');
     const respuestaTresConteo = this.calcularConteosweb('respuestaTres');
-
+  
     const totalEncuestas = this.productosweb.length;
-
+  
     this.chartOptionsweb = {
       chart: {
-        type: 'column'
+        type: 'column',
       },
       title: {
-        text: 'PROMEDIO RESPUESTAS DEL SITIO WEB'
+        text: 'PROMEDIO RESPUESTAS DEL SITIO WEB',
       },
       xAxis: {
-        categories: [
-          `Respuestas pregunta 1: <br>😍=${respuestaUnoConteo[3]} 🙂=${respuestaUnoConteo[2]} 🙁=${respuestaUnoConteo[1]}`,
-          `Respuestas pregunta 2:<br>😍=${respuestaDosConteo[3]} 🙂=${respuestaDosConteo[2]} 🙁=${respuestaDosConteo[1]}`,
-          `Respuestas pregunta 3:<br>😍=${respuestaTresConteo[3]} 🙂=${respuestaTresConteo[2]} 🙁=${respuestaTresConteo[1]}`
-        ],
+        categories: ['😍', '🙂', '🙁'], // Solo emojis en el eje X
         labels: {
-          useHTML: true
-        }
+          useHTML: true,
+          formatter: function () {
+            const emojis = [
+              `😍=${respuestaUnoConteo[3]} 🙂=${respuestaUnoConteo[2]} 🙁=${respuestaUnoConteo[1]}`,
+              `😍=${respuestaDosConteo[3]} 🙂=${respuestaDosConteo[2]} 🙁=${respuestaDosConteo[1]}`,
+              `😍=${respuestaTresConteo[3]} 🙂=${respuestaTresConteo[2]} 🙁=${respuestaTresConteo[1]}`,
+            ];
+            return `<span style="font-size:14px;">${emojis[this.pos]}</span>`;
+          },
+          align: 'center',
+          style: {
+            fontSize: '14px',
+          },
+        },
       },
       yAxis: {
         title: {
-          text: 'Promedio'
-        }
+          text: 'Promedio',
+        },
+      },
+      plotOptions: {
+        column: {
+          dataLabels: {
+            enabled: true,
+            formatter: function () {
+              const preguntas = [
+                '¿Consideras que los pasos para completar tu compra fueron claros?',
+                '¿El diseño de la aplicación te resultó visualmente agradable?',
+                '¿Te resultó conveniente el uso de esta aplicación?',
+              ];
+              const index = this.point?.index ?? 0; // Si `index` es null, usar 0
+              return `<div style="text-align: center; font-size: 12px;">
+                        <strong>${preguntas[index]}</strong>
+                      </div>`;
+            },
+            useHTML: true,
+            style: {
+              fontSize: '14px',
+              color: '#000',
+            },
+          },
+        },
       },
       series: [
         {
@@ -148,13 +210,13 @@ export class InicioAdminComponent implements OnInit {
           data: [
             { y: respuestaUno, color: this.obtenerColorPorPromedio(respuestaUno) },
             { y: respuestaDos, color: this.obtenerColorPorPromedio(respuestaDos) },
-            { y: respuestaTres, color: this.obtenerColorPorPromedio(respuestaTres) }
-          ]
-        }
-      ]
+            { y: respuestaTres, color: this.obtenerColorPorPromedio(respuestaTres) },
+          ],
+        },
+      ],
     };
   }
-
+  
   calcularPromedio(respuesta: keyof Feedback): number {
     if (this.productos.length === 0) return 0;
 

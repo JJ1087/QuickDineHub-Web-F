@@ -88,7 +88,7 @@
         </div>
         <div class="resumen-item">
             <span>Precio Total:</span>
-            <span>{{precioTotalGeneral}}</span> <!-- Ejemplo, puedes dinamizar esta parte con Angular -->
+            <span>${{precioTotalGeneral}}</span> <!-- Ejemplo, puedes dinamizar esta parte con Angular -->
         </div>
     </div>
     </div>
@@ -158,6 +158,43 @@
             <button (click)="mostrarFormularioCuenta = false">Cancelar</button>
 
         </div>
+
+<!-- Formulario para  motrarformulariofeedbackweb ------------------------------------------------------------------------------>
+<div class="overlay" *ngIf="motrarformulariofeedbackweb"></div> <!-- Overlay -->
+
+<div *ngIf="motrarformulariofeedbackweb" class="formulario-feedbackweb">
+  <h3>Ayúdanos a mejorar</h3>
+  
+  <div class="pregunta">
+    <label>¿Consideras que los pasos para completar tu compra fueron claros?</label>
+    <div class="respuestas">
+      <span (click)="seleccionarRespuesta(3, 'compra')" class="emoji" [class.seleccionado]="respuestas['compra'] === 3">😍</span>
+      <span (click)="seleccionarRespuesta(2, 'compra')" class="emoji" [class.seleccionado]="respuestas['compra'] === 2">😊</span>
+      <span (click)="seleccionarRespuesta(1, 'compra')" class="emoji" [class.seleccionado]="respuestas['compra'] === 1">😞</span>
+    </div>
+  </div>
+
+  <div class="pregunta">
+    <label>¿El diseño de la aplicación te resultó visualmente agradable?</label>
+    <div class="respuestas">
+      <span (click)="seleccionarRespuesta(3, 'diseno')" class="emoji" [class.seleccionado]="respuestas['diseno'] === 3">😍</span>
+      <span (click)="seleccionarRespuesta(2, 'diseno')" class="emoji" [class.seleccionado]="respuestas['diseno'] === 2">😊</span>
+      <span (click)="seleccionarRespuesta(1, 'diseno')" class="emoji" [class.seleccionado]="respuestas['diseno'] === 1">😞</span>
+    </div>
+  </div>
+
+  <div class="pregunta">
+    <label>¿Te resultó conveniente el uso de esta aplicación?</label>
+    <div class="respuestas">
+      <span (click)="seleccionarRespuesta(3, 'uso')" class="emoji" [class.seleccionado]="respuestas['uso'] === 3">😍</span>
+      <span (click)="seleccionarRespuesta(2, 'uso')" class="emoji" [class.seleccionado]="respuestas['uso'] === 2">😊</span>
+      <span (click)="seleccionarRespuesta(1, 'uso')" class="emoji" [class.seleccionado]="respuestas['uso'] === 1">😞</span>
+    </div>
+  </div>
+
+  <button class="boton-container" [disabled]="!respuestasCompletas()" (click)="enviarFeedback()">Enviar</button>
+</div>
+
          <!--<button class="comprar-button" (click)="realizarCompra()">Comprar</button>-->
         <!-- Integración del botón PayPal -->
         <!--  --->
@@ -166,8 +203,6 @@
         [onApprove]="onApprove"
         [fundingSource]="'paypal'">
         </app-paypal-button>
-
-       
 
         </div>
         </div>

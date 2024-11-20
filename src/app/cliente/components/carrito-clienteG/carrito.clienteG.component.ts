@@ -30,7 +30,7 @@ export class CarritoClienteComponentG implements OnInit {
   cantidadSeleccionada: number = 0; // Define la propiedad 'cantidadSeleccionada' y asigna un valor inicial
   subTotal: number = 0;
   precioTotal: number = 0; // Define la propiedad precioTotal y asigna un valor inicial
-  precioEnvio: number = 0; // Define la propiedad precioEnvio y asigna un valor inicial
+  precioEnvio: number = 30; // Define la propiedad precioEnvio y asigna un valor inicial
 
   mostrarFormularioCuenta = false;
   cuentas: any[] = [];
@@ -38,6 +38,8 @@ export class CarritoClienteComponentG implements OnInit {
 
   mostrarCompraExitosa: boolean = false;
   compraRealizada: boolean = false;
+
+  motrarformulariofeedbackweb: boolean = false;
 
 
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService, public dialog: MatDialog) { }
@@ -125,7 +127,7 @@ export class CarritoClienteComponentG implements OnInit {
   coloniaSeleccionada: string = '';
   colonia: string = "";
   idDireccion: string = "";
-  precioEnvio1: number = 0;
+  precioEnvio1: number = 30;
 
   seleccionarDireccion() {
     const selectedOption: any = this.coloniaSeleccionada;
@@ -148,17 +150,17 @@ export class CarritoClienteComponentG implements OnInit {
   obtenerPrecioEnvio(colonia: string): number {
     switch (colonia) {
       case "Capitan Antonio Reyes":
-        return 0;
+        return 30;
       case "Linda Vista":
-        return 2;
+        return 30;
       case "Hidalgo":
-        return 3;
+        return 30;
       case "Parque de poblamiento":
-        return 1;
+        return 30;
       case "Lomas de Chapultepec":
-        return 2;
+        return 30;
       default:
-        return 0;
+        return 30;
     }
   }
 
@@ -529,12 +531,7 @@ export class CarritoClienteComponentG implements OnInit {
     const productosPorRestaurante = this.agruparProductosPorRestaurante();
     console.log(productosPorRestaurante)
 
-    /*console.log(this.precioTotalGeneral)
-    this.authService.pagoCompra({ total_pago: this.precioTotalGeneral }).subscribe(data => {
-      window.open(data.url_pago)
-      console.log(data);
-    })*/
-
+  
     // Para cada grupo de productos del mismo restaurante, crear una orden de pedido
     for (const restauranteId in productosPorRestaurante) {
       if (productosPorRestaurante.hasOwnProperty(restauranteId)) {
@@ -622,7 +619,7 @@ export class CarritoClienteComponentG implements OnInit {
     );
   }
 
-  crearDetallesOrden(orderId: string, productos: any[]): void {
+crearDetallesOrden(orderId: string, productos: any[]): void {
     console.log('Detalle de orden llegando a funcion:', productos);
     // Verificar si se va a crear más de un detalle de orden
     if (productos.length > 1) {
@@ -665,7 +662,9 @@ export class CarritoClienteComponentG implements OnInit {
               setTimeout(() => {
                 //this.resetearValores();
                 this.mostrarCompraExitosa = true;
+                this.verificarFeedback();
                 this.compraRealizada = true;
+                
               }, 1000);
 
               if (this.noProductos1 === 2) {
@@ -725,8 +724,9 @@ export class CarritoClienteComponentG implements OnInit {
   //---------------------------------------------------------------------
   realizarCompra1() {
     this.mostrarCompraExitosa = true;
+    this.verificarFeedback();
     this.compraRealizada = true;
-
+    
   }
   seguirComprando() {
     this.router.navigateByUrl('/inicio-cliente');
@@ -778,22 +778,82 @@ createOrder = (data: any, actions: any): Promise<any> => {
 
 onApprove = async (data: any, actions: any): Promise<any> => {
   try {
-    // Captura el pedido de PayPal
+    console.log('Aprobación iniciada:', data);
+
+    // Captura la orden de PayPal
     const order = await actions.order.capture();
     console.log('Orden capturada:', order);
 
-    // Lógica para realizar la compra
-    this.realizarCompra();
+    if (order.status === 'COMPLETED') {
+      console.log('El pago se completó correctamente.');
 
-    // Mostrar mensaje de éxito u otras acciones
-    alert('Pago completado con éxito.');
+      // Lógica para manejar el pago en el backend
+     this.realizarCompra();
+
+      // Redirige al usuario o actualiza la vista
+      this.router.navigateByUrl('/compra-exitosa'); // Asegúrate de tener esta ruta configurada.
+    } else {
+      console.error('Estado de la orden inesperado:', order.status);
+      alert('El pago no se completó correctamente.');
+    }
   } catch (error) {
     console.error('Error al capturar la orden:', error);
-    alert(`Error al completar el pago: ${error}`);
-    throw error;
+    alert('Hubo un problema al completar el pago.');
+  }
+};
+
+
+
+respuestas: { [key: string]: number } = {};
+
+verificarFeedback(): void {
+  this.authService.verificarFeedbackweb(this.idCliente).subscribe(
+    (response: boolean) => {
+      // response será true o false directamente
+      this.motrarformulariofeedbackweb = !response; // Muestra el formulario solo si response es false
+    },
+    (error) => {
+      console.error('Error al verificar feedback:', error);
+    }
+  );
+}
+
+respuestasCompletas(): boolean {
+  return (
+    this.respuestas['compra'] !== undefined &&
+    this.respuestas['diseno'] !== undefined &&
+    this.respuestas['uso'] !== undefined
+  );
+}
+
+  seleccionarRespuesta(valor: number, pregunta: string) {
+    this.respuestas[pregunta] = valor;
+    console.log(`Pregunta: ${pregunta}, Respuesta: ${valor}`);
+  }
+
+  enviarFeedback() {
+    if (this.respuestasCompletas()) {
+      // Crear el objeto con los datos desglosados
+      const feedbackData = {
+        idCliente: this.idCliente,
+        respuestaUno: this.respuestas['compra'], // Respuesta de "compra"
+        respuestaDos: this.respuestas['diseno'], // Respuesta de "diseño"
+        respuestaTres: this.respuestas['uso'], // Respuesta de "uso"
+      };
+
+      this.authService.registrarFeedbackweb(feedbackData).subscribe(
+        (response) => {
+          console.log('DATOS ENVIADOS:', feedbackData);
+          console.log('Feedback enviado exitosamente:', response);
+          this.motrarformulariofeedbackweb = false; // Oculta el formulario tras enviar
+        },
+        (error) => {
+          console.error('Error al enviar feedback:', error);
+        }
+      );
+    } else {
+      console.log('Por favor completa todas las preguntas.');
+    }
   }
 }
-
-}
-
 

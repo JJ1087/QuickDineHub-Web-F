@@ -286,7 +286,7 @@ obtenerHoraActual(): string {
       console.error("El entorno no admite 'localStorage'.");
 
 
-    }
+    } //schedule
 
   }
 

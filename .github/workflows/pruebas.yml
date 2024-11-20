@@ -41,6 +41,7 @@ jobs:
         run: npm run start &
         env:
           CI: true
+          
 
       # 5. Esperar a que el servidor esté arriba
       # - name: Wait for Angular App to be available

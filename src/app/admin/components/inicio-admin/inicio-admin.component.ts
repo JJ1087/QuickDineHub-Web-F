@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InicioService, Feedback, Feedbackweb } from '../../services/inicio.service';
 import * as Highcharts from 'highcharts';
-
+//Comentario de prueba, borras despues
 
 @Component({
   selector: 'app-inicio-admin',

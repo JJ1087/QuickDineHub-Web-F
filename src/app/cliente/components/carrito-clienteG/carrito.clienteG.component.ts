@@ -127,6 +127,7 @@ export class CarritoClienteComponentG implements OnInit {
   coloniaSeleccionada: string = '';
   colonia: string = "";
   idDireccion: string = "";
+  
   precioEnvio1: number = 30;
 
   seleccionarDireccion() {

@@ -68,9 +68,9 @@ export class InicioAdminComponent implements OnInit {
       },
       xAxis: {
         categories: [
-          `Respuesta Uno<br>😍=${respuestaUnoConteo[3]} 🙂=${respuestaUnoConteo[2]} 🙁=${respuestaUnoConteo[1]}`,
-          `Respuesta Dos<br>😍=${respuestaDosConteo[3]} 🙂=${respuestaDosConteo[2]} 🙁=${respuestaDosConteo[1]}`,
-          `Respuesta Tres<br>😍=${respuestaTresConteo[3]} 🙂=${respuestaTresConteo[2]} 🙁=${respuestaTresConteo[1]}`
+          `Respuestas pregunta 1:<br>😍=${respuestaUnoConteo[3]} 🙂=${respuestaUnoConteo[2]} 🙁=${respuestaUnoConteo[1]}`,
+          `Respuestas pregunta 2:<br>😍=${respuestaDosConteo[3]} 🙂=${respuestaDosConteo[2]} 🙁=${respuestaDosConteo[1]}`,
+          `Respuestas pregunta 3:<br>😍=${respuestaTresConteo[3]} 🙂=${respuestaTresConteo[2]} 🙁=${respuestaTresConteo[1]}`
         ],
         labels: {
           useHTML: true
@@ -128,9 +128,9 @@ export class InicioAdminComponent implements OnInit {
       },
       xAxis: {
         categories: [
-          `Respuesta Uno<br>😍=${respuestaUnoConteo[3]} 🙂=${respuestaUnoConteo[2]} 🙁=${respuestaUnoConteo[1]}`,
-          `Respuesta Dos<br>😍=${respuestaDosConteo[3]} 🙂=${respuestaDosConteo[2]} 🙁=${respuestaDosConteo[1]}`,
-          `Respuesta Tres<br>😍=${respuestaTresConteo[3]} 🙂=${respuestaTresConteo[2]} 🙁=${respuestaTresConteo[1]}`
+          `Respuestas pregunta 1: <br>😍=${respuestaUnoConteo[3]} 🙂=${respuestaUnoConteo[2]} 🙁=${respuestaUnoConteo[1]}`,
+          `Respuestas pregunta 2:<br>😍=${respuestaDosConteo[3]} 🙂=${respuestaDosConteo[2]} 🙁=${respuestaDosConteo[1]}`,
+          `Respuestas pregunta 3:<br>😍=${respuestaTresConteo[3]} 🙂=${respuestaTresConteo[2]} 🙁=${respuestaTresConteo[1]}`
         ],
         labels: {
           useHTML: true

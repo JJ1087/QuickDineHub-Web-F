@@ -191,7 +191,7 @@ export class InicioAdminComponent implements OnInit {
     if (promedio === 3) {
       return 'green'; // Verde
     } else if (promedio >= 2 && promedio < 3) {
-      return 'yellow'; // Amarillo
+      return 'orange'; // naranja
     } else if (promedio >= 1 && promedio < 2) {
       return 'red'; // Rojo
     }

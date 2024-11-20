@@ -10,27 +10,23 @@ import { isPlatformBrowser } from '@angular/common';
 export class PaypalButtonComponent implements AfterViewInit {
   @Input() createOrder?: (data: any, actions: any) => Promise<any>;
   @Input() onApprove?: (data: any, actions: any) => Promise<any>;
-  @Input() fundingSource: string = 'paypal'; // Fuente de financiamiento (PayPal por defecto)
+  @Input() fundingSource: string = 'paypal'; // Nueva entrada para fundingSource
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
-  ngAfterViewInit() {
-    // Verifica si estamos en un entorno de navegador
+  ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Verifica si PayPal está disponible en el objeto window
       if ((window as any).paypal) {
         (window as any).paypal.Buttons({
           createOrder: this.createOrder,
           onApprove: this.onApprove,
           fundingSource: this.fundingSource
-        }).render('#paypal-button-container'); // Renderiza el botón de PayPal
+        }).render('#paypal-button-container'); // Aquí renderizamos el botón
       } else {
-        console.error('El SDK de PayPal no está disponible. Asegúrate de que se haya cargado correctamente.');
+        console.error('PayPal SDK no está disponible.');
       }
     } else {
-      console.warn('El componente PayPal no se puede renderizar fuera del navegador.');
+      console.warn('Intento de ejecutar código en un entorno no navegador.');
     }
   }
 }
-
-

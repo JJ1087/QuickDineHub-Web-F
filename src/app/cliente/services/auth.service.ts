@@ -239,4 +239,14 @@ registrarError(errorDetails: string, errorType: string): Observable<any> {
     return this.httpClient.post<{url_pago:string}>(`${this.AUTH_SERVER}/pago`,data)
   }
 
+  //feedback
+
+  registrarFeedbackweb(data: any): Observable<any> {
+    return this.httpClient.post(`${this.AUTH_SERVER}/feedbackweb`, data);
+  }
+
+  verificarFeedbackweb(idCliente: string): Observable<any> {
+    return this.httpClient.get(`${this.AUTH_SERVER}/feedbacksweb/existe/${idCliente}`);
+  }
+
 }

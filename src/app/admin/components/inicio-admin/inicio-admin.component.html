@@ -1,0 +1,24 @@
+<app-header-admin></app-header-admin>
+
+<nav>
+  <a routerLink="/inicio-admin" class="current">Inicio</a>
+  <a routerLink="/admin-activacion-perfiles">Activacion/Desactivación</a>
+  <a routerLink="/admin-perfiles">acceso de clientes</a>
+  <a routerLink="/admn-pagos">Pagos</a>
+</nav>
+
+<div>
+    <highcharts-chart
+      [Highcharts]="Highcharts"
+      [options]="chartOptions"
+      style="width: 100%; height: 400px; display: block;"
+    ></highcharts-chart>
+  </div>
+  
+  <div>
+    <highcharts-chart
+      [Highcharts]="Highcharts"
+      [options]="chartOptionsweb"
+      style="width: 100%; height: 400px; display: block;"
+    ></highcharts-chart>
+  </div>

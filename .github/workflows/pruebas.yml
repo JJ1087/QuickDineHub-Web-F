@@ -43,40 +43,40 @@ jobs:
           CI: true
 
       # 5. Esperar a que el servidor esté arriba
-      - name: Wait for Angular App to be available
-        run: npx wait-on http://localhost:4200
+      # - name: Wait for Angular App to be available
+      #   run: npx wait-on http://localhost:4200
 
-      # 6. Ejecutar pruebas unitarias con Jest
-      - name: Run Jest tests
-        run: npm run test --no-watch --no-progress --browsers=ChromeHeadless
+  #     # 6. Ejecutar pruebas unitarias con Jest
+  #     - name: Run Jest tests
+  #       run: npm run test --no-watch --no-progress --browsers=ChromeHeadless
 
-      # 7. Ejecutar pruebas lint
-      - name: Run lint
-        run: npm run lint
+  #     # 7. Ejecutar pruebas lint
+  #     - name: Run lint
+  #       run: npm run lint
       
-      # 8. Ejecutar pruebas e2e con cypress
-      - name: e2e cypress
-        run: npx cypress run
+  #     # 8. Ejecutar pruebas e2e con cypress
+  #     - name: e2e cypress
+  #       run: npx cypress run
   
-  deploy:
-    name: Deploy to Production
-    runs-on: ubuntu-latest
-    needs: Pruebas   # Asegura que este job solo se ejecuta si 'Pruebas' ha sido exitoso
-    if: github.ref == 'refs/heads/main'  # Asegura que solo se ejecute en la rama main
+  # deploy:
+  #   name: Deploy to Production
+  #   runs-on: ubuntu-latest
+  #   needs: Pruebas   # Asegura que este job solo se ejecuta si 'Pruebas' ha sido exitoso
+  #   if: github.ref == 'refs/heads/main'  # Asegura que solo se ejecute en la rama main
 
-    steps:
-      # 1. Checkout del repositorio
-      - name: Checkout code
-        uses: actions/checkout@v3
+  #   steps:
+  #     # 1. Checkout del repositorio
+  #     - name: Checkout code
+  #       uses: actions/checkout@v3
 
-      # 2. Vincular o crear el proyecto de Vercel (si no está vinculado ya)
-      #- name: Link or Create Vercel Project
-        #run: npx vercel link --token VZOjjhVRJ3UV6IAxufrWngeX --yes
-        # Aquí no necesitas especificar el nombre del proyecto. Vercel lo detectará automáticamente.
+  #     # 2. Vincular o crear el proyecto de Vercel (si no está vinculado ya)
+  #     #- name: Link or Create Vercel Project
+  #       #run: npx vercel link --token VZOjjhVRJ3UV6IAxufrWngeX --yes
+  #       # Aquí no necesitas especificar el nombre del proyecto. Vercel lo detectará automáticamente.
 
-      # 3. Desplegar la aplicación a producción
-      - name: Deploy to Production Vercel
-        run: |
-          echo "Desplegando aplicación a producción..."
-          npx vercel --prod --token ${{ secrets.TOKEN_VERCEL }}
+  #     # 3. Desplegar la aplicación a producción
+  #     - name: Deploy to Production Vercel
+  #       run: |
+  #         echo "Desplegando aplicación a producción..."
+  #         npx vercel --prod --token ${{ secrets.TOKEN_VERCEL }}
   

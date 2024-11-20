@@ -9,6 +9,13 @@ export interface Feedback {
     respuestaTres: number;
   }
 
+  export interface Feedbackweb {
+    _id: string;
+    respuestaUno: number;
+    respuestaDos: number;
+    respuestaTres: number;
+  }
+
 @Injectable({
   providedIn: 'root',
 })
@@ -20,5 +27,9 @@ export class InicioService {
   // Método para obtener la información de los productos
   obtenerFeedbacks(): Observable<Feedback[]> {
     return this.http.get<Feedback[]>(`${this.apiUrl}/info-feedback`);
+  }
+
+  obtenerFeedbacksweb(): Observable<Feedbackweb[]> {
+    return this.http.get<Feedbackweb[]>(`${this.apiUrl}/info-feedbackweb`);
   }
 }

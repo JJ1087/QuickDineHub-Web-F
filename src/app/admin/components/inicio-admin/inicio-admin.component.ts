@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { InicioService, Feedback, Feedbackweb } from '../../services/inicio.service';
+
 import * as Highcharts from 'highcharts/highstock';
 
 @Component({

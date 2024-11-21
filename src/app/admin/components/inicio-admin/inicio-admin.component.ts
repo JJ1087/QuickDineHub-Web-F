@@ -15,8 +15,16 @@ export class InicioAdminComponent implements OnInit {
 
   Highcharts: typeof Highcharts = Highcharts;// Referencia de Highcharts
 
-  chartOptions: Highcharts.Options = {}; // Configuración del gráfico
-  chartOptionsweb: Highcharts.Options = {}; // Web
+  //chartOptions: Highcharts.Options = {}; // Configuración del gráfico
+  //chartOptionsweb: Highcharts.Options = {}; // Web
+
+  chartOptionsPreguntaUno: Highcharts.Options= {};
+  chartOptionsPreguntaDos: Highcharts.Options= {};
+  chartOptionsPreguntaTres: Highcharts.Options= {};
+
+  chartOptionswebPreguntaUno: Highcharts.Options= {};
+  chartOptionswebPreguntaDos: Highcharts.Options= {};
+  chartOptionswebPreguntaTres: Highcharts.Options= {};
 
   constructor(
     private inicioService: InicioService,
@@ -49,82 +57,109 @@ export class InicioAdminComponent implements OnInit {
   }
 
   configurarGrafica(): void {
-    const respuestaUno = this.calcularPromedio('respuestaUno');
-    const respuestaDos = this.calcularPromedio('respuestaDos');
-    const respuestaTres = this.calcularPromedio('respuestaTres');
-  
+    // Calculamos el conteo de respuestas para cada pregunta
     const respuestaUnoConteo = this.calcularConteos('respuestaUno');
     const respuestaDosConteo = this.calcularConteos('respuestaDos');
     const respuestaTresConteo = this.calcularConteos('respuestaTres');
   
+    // Total de encuestas
     const totalEncuestas = this.productos.length;
   
-    this.chartOptions = {
+    // Datos para las gráficas de pastel, agrupados por pregunta
+    const datosPreguntaUno = [
+      { name: '😍', y: respuestaUnoConteo[3], color: '#298d02' }, // Respuesta 3
+      { name: '🙂', y: respuestaUnoConteo[2], color: '#ffa600' }, // Respuesta 2
+      { name: '🙁', y: respuestaUnoConteo[1], color: '#ff0000' }, // Respuesta 1
+    ];
+  
+    const datosPreguntaDos = [
+      { name: '😍', y: respuestaDosConteo[3], color: '#298d02' }, // Respuesta 3
+      { name: '🙂', y: respuestaDosConteo[2], color: '#ffa600' }, // Respuesta 2
+      { name: '🙁', y: respuestaDosConteo[1], color: '#ff0000' }, // Respuesta 1
+    ];
+  
+    const datosPreguntaTres = [
+      { name: '😍', y: respuestaTresConteo[3], color: '#298d02' }, // Respuesta 3
+      { name: '🙂', y: respuestaTresConteo[2], color: '#ffa600' }, // Respuesta 2
+      { name: '🙁', y: respuestaTresConteo[1], color: '#ff0000' }, // Respuesta 1
+    ];
+  
+    // Configuración para la primera gráfica
+    this.chartOptionsPreguntaUno = {
       chart: {
-        type: 'column',
+        type: 'pie',
       },
       title: {
-        text: 'PROMEDIO RESPUESTAS DEL SITIO MÓVIL',
-      },
-      xAxis: {
-        categories: ['😍', '🙂', '🙁'], // Solo los emojis debajo
-        labels: {
-          useHTML: true,
-          formatter: function () {
-            const emojis = [
-              `😍=${respuestaUnoConteo[3]} 🙂=${respuestaUnoConteo[2]} 🙁=${respuestaUnoConteo[1]}`,
-              `😍=${respuestaDosConteo[3]} 🙂=${respuestaDosConteo[2]} 🙁=${respuestaDosConteo[1]}`,
-              `😍=${respuestaTresConteo[3]} 🙂=${respuestaTresConteo[2]} 🙁=${respuestaTresConteo[1]}`,
-            ];
-            return `<span style="font-size:14px;">${emojis[this.pos]}</span>`;
-          },
-          align: 'center',
-          style: {
-            fontSize: '14px',
-          },
-        },
-      },
-      yAxis: {
-        title: {
-          text: 'Promedio',
-        },
-      },
-      plotOptions: {
-        column: {
-          dataLabels: {
-            enabled: true,
-            formatter: function () {
-              const preguntas = [
-                '¿Consideras que los pasos para completar tu compra fueron claros?',
-                '¿El diseño de la aplicación te resultó visualmente agradable?',
-                '¿Te resultó conveniente el uso de esta aplicación?',
-              ];
-              const index = this.point?.index ?? 0; // Si `index` es null, usar 0
-              return `<div style="text-align: center; font-size: 12px;">
-                        <strong>${preguntas[index]}</strong>
-                      </div>`;
-            },
-            useHTML: true,
-            style: {
-              fontSize: '14px',
-              color: '#000',
-            },
-          },
-        },
+        text: 'Pregunta 1: ¿Consideras que los pasos para completar tu compra fueron claros?',
       },
       series: [
         {
-          type: 'column',
-          name: `Total Encuestas: ${totalEncuestas}`,
-          data: [
-            { y: respuestaUno, color: this.obtenerColorPorPromedio(respuestaUno) },
-            { y: respuestaDos, color: this.obtenerColorPorPromedio(respuestaDos) },
-            { y: respuestaTres, color: this.obtenerColorPorPromedio(respuestaTres) },
-          ],
+          type: 'pie',
+          name: 'Respuestas',
+          data: datosPreguntaUno,
+          innerSize: '50%',
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}: {point.y}',
+            style: {
+              fontSize: '14px',
+            },
+          },
+        },
+      ],
+    };
+  
+    // Configuración para la segunda gráfica
+    this.chartOptionsPreguntaDos = {
+      chart: {
+        type: 'pie',
+      },
+      title: {
+        text: 'Pregunta 2: ¿El diseño de la aplicación te resultó visualmente agradable?',
+      },
+      series: [
+        {
+          type: 'pie',
+          name: 'Respuestas',
+          data: datosPreguntaDos,
+          innerSize: '50%',
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}: {point.y}',
+            style: {
+              fontSize: '14px',
+            },
+          },
+        },
+      ],
+    };
+  
+    // Configuración para la tercera gráfica
+    this.chartOptionsPreguntaTres = {
+      chart: {
+        type: 'pie',
+      },
+      title: {
+        text: 'Pregunta 3: ¿Te resultó conveniente el uso de esta aplicación?',
+      },
+      series: [
+        {
+          type: 'pie',
+          name: 'Respuestas',
+          data: datosPreguntaTres,
+          innerSize: '50%',
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}: {point.y}',
+            style: {
+              fontSize: '14px',
+            },
+          },
         },
       ],
     };
   }
+  
   
   feedBacksweb(): void {
     this.inicioService.obtenerFeedbacksweb().subscribe(
@@ -140,82 +175,110 @@ export class InicioAdminComponent implements OnInit {
   }
 
   configurarGraficaweb(): void {
-    const respuestaUno = this.calcularPromedioweb('respuestaUno');
-    const respuestaDos = this.calcularPromedioweb('respuestaDos');
-    const respuestaTres = this.calcularPromedioweb('respuestaTres');
-  
+    // Calculamos los conteos de respuestas para cada pregunta
     const respuestaUnoConteo = this.calcularConteosweb('respuestaUno');
     const respuestaDosConteo = this.calcularConteosweb('respuestaDos');
     const respuestaTresConteo = this.calcularConteosweb('respuestaTres');
   
-    const totalEncuestas = this.productosweb.length;
+    // Total de encuestas para el sitio web
+    const totalEncuestasWeb = this.productosweb.length;
   
-    this.chartOptionsweb = {
+    // Datos para las gráficas de pastel, agrupados por pregunta
+    const datosPreguntaUno = [
+      { name: '😍', y: respuestaUnoConteo[3], color: '#298d02' }, // Respuesta 3
+      { name: '🙂', y: respuestaUnoConteo[2], color: '#ffa600' }, // Respuesta 2
+      { name: '🙁', y: respuestaUnoConteo[1], color: '#ff0000' }, // Respuesta 1
+    ];
+  
+    const datosPreguntaDos = [
+      { name: '😍', y: respuestaDosConteo[3], color: '#298d02' }, // Respuesta 3
+      { name: '🙂', y: respuestaDosConteo[2], color: '#ffa600' }, // Respuesta 2
+      { name: '🙁', y: respuestaDosConteo[1], color: '#ff0000' }, // Respuesta 1
+    ];
+  
+    const datosPreguntaTres = [
+      { name: '😍', y: respuestaTresConteo[3], color: '#298d02' }, // Respuesta 3
+      { name: '🙂', y: respuestaTresConteo[2], color: '#ffa600' }, // Respuesta 2
+      { name: '🙁', y: respuestaTresConteo[1], color: '#ff0000' }, // Respuesta 1
+    ];
+  
+    // Configuración para la primera gráfica
+    this.chartOptionswebPreguntaUno = {
       chart: {
-        type: 'column',
+        type: 'pie',
       },
       title: {
-        text: 'PROMEDIO RESPUESTAS DEL SITIO WEB',
-      },
-      xAxis: {
-        categories: ['😍', '🙂', '🙁'], // Solo emojis en el eje X
-        labels: {
-          useHTML: true,
-          formatter: function () {
-            const emojis = [
-              `😍=${respuestaUnoConteo[3]} 🙂=${respuestaUnoConteo[2]} 🙁=${respuestaUnoConteo[1]}`,
-              `😍=${respuestaDosConteo[3]} 🙂=${respuestaDosConteo[2]} 🙁=${respuestaDosConteo[1]}`,
-              `😍=${respuestaTresConteo[3]} 🙂=${respuestaTresConteo[2]} 🙁=${respuestaTresConteo[1]}`,
-            ];
-            return `<span style="font-size:14px;">${emojis[this.pos]}</span>`;
-          },
-          align: 'center',
-          style: {
-            fontSize: '14px',
-          },
-        },
-      },
-      yAxis: {
-        title: {
-          text: 'Promedio',
-        },
-      },
-      plotOptions: {
-        column: {
-          dataLabels: {
-            enabled: true,
-            formatter: function () {
-              const preguntas = [
-                '¿Consideras que los pasos para completar tu compra fueron claros?',
-                '¿El diseño de la aplicación te resultó visualmente agradable?',
-                '¿Te resultó conveniente el uso de esta aplicación?',
-              ];
-              const index = this.point?.index ?? 0; // Si `index` es null, usar 0
-              return `<div style="text-align: center; font-size: 12px;">
-                        <strong>${preguntas[index]}</strong>
-                      </div>`;
-            },
-            useHTML: true,
-            style: {
-              fontSize: '14px',
-              color: '#000',
-            },
-          },
-        },
+        text: 'Pregunta 1 (Web): ¿Consideras que los pasos para completar tu compra fueron claros?',
       },
       series: [
         {
-          type: 'column',
-          name: `Total Encuestas: ${totalEncuestas}`,
-          data: [
-            { y: respuestaUno, color: this.obtenerColorPorPromedio(respuestaUno) },
-            { y: respuestaDos, color: this.obtenerColorPorPromedio(respuestaDos) },
-            { y: respuestaTres, color: this.obtenerColorPorPromedio(respuestaTres) },
-          ],
+          type: 'pie',
+          name: 'Respuestas',
+          data: datosPreguntaUno,
+          innerSize: '50%',
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}: {point.y}',
+            style: {
+              fontSize: '14px',
+            },
+          },
+        },
+      ],
+    };
+  
+    // Configuración para la segunda gráfica
+    this.chartOptionswebPreguntaDos = {
+      chart: {
+        type: 'pie',
+      },
+      title: {
+        text: 'Pregunta 2 (Web): ¿El diseño del sitio web te resultó visualmente agradable?',
+      },
+      series: [
+        {
+          type: 'pie',
+          name: 'Respuestas',
+          data: datosPreguntaDos,
+          innerSize: '50%',
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}: {point.y}',
+            style: {
+              fontSize: '14px',
+            },
+          },
+        },
+      ],
+    };
+  
+    // Configuración para la tercera gráfica
+    this.chartOptionswebPreguntaTres = {
+      chart: {
+        type: 'pie',
+      },
+      title: {
+        text: 'Pregunta 3 (Web): ¿Te resultó conveniente el uso del sitio web?',
+      },
+      series: [
+        {
+          type: 'pie',
+          name: 'Respuestas',
+          data: datosPreguntaTres,
+          innerSize: '50%',
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}: {point.y}',
+            style: {
+              fontSize: '14px',
+            },
+          },
         },
       ],
     };
   }
+  
+  
   
   calcularPromedio(respuesta: keyof Feedback): number {
     if (this.productos.length === 0) return 0;
@@ -266,9 +329,9 @@ export class InicioAdminComponent implements OnInit {
   }
 
   obtenerColorPorPromedio(promedio: number): string {
-    if (promedio === 3) return 'green';
-    if (promedio >= 2) return 'orange';
-    if (promedio >= 1) return 'red';
-    return 'gray';
+    if (promedio >= 2.5 || promedio == 3) return 'green'; // Verde: 3 a 2.5
+    if (promedio < 2.5 && promedio >= 1.5) return 'orange'; // Naranja: Menos de 2.5 a 1.5
+    if (promedio < 1.5) return 'red'; // Rojo: Menos de 1.5
+    return 'gray'; // Por defecto: Gris para valores fuera de rango
   }
 }

@@ -27,9 +27,27 @@ nav {
   }
   
   nav a.current {
-    background-color: #ff8c00;
+    background-color: #ffa600;
     color: #fff;
   }
   
+
+  .chart-container {
+    display: flex;           /* Usa flexbox para alinear los elementos en una fila */
+    justify-content: space-between;  /* Espacio entre los gráficos */
+    gap: 20px;               /* Opcional: Espacio entre los gráficos */
+    flex-wrap: wrap;         /* Esto permite que los gráficos se ajusten si el espacio es muy pequeño */
+  }
   
+  highcharts-chart {
+    width: 30%;              /* Ajusta el tamaño de cada gráfico para que quepan bien en la fila */
+    height: 400px;           /* Ajusta la altura de los gráficos según sea necesario */
+  }
+  
+  .chart-title {
+    font-size: 24px;          /* Ajusta el tamaño de la fuente */
+    font-weight: bold;        /* Pone el texto en negritas */
+    text-align: center;       /* Centra el texto */
+    margin-bottom: 20px;      /* Agrega un espacio debajo del título */
+  }
   

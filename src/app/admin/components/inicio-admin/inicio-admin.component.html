@@ -7,18 +7,18 @@
   <a routerLink="/admn-pagos">Pagos</a>
 </nav>
 
-<div>
-    <highcharts-chart
-      [Highcharts]="Highcharts"
-      [options]="chartOptions"
-      style="width: 100%; height: 400px; display: block;"
-    ></highcharts-chart>
-  </div>
-  
-  <div>
-    <highcharts-chart
-      [Highcharts]="Highcharts"
-      [options]="chartOptionsweb"
-      style="width: 100%; height: 400px; display: block;"
-    ></highcharts-chart>
-  </div>
+
+<h2 class="chart-title">FEEDBACK DE USUARIOS DE LA APLICACIÓN MÓVIL</h2>
+<div class="chart-container">  
+  <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptionsPreguntaUno"></highcharts-chart>
+  <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptionsPreguntaDos"></highcharts-chart>
+  <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptionsPreguntaTres"></highcharts-chart>
+</div>
+<br>
+<h2 class="chart-title">FEEDBACK DE USUARIOS DEL SITIO WEB</h2>
+
+<div class="chart-container" style="display: flex; justify-content: space-around;">
+  <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptionswebPreguntaUno"></highcharts-chart>
+  <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptionswebPreguntaDos"></highcharts-chart>
+  <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptionswebPreguntaTres"></highcharts-chart>
+</div>

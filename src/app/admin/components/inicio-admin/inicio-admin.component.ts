@@ -61,104 +61,114 @@ export class InicioAdminComponent implements OnInit {
     const respuestaUnoConteo = this.calcularConteos('respuestaUno');
     const respuestaDosConteo = this.calcularConteos('respuestaDos');
     const respuestaTresConteo = this.calcularConteos('respuestaTres');
-  
+
     // Total de encuestas
     const totalEncuestas = this.productos.length;
-  
+
     // Datos para las gráficas de pastel, agrupados por pregunta
     const datosPreguntaUno = [
-      { name: '😍', y: respuestaUnoConteo[3], color: '#298d02' }, // Respuesta 3
-      { name: '🙂', y: respuestaUnoConteo[2], color: '#ffa600' }, // Respuesta 2
-      { name: '🙁', y: respuestaUnoConteo[1], color: '#ff0000' }, // Respuesta 1
+        { name: '😍', y: respuestaUnoConteo[3], color: '#298d02' }, // Respuesta 3
+        { name: '🙂', y: respuestaUnoConteo[2], color: '#ffa600' }, // Respuesta 2
+        { name: '🙁', y: respuestaUnoConteo[1], color: '#ff0000' }, // Respuesta 1
     ];
-  
+
     const datosPreguntaDos = [
-      { name: '😍', y: respuestaDosConteo[3], color: '#298d02' }, // Respuesta 3
-      { name: '🙂', y: respuestaDosConteo[2], color: '#ffa600' }, // Respuesta 2
-      { name: '🙁', y: respuestaDosConteo[1], color: '#ff0000' }, // Respuesta 1
+        { name: '😍', y: respuestaDosConteo[3], color: '#298d02' }, // Respuesta 3
+        { name: '🙂', y: respuestaDosConteo[2], color: '#ffa600' }, // Respuesta 2
+        { name: '🙁', y: respuestaDosConteo[1], color: '#ff0000' }, // Respuesta 1
     ];
-  
+
     const datosPreguntaTres = [
-      { name: '😍', y: respuestaTresConteo[3], color: '#298d02' }, // Respuesta 3
-      { name: '🙂', y: respuestaTresConteo[2], color: '#ffa600' }, // Respuesta 2
-      { name: '🙁', y: respuestaTresConteo[1], color: '#ff0000' }, // Respuesta 1
+        { name: '😍', y: respuestaTresConteo[3], color: '#298d02' }, // Respuesta 3
+        { name: '🙂', y: respuestaTresConteo[2], color: '#ffa600' }, // Respuesta 2
+        { name: '🙁', y: respuestaTresConteo[1], color: '#ff0000' }, // Respuesta 1
     ];
-  
+
     // Configuración para la primera gráfica
     this.chartOptionsPreguntaUno = {
-      chart: {
-        type: 'pie',
-      },
-      title: {
-        text: 'Pregunta 1: ¿Consideras que los pasos para completar tu compra fueron claros?',
-      },
-      series: [
-        {
-          type: 'pie',
-          name: 'Respuestas',
-          data: datosPreguntaUno,
-          innerSize: '50%',
-          dataLabels: {
-            enabled: true,
-            format: '{point.name}: {point.y}',
-            style: {
-              fontSize: '14px',
-            },
-          },
+        chart: {
+            type: 'pie',
         },
-      ],
+        title: {
+            text: 'Pregunta 1: ¿Consideras que los pasos para completar tu compra fueron claros?',
+        },
+        subtitle: {
+            text: `Total de respuestas: ${totalEncuestas}`,
+        },
+        series: [
+            {
+                type: 'pie',
+                name: 'Respuestas',
+                data: datosPreguntaUno,
+                innerSize: '50%',
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}: {point.y}',
+                    style: {
+                        fontSize: '14px',
+                    },
+                },
+            },
+        ],
     };
-  
+
     // Configuración para la segunda gráfica
     this.chartOptionsPreguntaDos = {
-      chart: {
-        type: 'pie',
-      },
-      title: {
-        text: 'Pregunta 2: ¿El diseño de la aplicación te resultó visualmente agradable?',
-      },
-      series: [
-        {
-          type: 'pie',
-          name: 'Respuestas',
-          data: datosPreguntaDos,
-          innerSize: '50%',
-          dataLabels: {
-            enabled: true,
-            format: '{point.name}: {point.y}',
-            style: {
-              fontSize: '14px',
-            },
-          },
+        chart: {
+            type: 'pie',
         },
-      ],
+        title: {
+            text: 'Pregunta 2: ¿El diseño de la aplicación te resultó visualmente agradable?',
+        },
+        subtitle: {
+            text: `Total de respuestas: ${totalEncuestas}`,
+        },
+        series: [
+            {
+                type: 'pie',
+                name: 'Respuestas',
+                data: datosPreguntaDos,
+                innerSize: '50%',
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}: {point.y}',
+                    style: {
+                        fontSize: '14px',
+                    },
+                },
+            },
+        ],
     };
-  
+
     // Configuración para la tercera gráfica
     this.chartOptionsPreguntaTres = {
-      chart: {
-        type: 'pie',
-      },
-      title: {
-        text: 'Pregunta 3: ¿Te resultó conveniente el uso de esta aplicación?',
-      },
-      series: [
-        {
-          type: 'pie',
-          name: 'Respuestas',
-          data: datosPreguntaTres,
-          innerSize: '50%',
-          dataLabels: {
-            enabled: true,
-            format: '{point.name}: {point.y}',
-            style: {
-              fontSize: '14px',
-            },
-          },
+        chart: {
+            type: 'pie',
         },
-      ],
+        title: {
+            text: 'Pregunta 3: ¿Te resultó conveniente el uso de esta aplicación?',
+        },
+        subtitle: {
+            text: `Total de respuestas: ${totalEncuestas}`,
+        },
+        series: [
+            {
+                type: 'pie',
+                name: 'Respuestas',
+                data: datosPreguntaTres,
+                innerSize: '50%',
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}: {point.y}',
+                    style: {
+                        fontSize: '14px',
+                    },
+                },
+            },
+        ],
     };
-  }
+}
+
   
   
   feedBacksweb(): void {
@@ -210,6 +220,9 @@ export class InicioAdminComponent implements OnInit {
       title: {
         text: 'Pregunta 1 (Web): ¿Consideras que los pasos para completar tu compra fueron claros?',
       },
+      subtitle: {
+        text: `Total de respuestas: ${totalEncuestasWeb}`,
+    },
       series: [
         {
           type: 'pie',
@@ -235,6 +248,9 @@ export class InicioAdminComponent implements OnInit {
       title: {
         text: 'Pregunta 2 (Web): ¿El diseño del sitio web te resultó visualmente agradable?',
       },
+      subtitle: {
+        text: `Total de respuestas: ${totalEncuestasWeb}`,
+    },
       series: [
         {
           type: 'pie',
@@ -260,6 +276,9 @@ export class InicioAdminComponent implements OnInit {
       title: {
         text: 'Pregunta 3 (Web): ¿Te resultó conveniente el uso del sitio web?',
       },
+      subtitle: {
+        text: `Total de respuestas: ${totalEncuestasWeb}`,
+    },
       series: [
         {
           type: 'pie',
@@ -275,6 +294,7 @@ export class InicioAdminComponent implements OnInit {
           },
         },
       ],
+      
     };
   }
   
